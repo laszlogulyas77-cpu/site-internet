@@ -21,6 +21,10 @@
     document.querySelectorAll('[data-cms-address]').forEach(el => el.textContent = site.address || '');
     document.querySelectorAll('[data-cms-location]').forEach(el => el.textContent = site.location_label || '');
     document.querySelectorAll('[data-cms-footer-description]').forEach(el => el.textContent = site.footer_description || '');
+    document.querySelectorAll('[data-cms-logo]').forEach(el => {
+      if (site.logo) el.src = site.logo;
+      el.alt = `Logo ${site.company_name || 'SERILEC'}`;
+    });
   };
   const renderProject = project => `<article class="project-card reveal is-visible" data-category="${escapeHtml(project.category)}"><img src="${escapeHtml(project.image)}" alt="${escapeHtml(project.alt || project.title)}"><div class="project-overlay"><span class="project-tag">${escapeHtml(project.category_label)}</span><h3>${escapeHtml(project.title)}</h3><p>${project.location ? `${escapeHtml(project.location)} — ` : ''}${escapeHtml(project.description)}</p></div></article>`;
   const renderNews = item => `<article class="card news-card reveal is-visible"><img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.alt || item.title)}"><div class="news-card-content"><span class="news-meta">${escapeHtml(item.category)}${item.date ? ` • ${new Date(item.date).toLocaleDateString('fr-FR')}` : ''}</span><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.excerpt)}</p>${item.link ? `<a class="news-link" href="${escapeHtml(item.link)}">Lire l’article</a>` : '<span class="news-link">Actualité SERILEC</span>'}</div></article>`;
