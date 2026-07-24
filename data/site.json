@@ -1,0 +1,42 @@
+{
+  "company_name": "SERILEC",
+  "email": "contact@groupe-serilec.fr",
+  "phone": "01 60 63 87 54",
+  "address": "Zone Artisanale, 43 rue de la Fontaine, 77240 Cesson",
+  "location_label": "Île-de-France • France",
+  "footer_description": "Entreprise d’électricité générale spécialisée dans les projets tertiaires à forte exigence technique et architecturale.",
+  "home": {
+    "hero_eyebrow": "Entreprise d’électricité générale",
+    "hero_title": "L’exigence électrique au service de vos",
+    "hero_highlight": "projets tertiaires.",
+    "hero_lead": "SERILEC conçoit, réalise et maintient des installations électriques performantes pour les hôtels, bureaux, commerces, restaurants et bâtiments à forte exigence architecturale.",
+    "about_eyebrow": "À propos de SERILEC",
+    "about_title": "Votre partenaire électrique pour les opérations les plus exigeantes.",
+    "about_text": "Entreprise familiale et indépendante, SERILEC intervient sur des projets de rénovation, restructuration et aménagement dans le tertiaire, l’hôtellerie et le retail.",
+    "contact_eyebrow": "Parlons de votre projet",
+    "contact_title": "Vous préparez une rénovation ou un nouvel aménagement ?",
+    "contact_text": "Nos équipes peuvent intervenir dès la phase d’étude pour sécuriser les choix techniques, le budget et le planning."
+  },
+  "pages": {
+    "competences": {
+      "eyebrow": "Notre savoir-faire",
+      "title": "Des compétences techniques au service de projets exigeants.",
+      "intro": "SERILEC maîtrise l’ensemble des expertises électriques nécessaires à la conception, la réalisation, la mise en service et la maintenance de projets tertiaires performants."
+    },
+    "projects": {
+      "eyebrow": "Nos réalisations",
+      "title": "Des projets tertiaires livrés avec exigence.",
+      "intro": "Hôtels, bureaux, retail ou rénovations complexes : SERILEC accompagne ses clients de la conception à l’exploitation avec des solutions électriques fiables et durables."
+    },
+    "partners": {
+      "eyebrow": "Notre écosystème",
+      "title": "Des partenaires de confiance pour construire des projets durables.",
+      "intro": "Fabricants, distributeurs, bureaux d’études, architectes et intégrateurs participent à la qualité des solutions livrées par SERILEC."
+    },
+    "news": {
+      "eyebrow": "Actualités SERILEC",
+      "title": "Nos chantiers, notre équipe et nos innovations au quotidien.",
+      "intro": "Suivez les avancées de nos opérations, les temps forts de l’entreprise et les solutions techniques déployées par nos équipes."
+    }
+  }
+}
