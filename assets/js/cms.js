@@ -1,4 +1,10 @@
 (() => {
+  const brandVersion = '20260724-2';
+  const brandCss = document.createElement('link');
+  brandCss.rel = 'stylesheet';
+  brandCss.href = `assets/css/brand-fix.css?v=${brandVersion}`;
+  document.head.appendChild(brandCss);
+
   const escapeHtml = value => String(value ?? '').replace(/[&<>'"]/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
   const fetchJson = async path => {
     const response = await fetch(`${path}?v=${Date.now()}`, { cache: 'no-store' });
