@@ -21,18 +21,21 @@ const observer = new IntersectionObserver(entries => {
     }
   });
 }, { threshold: 0.08 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+const observeReveals = () => document.querySelectorAll('.reveal:not(.is-visible)').forEach(el => observer.observe(el));
+observeReveals();
 
-const filters = document.querySelectorAll('.filter-btn');
-const projects = document.querySelectorAll('.project-card[data-category]');
-filters.forEach(button => button.addEventListener('click', () => {
-  filters.forEach(item => item.classList.remove('active'));
+document.addEventListener('click', event => {
+  const button = event.target.closest('.filter-btn');
+  if (!button) return;
+  document.querySelectorAll('.filter-btn').forEach(item => item.classList.remove('active'));
   button.classList.add('active');
   const category = button.dataset.filter;
-  projects.forEach(card => {
+  document.querySelectorAll('.project-card[data-category]').forEach(card => {
     card.dataset.hidden = String(category !== 'all' && card.dataset.category !== category);
   });
-}));
+});
+
+document.addEventListener('cms:projects-rendered', observeReveals);
 
 document.querySelectorAll('[data-demo-form]').forEach(form => form.addEventListener('submit', event => {
   event.preventDefault();
