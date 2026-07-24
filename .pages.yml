@@ -1,10 +1,10 @@
 media:
   - name: images
-    label: Photos du site
+    label: Photos et logos du site
     input: assets/uploads
     output: assets/uploads
     categories: [image]
-    extensions: [jpg, jpeg, png, webp, avif]
+    extensions: [jpg, jpeg, png, webp, avif, svg]
     rename: safe
 
 settings:
@@ -30,6 +30,12 @@ content:
         label: Nom de l’entreprise
         type: string
         required: true
+      - name: logo
+        label: Logo principal
+        type: image
+        required: true
+        options:
+          media: images
       - name: email
         label: Email de contact
         type: string
@@ -88,54 +94,30 @@ content:
             label: Compétences
             type: object
             fields:
-              - name: eyebrow
-                label: Surtitre
-                type: string
-              - name: title
-                label: Titre
-                type: string
-              - name: intro
-                label: Introduction
-                type: text
+              - {name: eyebrow, label: Surtitre, type: string}
+              - {name: title, label: Titre, type: string}
+              - {name: intro, label: Introduction, type: text}
           - name: projects
             label: Projets
             type: object
             fields:
-              - name: eyebrow
-                label: Surtitre
-                type: string
-              - name: title
-                label: Titre
-                type: string
-              - name: intro
-                label: Introduction
-                type: text
+              - {name: eyebrow, label: Surtitre, type: string}
+              - {name: title, label: Titre, type: string}
+              - {name: intro, label: Introduction, type: text}
           - name: partners
             label: Partenaires
             type: object
             fields:
-              - name: eyebrow
-                label: Surtitre
-                type: string
-              - name: title
-                label: Titre
-                type: string
-              - name: intro
-                label: Introduction
-                type: text
+              - {name: eyebrow, label: Surtitre, type: string}
+              - {name: title, label: Titre, type: string}
+              - {name: intro, label: Introduction, type: text}
           - name: news
             label: Actualités
             type: object
             fields:
-              - name: eyebrow
-                label: Surtitre
-                type: string
-              - name: title
-                label: Titre
-                type: string
-              - name: intro
-                label: Introduction
-                type: text
+              - {name: eyebrow, label: Surtitre, type: string}
+              - {name: title, label: Titre, type: string}
+              - {name: intro, label: Introduction, type: text}
 
   - name: competences
     label: Compétences
@@ -147,30 +129,12 @@ content:
       rename: false
       delete: false
     fields:
-      - name: number
-        label: Numéro
-        type: string
-        required: true
-      - name: kicker
-        label: Catégorie
-        type: string
-        required: true
-      - name: title
-        label: Titre
-        type: string
-        required: true
-      - name: description
-        label: Description
-        type: text
-        required: true
-      - name: bullets
-        label: Prestations
-        type: string
-        list: true
-      - name: published
-        label: Visible sur le site
-        type: boolean
-        default: true
+      - {name: number, label: Numéro, type: string, required: true}
+      - {name: kicker, label: Catégorie, type: string, required: true}
+      - {name: title, label: Titre, type: string, required: true}
+      - {name: description, label: Description, type: text, required: true}
+      - {name: bullets, label: Prestations, type: string, list: true}
+      - {name: published, label: Visible sur le site, type: boolean, default: true}
 
   - name: projects
     label: Projets réalisés
@@ -182,52 +146,29 @@ content:
       rename: false
       delete: false
     fields:
-      - name: title
-        label: Nom du projet
-        type: string
-        required: true
+      - {name: title, label: Nom du projet, type: string, required: true}
       - name: category
         label: Catégorie de filtre
         type: select
         required: true
         options:
           values:
-            - name: hotel
-              label: Hôtellerie
-            - name: office
-              label: Bureaux
-            - name: retail
-              label: Retail
-            - name: renovation
-              label: Rénovation
-      - name: category_label
-        label: Libellé affiché
-        type: string
-        required: true
-      - name: location
-        label: Lieu
-        type: string
-      - name: description
-        label: Description courte
-        type: text
-        required: true
+            - {name: hotel, label: Hôtellerie}
+            - {name: office, label: Bureaux}
+            - {name: retail, label: Retail}
+            - {name: renovation, label: Rénovation}
+      - {name: category_label, label: Libellé affiché, type: string, required: true}
+      - {name: location, label: Lieu, type: string}
+      - {name: description, label: Description courte, type: text, required: true}
       - name: image
         label: Photo principale
         type: image
         required: true
         options:
           media: images
-      - name: alt
-        label: Description de la photo
-        type: string
-      - name: featured
-        label: Afficher sur l’accueil
-        type: boolean
-        default: false
-      - name: published
-        label: Visible sur le site
-        type: boolean
-        default: true
+      - {name: alt, label: Description de la photo, type: string}
+      - {name: featured, label: Afficher sur l’accueil, type: boolean, default: false}
+      - {name: published, label: Visible sur le site, type: boolean, default: true}
 
   - name: partners
     label: Partenaires
@@ -239,13 +180,8 @@ content:
       rename: false
       delete: false
     fields:
-      - name: name
-        label: Nom
-        type: string
-        required: true
-      - name: description
-        label: Domaine ou description
-        type: string
+      - {name: name, label: Nom, type: string, required: true}
+      - {name: description, label: Domaine ou description, type: string}
       - name: category
         label: Catégorie
         type: select
@@ -256,10 +192,7 @@ content:
         type: image
         options:
           media: images
-      - name: published
-        label: Visible sur le site
-        type: boolean
-        default: true
+      - {name: published, label: Visible sur le site, type: boolean, default: true}
 
   - name: news
     label: Actualités
@@ -271,10 +204,7 @@ content:
       rename: false
       delete: false
     fields:
-      - name: title
-        label: Titre
-        type: string
-        required: true
+      - {name: title, label: Titre, type: string, required: true}
       - name: category
         label: Catégorie
         type: select
@@ -286,27 +216,14 @@ content:
         type: date
         options:
           format: yyyy-MM-dd
-      - name: excerpt
-        label: Résumé
-        type: text
-        required: true
+      - {name: excerpt, label: Résumé, type: text, required: true}
       - name: image
         label: Image
         type: image
         required: true
         options:
           media: images
-      - name: alt
-        label: Description de l’image
-        type: string
-      - name: link
-        label: Lien facultatif
-        type: string
-      - name: featured
-        label: Mettre à la une
-        type: boolean
-        default: false
-      - name: published
-        label: Visible sur le site
-        type: boolean
-        default: true
+      - {name: alt, label: Description de l’image, type: string}
+      - {name: link, label: Lien facultatif, type: string}
+      - {name: featured, label: Mettre à la une, type: boolean, default: false}
+      - {name: published, label: Visible sur le site, type: boolean, default: true}
