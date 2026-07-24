@@ -9,16 +9,17 @@
   --teal-dark:#d7cf00;
 }
 
-.site-header{background:rgba(3,23,45,.96)}
-.nav-wrap{height:94px}
-.logo{gap:0;letter-spacing:0}
-.brand-logo{display:block;width:auto;height:74px;object-fit:contain}
-.footer-logo{margin-bottom:22px}
-.footer-logo .brand-logo{height:116px}
+.site-header{background:rgba(3,23,45,.97)}
+.nav-wrap{height:132px;align-items:center}
+.logo{display:flex;align-items:center;justify-content:center;width:105px;height:122px;padding:7px;background:#fff;border-radius:0 0 8px 8px;box-shadow:0 10px 28px rgba(0,0,0,.24);overflow:visible;align-self:flex-start}
+.brand-logo{display:block!important;width:auto!important;height:108px!important;max-width:91px!important;object-fit:contain!important;object-position:center!important}
+.footer-logo{display:inline-flex;align-items:center;justify-content:center;width:130px;height:172px;padding:10px;background:#fff;border-radius:8px;margin-bottom:22px}
+.footer-logo .brand-logo{height:150px!important;max-width:108px!important}
 .nav-links>a:not(.nav-cta):after{background:var(--gold)}
 .nav-cta{border-color:rgba(255,242,0,.72)}
 .nav-cta:hover{background:var(--gold);color:var(--navy)}
-.hero{padding-top:204px}
+.hero{padding-top:236px}
+.page-hero{padding-top:220px}
 .hero h1 span{color:var(--gold)}
 .metric strong{color:var(--gold)}
 .btn-primary{background:var(--gold);box-shadow:0 14px 36px rgba(255,242,0,.18)}
@@ -37,14 +38,21 @@
 .footer-title{color:var(--gold)}
 
 @media(max-width:1000px){
-  .nav-links{top:94px}
-  .brand-logo{height:66px}
+  .nav-wrap{height:112px}
+  .nav-links{top:112px}
+  .logo{width:92px;height:104px;padding:6px}
+  .brand-logo{height:91px!important;max-width:78px!important}
+  .hero{padding-top:205px}
+  .page-hero{padding-top:190px}
 }
 
 @media(max-width:680px){
-  .nav-wrap{height:78px}
-  .nav-links{top:78px}
-  .brand-logo{height:58px}
-  .footer-logo .brand-logo{height:100px}
-  .hero{padding-top:154px}
+  .nav-wrap{height:98px}
+  .nav-links{top:98px}
+  .logo{width:79px;height:91px;padding:5px}
+  .brand-logo{height:79px!important;max-width:68px!important}
+  .footer-logo{width:116px;height:154px}
+  .footer-logo .brand-logo{height:134px!important;max-width:96px!important}
+  .hero{padding-top:178px}
+  .page-hero{padding-top:170px}
 }
