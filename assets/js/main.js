@@ -1,3 +1,15 @@
+const brandStyles = document.createElement('link');
+brandStyles.rel = 'stylesheet';
+brandStyles.href = 'assets/css/serilec-brand.css';
+document.head.appendChild(brandStyles);
+
+const applyBrandLogo = (src = 'assets/img/logo-serilec.svg') => {
+  document.querySelectorAll('.logo, .footer-logo').forEach(container => {
+    container.innerHTML = `<img class="brand-logo" data-cms-logo src="${src}" alt="Logo SERILEC">`;
+  });
+};
+applyBrandLogo();
+
 const menuButton = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.nav-links');
 if (menuButton && nav) {
