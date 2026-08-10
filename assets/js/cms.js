@@ -1,5 +1,6 @@
 (() => {
-  const brandVersion = '20260810-client-links-v7';
+  const brandVersion = '20260810-cms-photo-refresh-v8';
+  const assetVersion = Date.now();
   const brandCss = document.createElement('link');
   brandCss.rel = 'stylesheet';
   brandCss.href = `assets/css/brand-fix.css?v=${brandVersion}`;
@@ -10,6 +11,10 @@
   document.head.appendChild(extraStyles);
 
   const escapeHtml = value => String(value ?? '').replace(/[&<>'"]/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
+  const withAssetVersion = src => {
+    if (!src || /^https?:\/\//i.test(src) || src.startsWith('data:')) return src;
+    return `${src}${src.includes('?') ? '&' : '?'}v=${assetVersion}`;
+  };
   const fetchJson = async path => {
     const response = await fetch(`${path}?v=${Date.now()}`, { cache: 'no-store' });
     if (!response.ok) throw new Error(`Impossible de charger ${path}`);
@@ -32,7 +37,7 @@
     document.querySelectorAll('[data-cms-location]').forEach(el => el.textContent = site.location_label || '');
     document.querySelectorAll('[data-cms-footer-description]').forEach(el => el.textContent = site.footer_description || '');
     document.querySelectorAll('[data-cms-logo]').forEach(el => {
-      if (site.logo) el.src = site.logo;
+      if (site.logo) el.src = withAssetVersion(site.logo);
       el.alt = `Logo ${site.company_name || 'SERILEC'}`;
     });
   };
@@ -42,7 +47,7 @@
       project.client ? `<span><strong>MOA</strong> ${escapeHtml(project.client)}</span>` : '',
       project.year ? `<span><strong>Année</strong> ${escapeHtml(project.year)}</span>` : ''
     ].filter(Boolean).join('');
-    const image = project.image || 'assets/uploads/references/photo-a-ajouter.svg';
+    const image = withAssetVersion(project.image || 'assets/uploads/references/photo-a-ajouter.svg');
     return `<article class="project-card reveal is-visible" data-category="${escapeHtml(project.category)}" data-premium="${project.premium === true ? 'true' : 'false'}"><img src="${escapeHtml(image)}" alt="${escapeHtml(project.alt || project.title)}"><div class="project-overlay"><span class="project-tag">${escapeHtml(project.category_label || '')}</span><h3>${escapeHtml(project.title)}</h3><p>${project.location ? `${escapeHtml(project.location)} — ` : ''}${escapeHtml(project.description || '')}</p>${metadata ? `<div class="project-meta">${metadata}</div>` : ''}</div></article>`;
   };
 
@@ -58,7 +63,7 @@
 
   const renderLogoItem = item => {
     const fallbackLogo = getWebLogo(item.website);
-    const logoSource = item.logo || fallbackLogo;
+    const logoSource = item.logo ? withAssetVersion(item.logo) : fallbackLogo;
     const fallbackAttribute = fallbackLogo ? ` onerror="this.onerror=null;this.src='${escapeHtml(fallbackLogo)}'"` : '';
     const logo = logoSource ? `<img src="${escapeHtml(logoSource)}" alt="Logo ${escapeHtml(item.name)}" loading="lazy"${fallbackAttribute}>` : '';
     const name = `<div class="partner-name">${escapeHtml(item.name)}</div>`;
@@ -70,7 +75,10 @@
     return `<div class="partner">${content}</div>`;
   };
 
-  const renderNews = item => `<article class="card news-card reveal is-visible"><img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.alt || item.title)}"><div class="news-card-content"><span class="news-meta">${escapeHtml(item.category)}${item.date ? ` • ${new Date(item.date).toLocaleDateString('fr-FR')}` : ''}</span><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.excerpt)}</p>${item.link ? `<a class="news-link" href="${escapeHtml(item.link)}">Lire l’article</a>` : '<span class="news-link">Actualité SERILEC</span>'}</div></article>`;
+  const renderNews = item => {
+    const image = withAssetVersion(item.image);
+    return `<article class="card news-card reveal is-visible"><img src="${escapeHtml(image)}" alt="${escapeHtml(item.alt || item.title)}"><div class="news-card-content"><span class="news-meta">${escapeHtml(item.category)}${item.date ? ` • ${new Date(item.date).toLocaleDateString('fr-FR')}` : ''}</span><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.excerpt)}</p>${item.link ? `<a class="news-link" href="${escapeHtml(item.link)}">Lire l’article</a>` : '<span class="news-link">Actualité SERILEC</span>'}</div></article>`;
+  };
 
   document.addEventListener('DOMContentLoaded', async () => {
     document.querySelectorAll('a[href="partenaires.html"]').forEach(link => {
