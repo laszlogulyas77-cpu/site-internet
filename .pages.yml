@@ -109,17 +109,19 @@ content:
     fields:
       - {name: title, label: Nom du projet, type: string, required: true}
       - name: category
-        label: Catégorie de filtre
+        label: Catégorie principale
         type: select
         required: true
         options:
           values:
             - {name: hotel, label: Hôtellerie}
             - {name: office, label: Bureaux}
+            - {name: school, label: École / Enseignement}
             - {name: retail, label: Boutique / Retail}
             - {name: restaurant, label: Restaurant}
             - {name: health, label: Santé}
-            - {name: renovation, label: Rénovation}
+            - {name: premium, label: Haut de gamme / Patrimoine}
+      - {name: premium, label: Afficher aussi dans Haut de gamme, type: boolean, default: false}
       - {name: category_label, label: Libellé affiché, type: string, required: true}
       - {name: location, label: Adresse / lieu, type: string}
       - {name: description, label: Mission SERILEC, type: text, required: true}
