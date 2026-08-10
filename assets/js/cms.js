@@ -1,5 +1,5 @@
 (() => {
-  const brandVersion = '20260810-logo-photos-v3';
+  const brandVersion = '20260810-hide-amounts-v4';
   const brandCss = document.createElement('link');
   brandCss.rel = 'stylesheet';
   brandCss.href = `assets/css/brand-fix.css?v=${brandVersion}`;
@@ -67,7 +67,6 @@
     const project = normalizeProject(sourceProject);
     const metadata = [
       project.client ? `<span><strong>MOA</strong> ${escapeHtml(project.client)}</span>` : '',
-      project.amount ? `<span><strong>Travaux</strong> ${escapeHtml(project.amount)}</span>` : '',
       project.year ? `<span><strong>Année</strong> ${escapeHtml(project.year)}</span>` : ''
     ].filter(Boolean).join('');
     const image = projectImageOverrides[project.title] || projectImageOverrides[sourceProject.title] || project.image;
