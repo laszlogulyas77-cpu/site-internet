@@ -8,5 +8,10 @@
   {"name":"WAGO","description":"Connexion & automatisation","category":"Fabricant","logo":"","published":true},
   {"name":"Rexel","description":"Distribution professionnelle","category":"Distribution","logo":"","published":true},
   {"name":"Sonepar","description":"Distribution professionnelle","category":"Distribution","logo":"","published":true},
-  {"name":"Distech Controls","description":"Gestion du bâtiment","category":"GTB","logo":"","published":true}
+  {"name":"Distech Controls","description":"Gestion du bâtiment","category":"GTB","logo":"","published":true},
+  {"name":"Elsa Joseph Architecture Paris","description":"Architecture","category":"Architecture","logo":"assets/uploads/partners/elsa-joseph.webp","published":true},
+  {"name":"A26","description":"Building Harmony • Architecture & ingénierie","category":"Architecture","logo":"assets/uploads/partners/a26.webp","published":true},
+  {"name":"AD Equation","description":"Bureau d’études & ingénierie","category":"Architecture","logo":"assets/uploads/partners/ad-equation.webp","published":true},
+  {"name":"B27","description":"Architecture & conception","category":"Architecture","logo":"assets/uploads/partners/b27.webp","published":true},
+  {"name":"Agence Terrones (AGT)","description":"Architectes • Ingénieurs • Associés","category":"Architecture","logo":"assets/uploads/partners/agt-terrones.webp","published":true}
 ]
