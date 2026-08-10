@@ -1,5 +1,5 @@
 (() => {
-  const brandVersion = '20260811-horizontal-logo-v11';
+  const brandVersion = '20260811-project-cards-v12';
   const assetVersion = Date.now();
   const brandCss = document.createElement('link');
   brandCss.rel = 'stylesheet';
