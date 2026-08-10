@@ -26,66 +26,31 @@ content:
     operations:
       delete: false
     fields:
-      - name: company_name
-        label: Nom de l’entreprise
-        type: string
-        required: true
+      - {name: company_name, label: Nom de l’entreprise, type: string, required: true}
       - name: logo
         label: Logo principal
         type: image
         required: true
-        options:
-          media: images
-      - name: email
-        label: Email de contact
-        type: string
-        required: true
-      - name: phone
-        label: Téléphone
-        type: string
-      - name: address
-        label: Adresse
-        type: text
-      - name: location_label
-        label: Zone d’intervention affichée
-        type: string
-      - name: footer_description
-        label: Présentation dans le pied de page
-        type: text
+        options: {media: images}
+      - {name: email, label: Email de contact, type: string, required: true}
+      - {name: phone, label: Téléphone, type: string}
+      - {name: address, label: Adresse, type: text}
+      - {name: location_label, label: Zone d’intervention affichée, type: string}
+      - {name: footer_description, label: Présentation dans le pied de page, type: text}
       - name: home
         label: Page d’accueil
         type: object
         fields:
-          - name: hero_eyebrow
-            label: Surtitre principal
-            type: string
-          - name: hero_title
-            label: Titre principal
-            type: string
-          - name: hero_highlight
-            label: Partie du titre en couleur
-            type: string
-          - name: hero_lead
-            label: Texte d’introduction
-            type: text
-          - name: about_eyebrow
-            label: Surtitre de présentation
-            type: string
-          - name: about_title
-            label: Titre de présentation
-            type: string
-          - name: about_text
-            label: Texte de présentation
-            type: text
-          - name: contact_eyebrow
-            label: Surtitre de contact
-            type: string
-          - name: contact_title
-            label: Titre de contact
-            type: string
-          - name: contact_text
-            label: Texte de contact
-            type: text
+          - {name: hero_eyebrow, label: Surtitre principal, type: string}
+          - {name: hero_title, label: Titre principal, type: string}
+          - {name: hero_highlight, label: Partie du titre en couleur, type: string}
+          - {name: hero_lead, label: Texte d’introduction, type: text}
+          - {name: about_eyebrow, label: Surtitre de présentation, type: string}
+          - {name: about_title, label: Titre de présentation, type: string}
+          - {name: about_text, label: Texte de présentation, type: text}
+          - {name: contact_eyebrow, label: Surtitre de contact, type: string}
+          - {name: contact_title, label: Titre de contact, type: string}
+          - {name: contact_text, label: Texte de contact, type: text}
       - name: pages
         label: En-têtes des pages
         type: object
@@ -155,17 +120,21 @@ content:
           values:
             - {name: hotel, label: Hôtellerie}
             - {name: office, label: Bureaux}
-            - {name: retail, label: Retail}
+            - {name: retail, label: Boutique / Retail}
+            - {name: restaurant, label: Restaurant}
+            - {name: health, label: Santé}
             - {name: renovation, label: Rénovation}
       - {name: category_label, label: Libellé affiché, type: string, required: true}
-      - {name: location, label: Lieu, type: string}
-      - {name: description, label: Description courte, type: text, required: true}
+      - {name: location, label: Adresse / lieu, type: string}
+      - {name: description, label: Mission SERILEC, type: text, required: true}
+      - {name: client, label: Maître d’ouvrage / client, type: string}
+      - {name: amount, label: Montant des travaux, type: string}
+      - {name: year, label: Date de réalisation, type: string}
       - name: image
         label: Photo principale
         type: image
         required: true
-        options:
-          media: images
+        options: {media: images}
       - {name: alt, label: Description de la photo, type: string}
       - {name: featured, label: Afficher sur l’accueil, type: boolean, default: false}
       - {name: published, label: Visible sur le site, type: boolean, default: true}
@@ -190,8 +159,7 @@ content:
       - name: logo
         label: Logo facultatif
         type: image
-        options:
-          media: images
+        options: {media: images}
       - {name: published, label: Visible sur le site, type: boolean, default: true}
 
   - name: news
@@ -214,15 +182,13 @@ content:
       - name: date
         label: Date
         type: date
-        options:
-          format: yyyy-MM-dd
+        options: {format: yyyy-MM-dd}
       - {name: excerpt, label: Résumé, type: text, required: true}
       - name: image
         label: Image
         type: image
         required: true
-        options:
-          media: images
+        options: {media: images}
       - {name: alt, label: Description de l’image, type: string}
       - {name: link, label: Lien facultatif, type: string}
       - {name: featured, label: Mettre à la une, type: boolean, default: false}
