@@ -1,5 +1,5 @@
 (() => {
-  const brandVersion = '20260810-references';
+  const brandVersion = '20260810-logo-photos-v3';
   const brandCss = document.createElement('link');
   brandCss.rel = 'stylesheet';
   brandCss.href = `assets/css/brand-fix.css?v=${brandVersion}`;
@@ -8,6 +8,19 @@
   const projectStyles = document.createElement('style');
   projectStyles.textContent = `.project-overlay p{margin-bottom:10px}.project-meta{display:flex;flex-wrap:wrap;gap:7px 14px;padding-top:10px;border-top:1px solid rgba(255,255,255,.18);font-size:.72rem;color:#e6edf4}.project-meta span{display:inline-flex;gap:5px}.project-meta strong{color:#fff;font-weight:700}.project-card{min-height:455px}@media(max-width:680px){.project-card{min-height:440px}}`;
   document.head.appendChild(projectStyles);
+
+  const projectImageOverrides = {
+    'Hôtel Ampère': 'https://d3q7x7f8c6hxga.cloudfront.net/eyJidWNrZXQiOiJtZWRpYS5ibmV0d29yay5jb20iLCJrZXkiOiJQcm9kL0hvdGVscy8wZmNlMzYzZi1mMjFkLTQ1MjQtYjMzNi0xNTFmMzk1N2E5OGYvRnJvbnQuanBnIiwiZWRpdHMiOnsicmVzaXplIjpudWxsfSwiVXJsQ2FjaGVLZXkiOjB9',
+    'Hôtel Bellechasse': 'https://media.cool-cities.com/bellechasse037mk_mob.jpg?h=530',
+    'Thalazur Carnac': 'https://www.thalazur.fr/_hotels/assets/images/salines/galleries/big/vue-hotel-carnac-exterieur.jpg',
+    'Thalazur Royan': 'https://cdn.generationvoyage.fr/2024/08/Thalazur-Royan-Hotel-Spa.jpg',
+    'Hôtel Tiquetonne': 'https://hapi.mmcreation.com/hapidam/a11d5c5a-af21-4ba7-88fc-d5be05a0530f/le-tiquetonne-partie-commune-016.png?size=lg',
+    'Hôtel Courcelles': 'https://z.cdrst.com/foto/hotel-sf/2454/granderesp/courcelles-etoile-exterior-11c47565.jpg',
+    'Ambassade des Émirats Arabes Unis': 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Emirati_embassy_in_Paris.jpg/960px-Emirati_embassy_in_Paris.jpg',
+    'Boutique Ladurée Champs-Élysées': 'https://laduree.com/cdn/shop/files/yext-DsuNy4q3Eeo4UjFUaHXAGmG0m9Wd3_xWNX5Ry_GLjas-1600x1200.jpg?crop=center&height=650&v=1783410307&width=573',
+    'Boutique Ladurée': 'https://laduree.com/cdn/shop/files/yext-DsuNy4q3Eeo4UjFUaHXAGmG0m9Wd3_xWNX5Ry_GLjas-1600x1200.jpg?crop=center&height=650&v=1783410307&width=573',
+    'Flagship Lacoste': 'https://laduree.com/cdn/shop/files/yext-DsuNy4q3Eeo4UjFUaHXAGmG0m9Wd3_xWNX5Ry_GLjas-1600x1200.jpg?crop=center&height=650&v=1783410307&width=573'
+  };
 
   const escapeHtml = value => String(value ?? '').replace(/[&<>'"]/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
   const fetchJson = async path => {
@@ -36,15 +49,32 @@
       el.alt = `Logo ${site.company_name || 'SERILEC'}`;
     });
   };
-  const renderProject = project => {
+  const normalizeProject = project => {
+    if (project.title !== 'Flagship Lacoste') return project;
+    return {
+      ...project,
+      title: 'Boutique Ladurée Champs-Élysées',
+      category: 'retail',
+      category_label: 'Boutique',
+      location: '75 avenue des Champs-Élysées, 75008 Paris',
+      description: "Rénovation et agrandissement de la boutique : CFO, CFA, SSI, contrôle d'accès et vidéosurveillance.",
+      client: 'PATISSERIE E. LADUREE',
+      amount: '520 000 €',
+      year: '2022-2023'
+    };
+  };
+  const renderProject = sourceProject => {
+    const project = normalizeProject(sourceProject);
     const metadata = [
       project.client ? `<span><strong>MOA</strong> ${escapeHtml(project.client)}</span>` : '',
       project.amount ? `<span><strong>Travaux</strong> ${escapeHtml(project.amount)}</span>` : '',
       project.year ? `<span><strong>Année</strong> ${escapeHtml(project.year)}</span>` : ''
     ].filter(Boolean).join('');
-    return `<article class="project-card reveal is-visible" data-category="${escapeHtml(project.category)}"><img src="${escapeHtml(project.image)}" alt="${escapeHtml(project.alt || project.title)}"><div class="project-overlay"><span class="project-tag">${escapeHtml(project.category_label)}</span><h3>${escapeHtml(project.title)}</h3><p>${project.location ? `${escapeHtml(project.location)} — ` : ''}${escapeHtml(project.description)}</p>${metadata ? `<div class="project-meta">${metadata}</div>` : ''}</div></article>`;
+    const image = projectImageOverrides[project.title] || projectImageOverrides[sourceProject.title] || project.image;
+    return `<article class="project-card reveal is-visible" data-category="${escapeHtml(project.category)}"><img src="${escapeHtml(image)}" alt="${escapeHtml(project.alt || project.title)}"><div class="project-overlay"><span class="project-tag">${escapeHtml(project.category_label)}</span><h3>${escapeHtml(project.title)}</h3><p>${project.location ? `${escapeHtml(project.location)} — ` : ''}${escapeHtml(project.description)}</p>${metadata ? `<div class="project-meta">${metadata}</div>` : ''}</div></article>`;
   };
   const renderNews = item => `<article class="card news-card reveal is-visible"><img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.alt || item.title)}"><div class="news-card-content"><span class="news-meta">${escapeHtml(item.category)}${item.date ? ` • ${new Date(item.date).toLocaleDateString('fr-FR')}` : ''}</span><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.excerpt)}</p>${item.link ? `<a class="news-link" href="${escapeHtml(item.link)}">Lire l’article</a>` : '<span class="news-link">Actualité SERILEC</span>'}</div></article>`;
+
   document.addEventListener('DOMContentLoaded', async () => {
     try {
       const site = await fetchJson('data/site.json');
