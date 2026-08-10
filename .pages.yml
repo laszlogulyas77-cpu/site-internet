@@ -147,10 +147,11 @@ content:
     fields:
       - {name: name, label: Nom du client, type: string, required: true}
       - {name: description, label: Description facultative, type: string}
+      - {name: website, label: Site internet, type: string}
       - name: logo
         label: Logo
-        type: image
-        options: {media: images}
+        type: string
+        description: URL du logo ou chemin d’un fichier dans le dépôt
       - {name: published, label: Visible sur le site, type: boolean, default: true}
 
   - name: partners
@@ -163,6 +164,7 @@ content:
     fields:
       - {name: name, label: Nom, type: string, required: true}
       - {name: description, label: Domaine ou description, type: string}
+      - {name: website, label: Site internet, type: string}
       - name: category
         label: Catégorie
         type: select
@@ -170,8 +172,8 @@ content:
           values: [Fabricant, Distribution, GTB, Architecture, Bureau d’études, Intégrateur, Autre]
       - name: logo
         label: Logo facultatif
-        type: image
-        options: {media: images}
+        type: string
+        description: URL du logo ou chemin d’un fichier dans le dépôt
       - {name: published, label: Visible sur le site, type: boolean, default: true}
 
   - name: news
