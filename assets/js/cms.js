@@ -1,5 +1,5 @@
 (() => {
-  const brandVersion = '20260810-logo-header-v10';
+  const brandVersion = '20260811-horizontal-logo-v11';
   const assetVersion = Date.now();
   const brandCss = document.createElement('link');
   brandCss.rel = 'stylesheet';
@@ -40,9 +40,8 @@
     if (site.logo) {
       const logoSrc = withAssetVersion(site.logo);
       const logoAlt = `Logo ${site.company_name || 'SERILEC'}`;
-      const companyName = escapeHtml(site.company_name || 'SERILEC');
       document.querySelectorAll('.site-header .logo').forEach(el => {
-        el.innerHTML = `<span class="brand-mark-wrap"><img class="brand-logo" data-cms-logo src="${escapeHtml(logoSrc)}" alt="${escapeHtml(logoAlt)}"></span><span class="brand-word">${companyName}</span>`;
+        el.innerHTML = `<img class="brand-logo" data-cms-logo src="${escapeHtml(logoSrc)}" alt="${escapeHtml(logoAlt)}">`;
       });
       document.querySelectorAll('.footer-logo').forEach(el => {
         el.innerHTML = `<img class="footer-brand-logo" data-cms-logo src="${escapeHtml(logoSrc)}" alt="${escapeHtml(logoAlt)}">`;
