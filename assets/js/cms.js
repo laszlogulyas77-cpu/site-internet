@@ -1,9 +1,13 @@
 (() => {
-  const brandVersion = '20260724-2';
+  const brandVersion = '20260810-references';
   const brandCss = document.createElement('link');
   brandCss.rel = 'stylesheet';
   brandCss.href = `assets/css/brand-fix.css?v=${brandVersion}`;
   document.head.appendChild(brandCss);
+
+  const projectStyles = document.createElement('style');
+  projectStyles.textContent = `.project-overlay p{margin-bottom:10px}.project-meta{display:flex;flex-wrap:wrap;gap:7px 14px;padding-top:10px;border-top:1px solid rgba(255,255,255,.18);font-size:.72rem;color:#e6edf4}.project-meta span{display:inline-flex;gap:5px}.project-meta strong{color:#fff;font-weight:700}.project-card{min-height:455px}@media(max-width:680px){.project-card{min-height:440px}}`;
+  document.head.appendChild(projectStyles);
 
   const escapeHtml = value => String(value ?? '').replace(/[&<>'"]/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
   const fetchJson = async path => {
@@ -32,7 +36,14 @@
       el.alt = `Logo ${site.company_name || 'SERILEC'}`;
     });
   };
-  const renderProject = project => `<article class="project-card reveal is-visible" data-category="${escapeHtml(project.category)}"><img src="${escapeHtml(project.image)}" alt="${escapeHtml(project.alt || project.title)}"><div class="project-overlay"><span class="project-tag">${escapeHtml(project.category_label)}</span><h3>${escapeHtml(project.title)}</h3><p>${project.location ? `${escapeHtml(project.location)} — ` : ''}${escapeHtml(project.description)}</p></div></article>`;
+  const renderProject = project => {
+    const metadata = [
+      project.client ? `<span><strong>MOA</strong> ${escapeHtml(project.client)}</span>` : '',
+      project.amount ? `<span><strong>Travaux</strong> ${escapeHtml(project.amount)}</span>` : '',
+      project.year ? `<span><strong>Année</strong> ${escapeHtml(project.year)}</span>` : ''
+    ].filter(Boolean).join('');
+    return `<article class="project-card reveal is-visible" data-category="${escapeHtml(project.category)}"><img src="${escapeHtml(project.image)}" alt="${escapeHtml(project.alt || project.title)}"><div class="project-overlay"><span class="project-tag">${escapeHtml(project.category_label)}</span><h3>${escapeHtml(project.title)}</h3><p>${project.location ? `${escapeHtml(project.location)} — ` : ''}${escapeHtml(project.description)}</p>${metadata ? `<div class="project-meta">${metadata}</div>` : ''}</div></article>`;
+  };
   const renderNews = item => `<article class="card news-card reveal is-visible"><img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.alt || item.title)}"><div class="news-card-content"><span class="news-meta">${escapeHtml(item.category)}${item.date ? ` • ${new Date(item.date).toLocaleDateString('fr-FR')}` : ''}</span><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.excerpt)}</p>${item.link ? `<a class="news-link" href="${escapeHtml(item.link)}">Lire l’article</a>` : '<span class="news-link">Actualité SERILEC</span>'}</div></article>`;
   document.addEventListener('DOMContentLoaded', async () => {
     try {
