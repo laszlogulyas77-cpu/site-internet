@@ -1,12 +1,12 @@
 (() => {
-  const brandVersion = '20260810-clients-projects-v6';
+  const brandVersion = '20260810-client-links-v7';
   const brandCss = document.createElement('link');
   brandCss.rel = 'stylesheet';
   brandCss.href = `assets/css/brand-fix.css?v=${brandVersion}`;
   document.head.appendChild(brandCss);
 
   const extraStyles = document.createElement('style');
-  extraStyles.textContent = `.project-overlay p{margin-bottom:10px}.project-meta{display:flex;flex-wrap:wrap;gap:7px 14px;padding-top:10px;border-top:1px solid rgba(255,255,255,.18);font-size:.72rem;color:#e6edf4}.project-meta span{display:inline-flex;gap:5px}.project-meta strong{color:#fff;font-weight:700}.project-card{min-height:455px}.partner img{width:100%;height:72px;object-fit:contain}.partner{background:#fff}.partner-name{font:700 .84rem 'Manrope',sans-serif;margin-top:9px;color:#45576b}@media(max-width:680px){.project-card{min-height:440px}.partner img{height:60px}}`;
+  extraStyles.textContent = `.project-overlay p{margin-bottom:10px}.project-meta{display:flex;flex-wrap:wrap;gap:7px 14px;padding-top:10px;border-top:1px solid rgba(255,255,255,.18);font-size:.72rem;color:#e6edf4}.project-meta span{display:inline-flex;gap:5px}.project-meta strong{color:#fff;font-weight:700}.project-card{min-height:455px}.partner img{width:100%;height:72px;object-fit:contain}.partner{background:#fff}.partner-name{font:700 .84rem 'Manrope',sans-serif;margin-top:9px;color:#45576b}.partner-link{color:inherit;text-decoration:none;cursor:pointer;transition:transform .22s ease,box-shadow .22s ease,background .22s ease}.partner-link:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,26,54,.10);background:#f8fafc}.partner-link:focus-visible{outline:3px solid #fff200;outline-offset:-3px}@media(max-width:680px){.project-card{min-height:440px}.partner img{height:60px}}`;
   document.head.appendChild(extraStyles);
 
   const escapeHtml = value => String(value ?? '').replace(/[&<>'"]/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
@@ -46,11 +46,28 @@
     return `<article class="project-card reveal is-visible" data-category="${escapeHtml(project.category)}" data-premium="${project.premium === true ? 'true' : 'false'}"><img src="${escapeHtml(image)}" alt="${escapeHtml(project.alt || project.title)}"><div class="project-overlay"><span class="project-tag">${escapeHtml(project.category_label || '')}</span><h3>${escapeHtml(project.title)}</h3><p>${project.location ? `${escapeHtml(project.location)} — ` : ''}${escapeHtml(project.description || '')}</p>${metadata ? `<div class="project-meta">${metadata}</div>` : ''}</div></article>`;
   };
 
+  const getWebLogo = website => {
+    if (!website) return '';
+    try {
+      const hostname = new URL(website).hostname.replace(/^www\./, '');
+      return `https://www.google.com/s2/favicons?domain=${encodeURIComponent(hostname)}&sz=256`;
+    } catch (error) {
+      return '';
+    }
+  };
+
   const renderLogoItem = item => {
-    const logo = item.logo ? `<img src="${escapeHtml(item.logo)}" alt="Logo ${escapeHtml(item.name)}">` : '';
+    const fallbackLogo = getWebLogo(item.website);
+    const logoSource = item.logo || fallbackLogo;
+    const fallbackAttribute = fallbackLogo ? ` onerror="this.onerror=null;this.src='${escapeHtml(fallbackLogo)}'"` : '';
+    const logo = logoSource ? `<img src="${escapeHtml(logoSource)}" alt="Logo ${escapeHtml(item.name)}" loading="lazy"${fallbackAttribute}>` : '';
     const name = `<div class="partner-name">${escapeHtml(item.name)}</div>`;
     const description = item.description ? `<small>${escapeHtml(item.description)}</small>` : '';
-    return `<div class="partner">${logo}${name}${description}</div>`;
+    const content = `${logo}${name}${description}`;
+    if (item.website) {
+      return `<a class="partner partner-link" href="${escapeHtml(item.website)}" target="_blank" rel="noopener noreferrer" aria-label="Visiter le site de ${escapeHtml(item.name)}">${content}</a>`;
+    }
+    return `<div class="partner">${content}</div>`;
   };
 
   const renderNews = item => `<article class="card news-card reveal is-visible"><img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.alt || item.title)}"><div class="news-card-content"><span class="news-meta">${escapeHtml(item.category)}${item.date ? ` • ${new Date(item.date).toLocaleDateString('fr-FR')}` : ''}</span><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.excerpt)}</p>${item.link ? `<a class="news-link" href="${escapeHtml(item.link)}">Lire l’article</a>` : '<span class="news-link">Actualité SERILEC</span>'}</div></article>`;
