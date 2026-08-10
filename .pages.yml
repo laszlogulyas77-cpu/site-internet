@@ -70,7 +70,7 @@ content:
               - {name: title, label: Titre, type: string}
               - {name: intro, label: Introduction, type: text}
           - name: partners
-            label: Partenaires
+            label: Clients & Partenaires
             type: object
             fields:
               - {name: eyebrow, label: Surtitre, type: string}
@@ -90,9 +90,7 @@ content:
     path: data/competences.json
     format: json
     list: true
-    operations:
-      rename: false
-      delete: false
+    operations: {rename: false, delete: false}
     fields:
       - {name: number, label: Numéro, type: string, required: true}
       - {name: kicker, label: Catégorie, type: string, required: true}
@@ -107,9 +105,7 @@ content:
     path: data/projects.json
     format: json
     list: true
-    operations:
-      rename: false
-      delete: false
+    operations: {rename: false, delete: false}
     fields:
       - {name: title, label: Nom du projet, type: string, required: true}
       - name: category
@@ -128,7 +124,7 @@ content:
       - {name: location, label: Adresse / lieu, type: string}
       - {name: description, label: Mission SERILEC, type: text, required: true}
       - {name: client, label: Maître d’ouvrage / client, type: string}
-      - {name: amount, label: Montant des travaux, type: string}
+      - {name: amount, label: Montant des travaux (interne, non affiché), type: string}
       - {name: year, label: Date de réalisation, type: string}
       - name: image
         label: Photo principale
@@ -139,15 +135,29 @@ content:
       - {name: featured, label: Afficher sur l’accueil, type: boolean, default: false}
       - {name: published, label: Visible sur le site, type: boolean, default: true}
 
+  - name: clients
+    label: Clients
+    type: file
+    path: data/clients.json
+    format: json
+    list: true
+    operations: {rename: false, delete: false}
+    fields:
+      - {name: name, label: Nom du client, type: string, required: true}
+      - {name: description, label: Description facultative, type: string}
+      - name: logo
+        label: Logo
+        type: image
+        options: {media: images}
+      - {name: published, label: Visible sur le site, type: boolean, default: true}
+
   - name: partners
-    label: Partenaires
+    label: Partenaires techniques
     type: file
     path: data/partners.json
     format: json
     list: true
-    operations:
-      rename: false
-      delete: false
+    operations: {rename: false, delete: false}
     fields:
       - {name: name, label: Nom, type: string, required: true}
       - {name: description, label: Domaine ou description, type: string}
@@ -155,7 +165,7 @@ content:
         label: Catégorie
         type: select
         options:
-          values: [Fabricant, Distribution, GTB, Architecture, Client, Autre]
+          values: [Fabricant, Distribution, GTB, Architecture, Bureau d’études, Intégrateur, Autre]
       - name: logo
         label: Logo facultatif
         type: image
@@ -168,9 +178,7 @@ content:
     path: data/news.json
     format: json
     list: true
-    operations:
-      rename: false
-      delete: false
+    operations: {rename: false, delete: false}
     fields:
       - {name: title, label: Titre, type: string, required: true}
       - name: category
