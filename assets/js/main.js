@@ -41,9 +41,10 @@ document.addEventListener('click', event => {
   if (!button) return;
   document.querySelectorAll('.filter-btn').forEach(item => item.classList.remove('active'));
   button.classList.add('active');
-  const category = button.dataset.filter;
+  const filter = button.dataset.filter;
   document.querySelectorAll('.project-card[data-category]').forEach(card => {
-    card.dataset.hidden = String(category !== 'all' && card.dataset.category !== category);
+    const visible = filter === 'all' || card.dataset.category === filter || (filter === 'premium' && card.dataset.premium === 'true');
+    card.dataset.hidden = String(!visible);
   });
 });
 
