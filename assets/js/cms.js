@@ -1,5 +1,5 @@
 (() => {
-  const brandVersion = '20260810-clients-projects-v5';
+  const brandVersion = '20260810-clients-projects-v6';
   const brandCss = document.createElement('link');
   brandCss.rel = 'stylesheet';
   brandCss.href = `assets/css/brand-fix.css?v=${brandVersion}`;
@@ -43,7 +43,7 @@
       project.year ? `<span><strong>Année</strong> ${escapeHtml(project.year)}</span>` : ''
     ].filter(Boolean).join('');
     const image = project.image || 'assets/uploads/references/photo-a-ajouter.svg';
-    return `<article class="project-card reveal is-visible" data-category="${escapeHtml(project.category)}"><img src="${escapeHtml(image)}" alt="${escapeHtml(project.alt || project.title)}"><div class="project-overlay"><span class="project-tag">${escapeHtml(project.category_label || '')}</span><h3>${escapeHtml(project.title)}</h3><p>${project.location ? `${escapeHtml(project.location)} — ` : ''}${escapeHtml(project.description || '')}</p>${metadata ? `<div class="project-meta">${metadata}</div>` : ''}</div></article>`;
+    return `<article class="project-card reveal is-visible" data-category="${escapeHtml(project.category)}" data-premium="${project.premium === true ? 'true' : 'false'}"><img src="${escapeHtml(image)}" alt="${escapeHtml(project.alt || project.title)}"><div class="project-overlay"><span class="project-tag">${escapeHtml(project.category_label || '')}</span><h3>${escapeHtml(project.title)}</h3><p>${project.location ? `${escapeHtml(project.location)} — ` : ''}${escapeHtml(project.description || '')}</p>${metadata ? `<div class="project-meta">${metadata}</div>` : ''}</div></article>`;
   };
 
   const renderLogoItem = item => {
