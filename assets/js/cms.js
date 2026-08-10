@@ -1,5 +1,5 @@
 (() => {
-  const brandVersion = '20260810-cms-photo-refresh-v8';
+  const brandVersion = '20260810-cms-logo-sync-v9';
   const assetVersion = Date.now();
   const brandCss = document.createElement('link');
   brandCss.rel = 'stylesheet';
@@ -36,10 +36,17 @@
     document.querySelectorAll('[data-cms-address]').forEach(el => el.textContent = site.address || '');
     document.querySelectorAll('[data-cms-location]').forEach(el => el.textContent = site.location_label || '');
     document.querySelectorAll('[data-cms-footer-description]').forEach(el => el.textContent = site.footer_description || '');
-    document.querySelectorAll('[data-cms-logo]').forEach(el => {
-      if (site.logo) el.src = withAssetVersion(site.logo);
-      el.alt = `Logo ${site.company_name || 'SERILEC'}`;
-    });
+
+    if (site.logo) {
+      const logoSrc = withAssetVersion(site.logo);
+      const logoAlt = `Logo ${site.company_name || 'SERILEC'}`;
+      document.querySelectorAll('.site-header .logo').forEach(el => {
+        el.innerHTML = `<img class="brand-logo" data-cms-logo src="${escapeHtml(logoSrc)}" alt="${escapeHtml(logoAlt)}">`;
+      });
+      document.querySelectorAll('.footer-logo').forEach(el => {
+        el.innerHTML = `<img class="footer-brand-logo" data-cms-logo src="${escapeHtml(logoSrc)}" alt="${escapeHtml(logoAlt)}">`;
+      });
+    }
   };
 
   const renderProject = project => {
