@@ -1,7 +1,7 @@
 [
-  {"name":"Elsa Joseph Architecture Paris","description":"Architecture","category":"Architecture","logo":"assets/uploads/partners/elsa-joseph.webp","published":true},
-  {"name":"A26","description":"Building Harmony • Architecture & ingénierie","category":"Architecture","logo":"assets/uploads/partners/a26.webp","published":true},
-  {"name":"AD Equation","description":"Bureau d’études & ingénierie","category":"Architecture","logo":"assets/uploads/partners/ad-equation.webp","published":true},
-  {"name":"B27","description":"Architecture & conception","category":"Architecture","logo":"assets/uploads/partners/b27.webp","published":true},
-  {"name":"Agence Terrones (AGT)","description":"Architectes • Ingénieurs • Associés","category":"Architecture","logo":"assets/uploads/partners/agt-terrones.webp","published":true}
+  {"name":"Elsa Joseph Architecture Paris","description":"Architecture","category":"Architecture","website":"https://ej-architecture.fr/","logo":"assets/uploads/partners/elsa-joseph.webp","published":true},
+  {"name":"A26","description":"Building Harmony • Architecture & ingénierie","category":"Architecture","website":"https://a26.diizz.com/","logo":"assets/uploads/partners/a26.webp","published":true},
+  {"name":"AD Equation","description":"Bureau d’études & ingénierie","category":"Architecture","website":"https://ad-equation.fr/","logo":"assets/uploads/partners/ad-equation.webp","published":true},
+  {"name":"B27","description":"Architecture & conception","category":"Architecture","website":"https://www.b27.fr/","logo":"assets/uploads/partners/b27.webp","published":true},
+  {"name":"Agence Terrones (AGT)","description":"Architectes • Ingénieurs • Associés","category":"Architecture","website":"https://agtaia.com/","logo":"assets/uploads/partners/agt-terrones.webp","published":true}
 ]
