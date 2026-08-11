@@ -36,19 +36,76 @@ const observer = new IntersectionObserver(entries => {
 const observeReveals = () => document.querySelectorAll('.reveal:not(.is-visible)').forEach(el => observer.observe(el));
 observeReveals();
 
-document.addEventListener('click', event => {
-  const button = event.target.closest('.filter-btn');
-  if (!button) return;
-  document.querySelectorAll('.filter-btn').forEach(item => item.classList.remove('active'));
-  button.classList.add('active');
-  const filter = button.dataset.filter;
-  document.querySelectorAll('.project-card[data-category]').forEach(card => {
-    const visible = filter === 'all' || card.dataset.category === filter || (filter === 'premium' && card.dataset.premium === 'true');
+const projectFilterState = { mode: 'sector', filter: 'all' };
+
+const applyProjectFilter = () => {
+  const cards = [...document.querySelectorAll('.project-card[data-category]')];
+  if (!cards.length) return;
+
+  let visibleCount = 0;
+  cards.forEach(card => {
+    let visible = true;
+    if (projectFilterState.filter !== 'all') {
+      if (projectFilterState.mode === 'sector') {
+        visible = card.dataset.category === projectFilterState.filter ||
+          (projectFilterState.filter === 'premium' && card.dataset.premium === 'true');
+      } else {
+        const services = String(card.dataset.services || '').split(/\s+/).filter(Boolean);
+        visible = services.includes(projectFilterState.filter);
+      }
+    }
     card.dataset.hidden = String(!visible);
+    if (visible) visibleCount += 1;
   });
+
+  const emptyState = document.querySelector('[data-project-filter-empty]');
+  if (emptyState) emptyState.hidden = visibleCount > 0;
+};
+
+const selectFilterMode = mode => {
+  projectFilterState.mode = mode;
+  projectFilterState.filter = 'all';
+
+  document.querySelectorAll('[data-filter-mode]').forEach(button => {
+    const active = button.dataset.filterMode === mode;
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-selected', String(active));
+  });
+
+  document.querySelectorAll('[data-filter-group]').forEach(group => {
+    const active = group.dataset.filterGroup === mode;
+    group.hidden = !active;
+    group.querySelectorAll('.filter-btn').forEach(button => {
+      button.classList.toggle('active', button.dataset.filter === 'all');
+    });
+  });
+
+  applyProjectFilter();
+};
+
+document.addEventListener('click', event => {
+  const modeButton = event.target.closest('[data-filter-mode]');
+  if (modeButton) {
+    selectFilterMode(modeButton.dataset.filterMode);
+    return;
+  }
+
+  const button = event.target.closest('[data-filter-group] .filter-btn');
+  if (!button) return;
+
+  const group = button.closest('[data-filter-group]');
+  if (!group || group.dataset.filterGroup !== projectFilterState.mode) return;
+
+  group.querySelectorAll('.filter-btn').forEach(item => item.classList.remove('active'));
+  button.classList.add('active');
+  projectFilterState.filter = button.dataset.filter || 'all';
+  applyProjectFilter();
 });
 
-document.addEventListener('cms:projects-rendered', observeReveals);
+document.addEventListener('cms:projects-rendered', () => {
+  observeReveals();
+  applyProjectFilter();
+});
 
 document.querySelectorAll('[data-demo-form]').forEach(form => form.addEventListener('submit', event => {
   event.preventDefault();
