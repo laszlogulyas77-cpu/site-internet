@@ -1,0 +1,29 @@
+[
+  {
+    "kicker": "QUALIFICATIONS MÉTIER",
+    "title": "Courants forts & courants faibles",
+    "description": "Des qualifications couvrant l’installation électrique, les études internes et les opérations tertiaires.",
+    "labels": ["QUALIFELEC", "R&M", "KERPEN", "BRAND-REX", "INFRAPLUS"],
+    "bullets": [
+      "Certification entreprise d’électricité",
+      "Bureau d’études interne et moyens de conception CAO / DAO",
+      "LCPT3 — Logement, Commerce, Petit tertiaire — classe 3 (9 à 19 exécutants)",
+      "MGTI3 — Moyen Gros Tertiaire, Industrie — classe 3 (9 à 19 exécutants)"
+    ],
+    "published": true
+  },
+  {
+    "kicker": "NORMES & RÉFÉRENTIELS",
+    "title": "Sécurité, ERP & systèmes de câblage",
+    "description": "Des référentiels techniques pour encadrer la conformité et la sécurité des installations.",
+    "labels": [],
+    "bullets": [
+      "Normes UTE classe C",
+      "Décrets relatifs à la protection des travailleurs, à la prévention des incendies et aux circuits de sécurité",
+      "Normes ERP — Établissements Recevant du Public",
+      "Normes françaises concernant les installations incendie",
+      "Normes européennes concernant les systèmes de câblage"
+    ],
+    "published": true
+  }
+]
