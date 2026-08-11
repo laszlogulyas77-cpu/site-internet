@@ -54,11 +54,11 @@
       .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
       .replace(/[^a-z0-9]+/g, '');
     const aliases = {
-      cfo: 'cfo', courantsforts: 'cfo', courantfort: 'cfo', hta: 'cfo', moyenne tension: 'cfo',
+      cfo: 'cfo', courantsforts: 'cfo', courantfort: 'cfo', hta: 'cfo', moyennetension: 'cfo',
       cfa: 'cfa', courantsfaibles: 'cfa', courantfaible: 'cfa',
       ssi: 'ssi', securiteincendie: 'ssi', incendie: 'ssi',
       gtb: 'gtb', gestiontechniquedubatiment: 'gtb',
-      photovoltaique: 'photovoltaique', photovoltaïque: 'photovoltaique', solaire: 'photovoltaique',
+      photovoltaique: 'photovoltaique', solaire: 'photovoltaique',
       irve: 'irve', bornederecharge: 'irve', bornesderecharge: 'irve'
     };
     return aliases[normalized] || normalized;
@@ -70,7 +70,8 @@
     }
 
     const text = [project.title, project.category_label, project.description, project.location]
-      .filter(Boolean).join(' ').toLowerCase();
+      .filter(Boolean).join(' ').toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     const services = [];
 
     if (/\bcfo\b|courants?\s*forts?|tgbt|tableaux?\s+electri|tableaux?\s+de\s+distribution|poste\s+(ht|hta)|transformateur|distribution\s+generale|eclairage|alimentation\s+generale/i.test(text)) services.push('cfo');
