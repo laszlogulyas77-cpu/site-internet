@@ -1,5 +1,5 @@
 (() => {
-  const brandVersion = '20260811-editable-home-stats-v14';
+  const brandVersion = '20260811-title-palette-v15';
   const assetVersion = Date.now();
   const brandCss = document.createElement('link');
   brandCss.rel = 'stylesheet';
