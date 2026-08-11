@@ -13,6 +13,10 @@
 
   let projectsPromise = null;
   let lastFocusedElement = null;
+  let galleryImages = [];
+  let galleryIndex = 0;
+  let activeProject = null;
+  let touchStartX = null;
 
   const getProjects = () => {
     if (!projectsPromise) {
@@ -33,7 +37,15 @@
     <div class="project-detail-backdrop" data-project-close></div>
     <div class="project-detail-dialog" role="dialog" aria-modal="true" aria-labelledby="project-detail-title" aria-describedby="project-detail-description">
       <button class="project-detail-close" type="button" aria-label="Fermer la réalisation" data-project-close>×</button>
-      <div class="project-detail-media"><img data-project-detail-image src="" alt=""></div>
+      <div class="project-detail-media" data-project-detail-media>
+        <img data-project-detail-image src="" alt="">
+        <button class="project-gallery-arrow project-gallery-prev" type="button" aria-label="Photo précédente" data-project-gallery-prev hidden>‹</button>
+        <button class="project-gallery-arrow project-gallery-next" type="button" aria-label="Photo suivante" data-project-gallery-next hidden>›</button>
+        <div class="project-gallery-footer" data-project-gallery-footer hidden>
+          <div class="project-gallery-dots" data-project-gallery-dots aria-label="Navigation dans les photos"></div>
+          <span class="project-gallery-counter" data-project-gallery-counter></span>
+        </div>
+      </div>
       <div class="project-detail-content">
         <span class="project-detail-kicker" data-project-detail-category></span>
         <h2 id="project-detail-title" data-project-detail-title></h2>
@@ -63,10 +75,12 @@
   };
 
   const renderMeta = project => {
+    const zone = project.zone || project.geo_zone || '';
+    const zoneLabel = zone === 'paris' ? 'Paris' : zone === 'idf' ? 'Île-de-France hors Paris' : zone === 'france' ? 'France hors Île-de-France' : zone;
     const items = [
       project.client ? ['Maître d’ouvrage / client', project.client] : null,
       project.year ? ['Année', project.year] : null,
-      project.geo_zone ? ['Zone', project.geo_zone === 'paris' ? 'Paris' : project.geo_zone === 'idf' ? 'Île-de-France hors Paris' : project.geo_zone === 'france' ? 'France hors Île-de-France' : project.geo_zone] : null
+      zoneLabel ? ['Zone', zoneLabel] : null
     ].filter(Boolean);
     return items.map(([label, value]) => `<div class="project-detail-meta-item"><span class="project-detail-meta-label">${escapeHtml(label)}</span><span class="project-detail-meta-value">${escapeHtml(value)}</span></div>`).join('');
   };
@@ -75,6 +89,54 @@
     if (!Array.isArray(project.services) || !project.services.length) return '';
     return [...new Set(project.services.map(value => serviceLabels[String(value || '').toLowerCase()] || String(value || '').toUpperCase()).filter(Boolean))]
       .map(label => `<span class="project-detail-service">${escapeHtml(label)}</span>`).join('');
+  };
+
+  const getGalleryImages = project => {
+    const extraImages = Array.isArray(project.gallery) ? project.gallery : project.gallery ? [project.gallery] : [];
+    const allImages = [project.image, ...extraImages]
+      .map(value => typeof value === 'string' ? value.trim() : '')
+      .filter(Boolean);
+    return [...new Set(allImages)];
+  };
+
+  const showGalleryImage = index => {
+    if (!galleryImages.length || !activeProject) return;
+    galleryIndex = (index + galleryImages.length) % galleryImages.length;
+    const image = modal.querySelector('[data-project-detail-image]');
+    image.src = galleryImages[galleryIndex];
+    image.alt = galleryIndex === 0 && activeProject.alt
+      ? activeProject.alt
+      : `Photo ${galleryIndex + 1} sur ${galleryImages.length} — ${activeProject.title || 'Réalisation SERILEC'}`;
+
+    modal.querySelectorAll('[data-project-gallery-index]').forEach(dot => {
+      const active = Number(dot.dataset.projectGalleryIndex) === galleryIndex;
+      dot.classList.toggle('active', active);
+      dot.setAttribute('aria-current', active ? 'true' : 'false');
+    });
+
+    const counter = modal.querySelector('[data-project-gallery-counter]');
+    if (counter) counter.textContent = `${galleryIndex + 1} / ${galleryImages.length}`;
+  };
+
+  const setupGallery = project => {
+    activeProject = project;
+    galleryImages = getGalleryImages(project);
+    galleryIndex = 0;
+
+    if (!galleryImages.length) galleryImages = ['assets/uploads/references/photo-a-ajouter.svg'];
+
+    const hasGallery = galleryImages.length > 1;
+    const prev = modal.querySelector('[data-project-gallery-prev]');
+    const next = modal.querySelector('[data-project-gallery-next]');
+    const footer = modal.querySelector('[data-project-gallery-footer]');
+    const dots = modal.querySelector('[data-project-gallery-dots]');
+
+    prev.hidden = !hasGallery;
+    next.hidden = !hasGallery;
+    footer.hidden = !hasGallery;
+    dots.innerHTML = hasGallery ? galleryImages.map((_, index) => `<button class="project-gallery-dot${index === 0 ? ' active' : ''}" type="button" data-project-gallery-index="${index}" aria-label="Voir la photo ${index + 1}" aria-current="${index === 0 ? 'true' : 'false'}"></button>`).join('') : '';
+
+    showGalleryImage(0);
   };
 
   const openProject = async card => {
@@ -87,9 +149,7 @@
       if (!project) return;
 
       lastFocusedElement = document.activeElement;
-      const image = modal.querySelector('[data-project-detail-image]');
-      image.src = project.image || 'assets/uploads/references/photo-a-ajouter.svg';
-      image.alt = project.alt || project.title || 'Réalisation SERILEC';
+      setupGallery(project);
       modal.querySelector('[data-project-detail-category]').textContent = project.category_label || 'Réalisation';
       modal.querySelector('[data-project-detail-title]').textContent = project.title || '';
       const location = modal.querySelector('[data-project-detail-location]');
@@ -118,6 +178,8 @@
     document.body.classList.remove('project-modal-open');
     window.setTimeout(() => {
       modal.hidden = true;
+      activeProject = null;
+      galleryImages = [];
       if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') lastFocusedElement.focus();
     }, 220);
   };
@@ -127,16 +189,42 @@
       closeProject();
       return;
     }
+    if (event.target.closest('[data-project-gallery-prev]')) {
+      showGalleryImage(galleryIndex - 1);
+      return;
+    }
+    if (event.target.closest('[data-project-gallery-next]')) {
+      showGalleryImage(galleryIndex + 1);
+      return;
+    }
+    const dot = event.target.closest('[data-project-gallery-index]');
+    if (dot) {
+      showGalleryImage(Number(dot.dataset.projectGalleryIndex));
+      return;
+    }
     const card = event.target.closest('.project-card[data-project-detail-ready="true"]');
     if (!card || event.target.closest('a,button')) return;
     openProject(card);
   });
 
   document.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && !modal.hidden) {
-      closeProject();
-      return;
+    if (!modal.hidden) {
+      if (event.key === 'Escape') {
+        closeProject();
+        return;
+      }
+      if (galleryImages.length > 1 && event.key === 'ArrowLeft') {
+        event.preventDefault();
+        showGalleryImage(galleryIndex - 1);
+        return;
+      }
+      if (galleryImages.length > 1 && event.key === 'ArrowRight') {
+        event.preventDefault();
+        showGalleryImage(galleryIndex + 1);
+        return;
+      }
     }
+
     if ((event.key === 'Enter' || event.key === ' ') && modal.hidden) {
       const card = event.target.closest?.('.project-card[data-project-detail-ready="true"]');
       if (card) {
@@ -145,6 +233,20 @@
       }
     }
   });
+
+  const media = modal.querySelector('[data-project-detail-media]');
+  media.addEventListener('touchstart', event => {
+    touchStartX = event.touches?.[0]?.clientX ?? null;
+  }, { passive: true });
+  media.addEventListener('touchend', event => {
+    if (touchStartX === null || galleryImages.length < 2) return;
+    const touchEndX = event.changedTouches?.[0]?.clientX;
+    if (typeof touchEndX !== 'number') return;
+    const delta = touchEndX - touchStartX;
+    touchStartX = null;
+    if (Math.abs(delta) < 45) return;
+    showGalleryImage(delta > 0 ? galleryIndex - 1 : galleryIndex + 1);
+  }, { passive: true });
 
   enhanceCards(document);
   const observer = new MutationObserver(mutations => {
