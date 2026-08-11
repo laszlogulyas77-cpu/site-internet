@@ -1,5 +1,5 @@
 (() => {
-  const brandVersion = '20260811-project-meta-blue-v13';
+  const brandVersion = '20260811-editable-home-stats-v14';
   const assetVersion = Date.now();
   const brandCss = document.createElement('link');
   brandCss.rel = 'stylesheet';
@@ -109,6 +109,13 @@
         setText('[data-cms-home-about-eyebrow]', site.home?.about_eyebrow);
         setText('[data-cms-home-about-title]', site.home?.about_title);
         setText('[data-cms-home-about-text]', site.home?.about_text);
+        const stats = site.home?.stats || {};
+        [1, 2, 3, 4].forEach((number) => {
+          const stat = stats[`stat_${number}`];
+          if (!stat) return;
+          setText(`.stats-strip .stat:nth-child(${number}) strong`, stat.value);
+          setText(`.stats-strip .stat:nth-child(${number}) span`, stat.label);
+        });
         setText('[data-cms-home-contact-eyebrow]', site.home?.contact_eyebrow);
         setText('[data-cms-home-contact-title]', site.home?.contact_title);
         setText('[data-cms-home-contact-text]', site.home?.contact_text);
