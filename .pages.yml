@@ -45,6 +45,11 @@ content:
           - {name: hero_title, label: Titre principal, type: string}
           - {name: hero_highlight, label: Partie du titre en couleur, type: string}
           - {name: hero_lead, label: Texte d’introduction, type: text}
+          - name: hero_image
+            label: Photo de fond de l’accueil
+            type: image
+            description: Choisissez ou importez l’image principale affichée derrière le titre de la page d’accueil. Laisser vide pour conserver l’image actuelle par défaut.
+            options: {media: images}
           - {name: about_eyebrow, label: Surtitre de présentation, type: string}
           - {name: about_title, label: Titre de présentation, type: string}
           - {name: about_text, label: Texte de présentation, type: text}
