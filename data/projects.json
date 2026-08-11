@@ -664,9 +664,10 @@
   {
     "title": "Hager Electro - Showroom & bureaux",
     "category": "office",
-    "premium": false,
+    "premium": true,
     "category_label": "Showroom & bureaux",
-    "description": "Référence SERILEC issue du site historique pour l'aménagement d'un showroom et de bureaux Hager Electro.",
+    "location": "20 rue Troyon 75017 Paris",
+    "description": "Rénovation lourde d'un immeuble de bureau pour laménagement d'un showroom et de bureaux Hager Electro.\nCourant fort et courant faible réalisé, avec SSI et intégration complète d'une GTB.",
     "client": "Hager",
     "year": "2019",
     "image": "assets/uploads/hager.jpg",
