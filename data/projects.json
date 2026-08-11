@@ -15,6 +15,10 @@
     "client": "Leev",
     "year": "2026",
     "image": "assets/uploads/miromesnil.jpg",
+    "gallery": [
+      "assets/uploads/miromesnil-3.jpg",
+      "assets/uploads/miromesnil-2.jpg"
+    ],
     "featured": false,
     "published": true
   },
