@@ -534,5 +534,18 @@
     "alt": "Photo showroom Hager Electro à ajouter",
     "featured": false,
     "published": true
+  },
+  {
+    "title": "Hôtel Miromesnil",
+    "category": "hotel",
+    "premium": false,
+    "category_label": "Hotellerie",
+    "location": "48 rue de Miromesnil",
+    "description": "Hôtel 4 étoiles situé à Paris 8ème. Immeuble de bureaux rénové en un hôtel de 37 chambres. Nous avons acompagné notre client dans la restructuration complète du courant fort, courant faible et de la CVC sur 7 niveaux. ",
+    "client": "Leev",
+    "year": "2026",
+    "image": "assets/uploads/miromesnil.jpg",
+    "featured": false,
+    "published": true
   }
 ]
