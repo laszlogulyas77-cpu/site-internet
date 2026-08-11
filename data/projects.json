@@ -4,7 +4,11 @@
     "category": "hotel",
     "premium": false,
     "category_label": "Hôtellerie",
-    "services": ["CFO", "CFA"],
+    "services": [
+      "CFO",
+      "CFA",
+      "SSI"
+    ],
     "location": "48 rue de Miromesnil",
     "description": "Hôtel 4 étoiles situé à Paris 8ème. Immeuble de bureaux rénové en un hôtel de 37 chambres. Nous avons acompagné notre client dans la restructuration complète du courant fort, courant faible et de la CVC sur 7 niveaux. ",
     "client": "Leev",
@@ -18,7 +22,11 @@
     "category": "hotel",
     "premium": false,
     "category_label": "Hôtellerie",
-    "services": ["CFO", "CFA", "SSI"],
+    "services": [
+      "CFO",
+      "CFA",
+      "SSI"
+    ],
     "location": "102 avenue de Villiers, 75017 Paris",
     "description": "Rénovation et curage complet de l'hôtel Ampère : remplacement du TGBT, CFO/CFA complet, SSI, vidéophonie, interphonie et câblage informatique.",
     "client": "ANTEPOL",
@@ -34,7 +42,11 @@
     "category": "hotel",
     "premium": true,
     "category_label": "Hôtellerie",
-    "services": ["CFO", "CFA", "SSI"],
+    "services": [
+      "CFO",
+      "CFA",
+      "SSI"
+    ],
     "location": "20 rue de Bellechasse, Paris",
     "description": "Hotel Bellechasse transformé et rénové en L'Opale Noire. Courants forts et faibles repensés, SSI déployé sur l'ensemble du site, sonorisation et éclairage décoratif remis au goût du jour.",
     "client": "H.P. INVEST",
@@ -50,7 +62,11 @@
     "category": "hotel",
     "premium": false,
     "category_label": "Hôtellerie",
-    "services": ["CFO", "CFA", "SSI"],
+    "services": [
+      "CFO",
+      "CFA",
+      "SSI"
+    ],
     "location": "4 avenue de l'Atlantique, 56340 Carnac",
     "description": "Remplacement du poste HT, création du TGBT et tableaux de distribution, réseaux informatiques, SSI, contrôle d'accès, vidéoprotection, Wi-Fi et téléphonie de sécurité.",
     "client": "LBH BOISSEE FINANCES",
@@ -66,7 +82,11 @@
     "category": "hotel",
     "premium": false,
     "category_label": "Hôtellerie",
-    "services": ["CFO", "CFA", "SSI"],
+    "services": [
+      "CFO",
+      "CFA",
+      "SSI"
+    ],
     "location": "6 allée des Rochers, 17200 Royan",
     "description": "Rénovation complète de l'hôtel, chambres, restaurant et thalassothérapie : Courant fort et courant faible, SSI, contrôle d'accès et vidéosurveillance.",
     "client": "S.H.I.R.",
@@ -82,7 +102,11 @@
     "category": "hotel",
     "premium": false,
     "category_label": "Hôtellerie",
-    "services": ["CFO", "CFA", "SSI"],
+    "services": [
+      "CFO",
+      "CFA",
+      "SSI"
+    ],
     "location": "6 rue Tiquetonne, 75002 Paris",
     "description": "Rénovation complète : éclairage, câblage, CFO/CFA, SSI, Wi-Fi, interphonie et réseau informatique.",
     "client": "EJ ARCHITECTURE",
@@ -98,7 +122,11 @@
     "category": "hotel",
     "premium": false,
     "category_label": "Hôtellerie",
-    "services": ["CFO", "CFA", "SSI"],
+    "services": [
+      "CFO",
+      "CFA",
+      "SSI"
+    ],
     "location": "184 rue de Courcelles, 75017 Paris",
     "description": "Travaux courants forts, courants faibles et sécurité incendie, distributions et chemins de câbles.",
     "client": "AD EQUATION",
@@ -114,7 +142,9 @@
     "category": "hotel",
     "premium": true,
     "category_label": "Hôtellerie",
-    "services": ["CFO"],
+    "services": [
+      "CFO"
+    ],
     "location": "44 rue Vital Carles, 33000 Bordeaux",
     "description": "Création d'un hôtel 5 étoiles. Modification de l'alimentation générale, câblage et distribution, appareillages haut de gamme, éclairages intérieur, extérieur et de sécurité.",
     "client": "CIM GROUPE",
@@ -130,7 +160,11 @@
     "category": "hotel",
     "premium": true,
     "category_label": "Hôtellerie",
-    "services": ["CFO", "CFA", "SSI"],
+    "services": [
+      "CFO",
+      "CFA",
+      "SSI"
+    ],
     "location": "5 Grande Rue, 77630 Barbizon",
     "description": "Hôtel intimiste et hors du commun. Rénovation des installations électriques, éclairages architectural et décoratif, réseaux informatiques et Wi-Fi, SSI, sonorisation et éclairage du petit théâtre.",
     "client": "SARL DABY",
@@ -146,7 +180,6 @@
     "category": "hotel",
     "premium": false,
     "category_label": "Hôtellerie",
-    "services": [],
     "location": "1 place des Halles Centrales, 16000 Angoulême",
     "description": "Hotel 4 étoiles de 85 chambres rénovées, reprise complète de la cuisine professionnelle, services généraux et restaurant.",
     "client": "HIVELY PARIS / SHPHA",
@@ -162,7 +195,11 @@
     "category": "hotel",
     "premium": false,
     "category_label": "Hôtellerie",
-    "services": ["CFO", "CFA", "SSI"],
+    "services": [
+      "CFO",
+      "CFA",
+      "SSI"
+    ],
     "location": "9 avenue du Parc, 33120 Arcachon",
     "description": "Rénovation complète d'un hôtel Thalasso. Installation CFO/CFA : poste HT, TGBT, distribution générale, chemins de câbles, SSI, contrôle d'accès, vidéosurveillance, alarmes et réseaux informatiques.",
     "client": "LBH BOISSEE FINANCES",
@@ -178,7 +215,11 @@
     "category": "hotel",
     "premium": false,
     "category_label": "Hôtellerie",
-    "services": ["CFO", "CFA", "SSI"],
+    "services": [
+      "CFO",
+      "CFA",
+      "SSI"
+    ],
     "location": "61 rue de Brancion, 75015 Paris",
     "description": "Lots techniques électricité complets : CFO, CFA, SSI, contrôle d'accès et vidéosurveillance pour un hôtel de 62 chambres sur 8 niveaux.",
     "client": "SAS SH HOME MODERN",
@@ -194,7 +235,11 @@
     "category": "hotel",
     "premium": true,
     "category_label": "Hôtellerie",
-    "services": ["CFO", "CFA", "SSI"],
+    "services": [
+      "CFO",
+      "CFA",
+      "SSI"
+    ],
     "location": "Boulevard de la Cahotte, 14360 Trouville-sur-Mer",
     "description": "Rénovation complète de 2 500 m² de thalassothérapie : CFO, CFA, SSI, contrôle d'accès et vidéosurveillance.",
     "client": "SAS CURES MARINES",
@@ -210,7 +255,11 @@
     "category": "hotel",
     "premium": false,
     "category_label": "Hôtellerie",
-    "services": ["CFO", "CFA", "SSI"],
+    "services": [
+      "CFO",
+      "CFA",
+      "SSI"
+    ],
     "location": "74 boulevard Edgar Quinet, 75014 Paris",
     "description": "Lots techniques électricité complets : CFO, CFA, SSI, contrôle d'accès et vidéosurveillance pour un hôtel de 45 chambres.",
     "client": "SAS EDGAR 74",
@@ -226,7 +275,11 @@
     "category": "office",
     "premium": false,
     "category_label": "Bureaux",
-    "services": ["CFO", "CFA", "SSI"],
+    "services": [
+      "CFO",
+      "CFA",
+      "SSI"
+    ],
     "location": "75013 Paris",
     "description": "Aménagement de 10 000 m² de bureaux : appareillage, câblages CFO/CFA, VDI, SSI, réseau informatique et lot complet.",
     "client": "Groupe VYV",
@@ -242,7 +295,11 @@
     "category": "office",
     "premium": true,
     "category_label": "Bureaux / Réhabilitation",
-    "services": ["CFO", "CFA", "SSI"],
+    "services": [
+      "CFO",
+      "CFA",
+      "SSI"
+    ],
     "location": "75015 Paris",
     "description": "Réhabilitation et extension d'un immeuble tertiaire avec reprise complète des courants forts et faibles, appareillage haut de gamme, câblage, SSI, VDI et réseau informatique.",
     "client": "SEDRI",
@@ -258,7 +315,10 @@
     "category": "office",
     "premium": true,
     "category_label": "Bureaux & institutionnel",
-    "services": ["CFO", "CFA"],
+    "services": [
+      "CFO",
+      "CFA"
+    ],
     "location": "2 boulevard de la Tour-Maubourg, 75007 Paris",
     "description": "Aménagement haut de gamme de 4 niveaux de bureaux, RDC et salle de conférence en site occupé ; lot CFO/CFA complet et CVC.",
     "client": "COMPAS ARCHITECTURE",
@@ -274,7 +334,10 @@
     "category": "office",
     "premium": false,
     "category_label": "Bureaux",
-    "services": ["CFO", "CFA"],
+    "services": [
+      "CFO",
+      "CFA"
+    ],
     "location": "14 place des Reflets, 92400 Courbevoie",
     "description": "Réaménagement du siège social Euronext sur 10 000 m², postes de travail, salles de réunion et lot CFO/CFA complet.",
     "client": "Euronext",
@@ -290,7 +353,10 @@
     "category": "office",
     "premium": false,
     "category_label": "Bureaux",
-    "services": ["CFO", "CFA"],
+    "services": [
+      "CFO",
+      "CFA"
+    ],
     "location": "19 avenue de la Division Leclerc, 92800 Puteaux",
     "description": "Installation électrique sur 3 niveaux au sein de la Tour Trinity. Lot CFO/CFA complet pour l'ensemble des 475 postes de travail.",
     "client": "MAJORELLE",
@@ -306,7 +372,11 @@
     "category": "health",
     "premium": true,
     "category_label": "Santé",
-    "services": ["CFO", "CFA", "GTB"],
+    "services": [
+      "CFO",
+      "CFA",
+      "GTB"
+    ],
     "location": "Boulevard du Grand Fossé / rue du Buisson Coche, Chessy",
     "description": "Aménagement électrique de 105 cabinets, parties communes et deux niveaux de sous-sols. Lot CFO/CFA complet. Mise en place complète d'une GTB autonome pour l'ensemble du batiment. Eclairage décoratif haut de gamme.",
     "client": "SNC CHESSY / DTACC",
@@ -322,7 +392,10 @@
     "category": "office",
     "premium": true,
     "category_label": "Haut de gamme / Bureaux",
-    "services": ["CFO", "CFA"],
+    "services": [
+      "CFO",
+      "CFA"
+    ],
     "location": "75007 Paris",
     "description": "Aménagement haut de gamme de 6 niveaux de bureaux, RDC et sous-sol, appareillages et finitions d'exception, lot CFO/CFA complet.",
     "client": "ORSAY SAS / THEOP / STUDIO VINCENT ESCHALIER",
@@ -338,7 +411,10 @@
     "category": "office",
     "premium": false,
     "category_label": "Bureaux",
-    "services": ["CFO", "CFA"],
+    "services": [
+      "CFO",
+      "CFA"
+    ],
     "location": "89 rue de la Boétie, 75008 Paris",
     "description": "Réaménagement électrique courants forts / courants faibles de 3 niveaux de bureaux sur 3 000 m².",
     "client": "SCI 89 BOETIE / LGA ARCHITECTES / R+R ARCHITECTURE",
@@ -354,7 +430,11 @@
     "category": "retail",
     "premium": true,
     "category_label": "Boutique",
-    "services": ["CFO", "CFA", "SSI"],
+    "services": [
+      "CFO",
+      "CFA",
+      "SSI"
+    ],
     "location": "75 avenue des Champs-Élysées, 75008 Paris",
     "description": "Rénovation et agrandissement de la boutique : CFO, CFA, SSI, contrôle d'accès et vidéosurveillance.",
     "client": "PATISSERIE E. LADUREE",
@@ -370,7 +450,11 @@
     "category": "restaurant",
     "premium": true,
     "category_label": "Restaurant",
-    "services": ["CFO", "CFA", "SSI"],
+    "services": [
+      "CFO",
+      "CFA",
+      "SSI"
+    ],
     "location": "16-18 rue Gaillon, 75002 Paris",
     "description": "Rénovation d'un restaurant haut de gamme : CFO, CFA, SSI, contrôle d'accès et vidéosurveillance. ",
     "client": "GARDINIER ET FILS",
@@ -386,7 +470,11 @@
     "category": "restaurant",
     "premium": true,
     "category_label": "Restaurant",
-    "services": ["CFO", "CFA", "SSI"],
+    "services": [
+      "CFO",
+      "CFA",
+      "SSI"
+    ],
     "location": "32-34 rue de Longchamp, 75016 Paris",
     "description": "Restructuration d'un local commercial existant en restaurant haut de gamme : CFO, CFA, SSI, contrôle d'accès et vidéosurveillance.",
     "client": "L'ASTRANCE SARL BPCR",
@@ -402,7 +490,11 @@
     "category": "restaurant",
     "premium": true,
     "category_label": "Restaurant",
-    "services": ["CFO", "CFA", "SSI"],
+    "services": [
+      "CFO",
+      "CFA",
+      "SSI"
+    ],
     "location": "15 rue Lamennais, 75008 Paris",
     "description": "Restaurant de renomée, nous avons réalisé l'ensemble des lots techniques électricité : CFO, CFA, SSI, contrôle d'accès et vidéosurveillance.",
     "client": "LE TAILLEVENT",
@@ -418,7 +510,10 @@
     "category": "hotel",
     "premium": false,
     "category_label": "Hôtellerie",
-    "services": ["CFO", "CFA"],
+    "services": [
+      "CFO",
+      "CFA"
+    ],
     "location": "Paris 8",
     "description": "Rénovation complète des lots techniques d'un hôtel de 26 chambres. Courant Fort et courant Faible, mise en place de l'appareillage.",
     "client": "Modern Elysées",
@@ -433,7 +528,6 @@
     "category": "hotel",
     "premium": false,
     "category_label": "Hôtellerie",
-    "services": [],
     "location": "11 rue de Poissy, 75005 Paris",
     "description": "Référence SERILEC issue du site historique. Détails de mission à compléter dans Pages CMS.",
     "client": "Machefert Group",
@@ -447,7 +541,6 @@
     "category": "office",
     "premium": false,
     "category_label": "Tertiaire",
-    "services": [],
     "location": "2 place de la Défense, 92800 Puteaux",
     "description": "Référence SERILEC issue du site historique. Détails de mission à compléter dans Pages CMS.",
     "image": "assets/uploads/references/photo-a-ajouter.svg",
@@ -460,7 +553,6 @@
     "category": "office",
     "premium": false,
     "category_label": "Bureaux",
-    "services": [],
     "description": "Référence SERILEC issue du site historique. Détails de mission à compléter dans Pages CMS.",
     "client": "Axone Promotion",
     "image": "assets/uploads/references/photo-a-ajouter.svg",
@@ -473,7 +565,6 @@
     "category": "hotel",
     "premium": false,
     "category_label": "Hôtellerie",
-    "services": [],
     "location": "La Rochelle",
     "description": "Projet hôtelier double enseigne référencé sur le site historique SERILEC. Détails à compléter dans Pages CMS.",
     "image": "assets/uploads/references/photo-a-ajouter.svg",
@@ -486,7 +577,6 @@
     "category": "retail",
     "premium": true,
     "category_label": "Boutique / Flagship",
-    "services": [],
     "location": "Champs-Élysées, Paris 8",
     "description": "Aménagement électrique du flagship Lacoste des Champs-Élysées. Détails de mission à compléter dans Pages CMS.",
     "client": "Lacoste",
@@ -500,7 +590,6 @@
     "category": "school",
     "premium": false,
     "category_label": "École / Enseignement supérieur",
-    "services": [],
     "location": "Paris",
     "description": "Référence SERILEC issue du site historique pour un campus d'enseignement supérieur. Détails à compléter dans Pages CMS.",
     "client": "OMNES Education",
@@ -514,7 +603,6 @@
     "category": "hotel",
     "premium": false,
     "category_label": "Hôtellerie",
-    "services": [],
     "description": "Référence SERILEC issue du site historique. Établissement et détails de mission à préciser dans Pages CMS.",
     "client": "B&B Hotels",
     "image": "assets/uploads/references/photo-a-ajouter.svg",
@@ -527,7 +615,6 @@
     "category": "hotel",
     "premium": false,
     "category_label": "Hôtellerie",
-    "services": [],
     "description": "Référence SERILEC issue du site historique. Détails de mission à compléter dans Pages CMS.",
     "image": "assets/uploads/references/photo-a-ajouter.svg",
     "alt": "Photo Hôtel Belleville à ajouter",
@@ -539,7 +626,6 @@
     "category": "office",
     "premium": false,
     "category_label": "Bureaux",
-    "services": [],
     "location": "15 rue de Milan, Paris",
     "description": "Référence SERILEC issue du site historique. Détails de mission à compléter dans Pages CMS.",
     "image": "assets/uploads/references/photo-a-ajouter.svg",
@@ -552,7 +638,6 @@
     "category": "office",
     "premium": false,
     "category_label": "Bureaux",
-    "services": [],
     "location": "17 rue Marignan, Paris 8",
     "description": "Rénovation de bureaux référencée sur le site historique SERILEC. Détails de mission à compléter dans Pages CMS.",
     "client": "OCIRP",
@@ -566,7 +651,9 @@
     "category": "premium",
     "premium": true,
     "category_label": "Haut de gamme / Patrimoine",
-    "services": ["CFO"],
+    "services": [
+      "CFO"
+    ],
     "location": "Paris 9",
     "description": "Restauration complète du passage en site occupé, avec travaux d'électricité et mise en lumière menés par SERILEC.",
     "image": "assets/uploads/references/photo-a-ajouter.svg",
@@ -579,7 +666,6 @@
     "category": "office",
     "premium": false,
     "category_label": "Showroom & bureaux",
-    "services": [],
     "description": "Référence SERILEC issue du site historique pour l'aménagement d'un showroom et de bureaux Hager Electro.",
     "client": "Hager",
     "image": "assets/uploads/references/photo-a-ajouter.svg",
