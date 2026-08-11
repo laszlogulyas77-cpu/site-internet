@@ -1,0 +1,48 @@
+.testimonials-section[hidden]{display:none!important}
+.testimonials-section{position:relative;overflow:hidden;background:#f5f8fb;border-top:1px solid #e5ebf1}
+.testimonials-section .section-head{margin-bottom:34px}
+.testimonials-section .section-head>div:first-child{max-width:760px}
+.testimonials-shell{position:relative}
+.testimonials-stage{overflow:hidden;border:1px solid #dce5ee;border-radius:22px;background:#fff;box-shadow:0 20px 52px rgba(0,26,54,.08)}
+.testimonials-track{display:flex;will-change:transform;transition:transform .6s cubic-bezier(.22,.61,.36,1)}
+.testimonial-slide{display:grid;grid-template-columns:minmax(210px,.32fr) minmax(0,.68fr);min-width:100%;align-items:stretch;background:#fff}
+.testimonial-logo-panel{display:flex;align-items:center;justify-content:center;min-height:330px;padding:42px;background:#eef4fa;border-right:1px solid #dce5ee}
+.testimonial-logo-panel img{display:block;width:auto;max-width:190px;max-height:105px;object-fit:contain}
+.testimonial-content{position:relative;display:flex;flex-direction:column;justify-content:center;min-height:330px;padding:48px 58px 44px}
+.testimonial-content:before{content:"“";position:absolute;top:26px;left:42px;font:800 5rem/1 'Manrope',sans-serif;color:#d7e6f5;pointer-events:none}
+.testimonial-quote{position:relative;z-index:1;margin:0 0 28px;color:#0a2b50;font:650 clamp(1.2rem,2vw,1.65rem)/1.55 'Manrope',sans-serif;letter-spacing:-.018em}
+.testimonial-signature{display:flex;flex-wrap:wrap;align-items:baseline;gap:7px 14px;padding-top:20px;border-top:1px solid #e5ebf1}
+.testimonial-author{color:#071e3d;font-weight:800}
+.testimonial-role,.testimonial-project{color:#66758a;font-size:.9rem}
+.testimonial-company{color:#24548f;font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.testimonials-controls{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:20px}
+.testimonials-arrows{display:flex;gap:8px}
+.testimonial-arrow{display:grid;place-items:center;width:44px;height:44px;padding:0;border:1px solid #d6e0ea;border-radius:50%;background:#fff;color:#123f73;font-size:1.15rem;font-weight:800;cursor:pointer;transition:.2s ease}
+.testimonial-arrow:hover{background:#123f73;border-color:#123f73;color:#fff;transform:translateY(-1px)}
+.testimonial-arrow:focus-visible,.testimonial-dot:focus-visible{outline:3px solid #fff200;outline-offset:3px}
+.testimonials-dots{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px}
+.testimonial-dot{width:10px;height:10px;padding:0;border:0;border-radius:50%;background:#c7d4e0;cursor:pointer;transition:.2s ease}
+.testimonial-dot.active{width:28px;border-radius:999px;background:#24548f}
+.testimonials-shell.is-single .testimonials-controls{display:none}
+
+@media(max-width:820px){
+  .testimonial-slide{grid-template-columns:1fr}
+  .testimonial-logo-panel{min-height:150px;padding:30px;border-right:0;border-bottom:1px solid #dce5ee}
+  .testimonial-logo-panel img{max-width:170px;max-height:78px}
+  .testimonial-content{min-height:0;padding:42px 34px 36px}
+  .testimonial-content:before{top:20px;left:25px;font-size:4.2rem}
+}
+
+@media(max-width:560px){
+  .testimonials-stage{border-radius:17px}
+  .testimonial-logo-panel{min-height:130px;padding:26px 22px}
+  .testimonial-content{padding:36px 24px 30px}
+  .testimonial-quote{font-size:1.08rem;line-height:1.55}
+  .testimonials-controls{align-items:center}
+  .testimonial-arrow{width:40px;height:40px}
+  .testimonial-dot.active{width:22px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .testimonials-track,.testimonial-arrow,.testimonial-dot{transition:none!important}
+}
