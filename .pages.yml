@@ -166,6 +166,11 @@ content:
             - {name: premium, label: Haut de gamme / Patrimoine}
       - {name: premium, label: Afficher aussi dans Haut de gamme, type: boolean, default: false}
       - {name: category_label, label: Libellé affiché, type: string, required: true}
+      - name: services
+        label: Prestations
+        type: string
+        list: true
+        description: Ajouter CFO, CFA, SSI, GTB, Photovoltaïque ou IRVE. Laisser vide pour utiliser le classement automatique basé sur la description du projet.
       - {name: location, label: Adresse / lieu, type: string}
       - {name: description, label: Mission SERILEC, type: text, required: true}
       - {name: client, label: Maître d’ouvrage / client, type: string}
