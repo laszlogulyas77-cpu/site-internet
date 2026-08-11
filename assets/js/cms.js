@@ -1,5 +1,5 @@
 (() => {
-  const brandVersion = '20260811-project-cards-v12';
+  const brandVersion = '20260811-project-meta-blue-v13';
   const assetVersion = Date.now();
   const brandCss = document.createElement('link');
   brandCss.rel = 'stylesheet';
@@ -7,7 +7,7 @@
   document.head.appendChild(brandCss);
 
   const extraStyles = document.createElement('style');
-  extraStyles.textContent = `.project-overlay p{margin-bottom:10px}.project-meta{display:flex;flex-wrap:wrap;gap:7px 14px;padding-top:10px;border-top:1px solid rgba(255,255,255,.18);font-size:.72rem;color:#e6edf4}.project-meta span{display:inline-flex;gap:5px}.project-meta strong{color:#fff;font-weight:700}.project-card{min-height:455px}.partner img{width:100%;height:72px;object-fit:contain}.partner{background:#fff}.partner-name{font:700 .84rem 'Manrope',sans-serif;margin-top:9px;color:#45576b}.partner-link{color:inherit;text-decoration:none;cursor:pointer;transition:transform .22s ease,box-shadow .22s ease,background .22s ease}.partner-link:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,26,54,.10);background:#f8fafc}.partner-link:focus-visible{outline:3px solid #fff200;outline-offset:-3px}@media(max-width:680px){.project-card{min-height:440px}.partner img{height:60px}}`;
+  extraStyles.textContent = `.project-overlay p{margin-bottom:10px}.project-meta{display:flex;flex-wrap:wrap;gap:7px 14px;padding-top:10px;border-top:1px solid rgba(255,255,255,.18);font-size:.72rem;color:#e6edf4}.project-meta span{display:inline-flex;gap:5px}.project-meta strong{color:#77a9dc;font-weight:700}.project-card{min-height:455px}.partner img{width:100%;height:72px;object-fit:contain}.partner{background:#fff}.partner-name{font:700 .84rem 'Manrope',sans-serif;margin-top:9px;color:#45576b}.partner-link{color:inherit;text-decoration:none;cursor:pointer;transition:transform .22s ease,box-shadow .22s ease,background .22s ease}.partner-link:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,26,54,.10);background:#f8fafc}.partner-link:focus-visible{outline:3px solid #fff200;outline-offset:-3px}@media(max-width:680px){.project-card{min-height:440px}.partner img{height:60px}}`;
   document.head.appendChild(extraStyles);
 
   const escapeHtml = value => String(value ?? '').replace(/[&<>'"]/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
