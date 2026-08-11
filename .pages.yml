@@ -190,7 +190,16 @@ content:
         type: image
         required: true
         options: {media: images}
-      - {name: alt, label: Description de la photo, type: string}
+      - name: gallery
+        label: Photos supplémentaires
+        type: image
+        description: Ajoutez ici les autres photos du projet. Elles défileront après la photo principale dans la fiche détaillée.
+        options:
+          media: images
+          multiple:
+            max: 12
+          unique: true
+      - {name: alt, label: Description de la photo principale, type: string}
       - {name: featured, label: Afficher sur l’accueil, type: boolean, default: false}
       - {name: published, label: Visible sur le site, type: boolean, default: true}
 
