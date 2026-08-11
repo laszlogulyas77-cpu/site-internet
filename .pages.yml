@@ -127,6 +127,21 @@ content:
       - {name: bullets, label: Prestations, type: string, list: true}
       - {name: published, label: Visible sur le site, type: boolean, default: true}
 
+  - name: certifications
+    label: Certifications & qualifications
+    type: file
+    path: data/certifications.json
+    format: json
+    list: true
+    operations: {rename: false, delete: false}
+    fields:
+      - {name: kicker, label: Catégorie, type: string, required: true}
+      - {name: title, label: Titre, type: string, required: true}
+      - {name: description, label: Description, type: text}
+      - {name: labels, label: Certifications / labels, type: string, list: true}
+      - {name: bullets, label: Détails, type: string, list: true}
+      - {name: published, label: Visible sur le site, type: boolean, default: true}
+
   - name: projects
     label: Projets réalisés
     type: file
