@@ -1,5 +1,5 @@
 (() => {
-  const brandVersion = '20260811-certifications-v16';
+  const brandVersion = '20260811-project-filters-v17';
   const assetVersion = Date.now();
   const brandCss = document.createElement('link');
   brandCss.rel = 'stylesheet';
@@ -49,13 +49,48 @@
     }
   };
 
+  const normalizeService = value => {
+    const normalized = String(value || '').trim().toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '');
+    const aliases = {
+      cfo: 'cfo', courantsforts: 'cfo', courantfort: 'cfo', hta: 'cfo', moyenne tension: 'cfo',
+      cfa: 'cfa', courantsfaibles: 'cfa', courantfaible: 'cfa',
+      ssi: 'ssi', securiteincendie: 'ssi', incendie: 'ssi',
+      gtb: 'gtb', gestiontechniquedubatiment: 'gtb',
+      photovoltaique: 'photovoltaique', photovoltaïque: 'photovoltaique', solaire: 'photovoltaique',
+      irve: 'irve', bornederecharge: 'irve', bornesderecharge: 'irve'
+    };
+    return aliases[normalized] || normalized;
+  };
+
+  const inferProjectServices = project => {
+    if (Array.isArray(project.services) && project.services.length) {
+      return [...new Set(project.services.map(normalizeService).filter(Boolean))];
+    }
+
+    const text = [project.title, project.category_label, project.description, project.location]
+      .filter(Boolean).join(' ').toLowerCase();
+    const services = [];
+
+    if (/\bcfo\b|courants?\s*forts?|tgbt|tableaux?\s+electri|tableaux?\s+de\s+distribution|poste\s+(ht|hta)|transformateur|distribution\s+generale|eclairage|alimentation\s+generale/i.test(text)) services.push('cfo');
+    if (/\bcfa\b|courants?\s*faibles?|vdi|fibre|wi-?fi|reseau\s+informatique|controle\s+d.?acces|videosurveillance|videoprotection|interphonie|videophonie|sonorisation|intrusion/i.test(text)) services.push('cfa');
+    if (/\bssi\b|securite\s+incendie|detection\s+incendie|cmsi/i.test(text)) services.push('ssi');
+    if (/\bgtb\b|gestion\s+technique\s+du\s+batiment|supervision\s+technique/i.test(text)) services.push('gtb');
+    if (/photovolta|panneaux?\s+solaires?|autoconsommation|production\s+solaire/i.test(text)) services.push('photovoltaique');
+    if (/\birve\b|bornes?\s+de\s+recharge|recharge\s+(de\s+)?vehicules?\s+electriques?/i.test(text)) services.push('irve');
+
+    return [...new Set(services)];
+  };
+
   const renderProject = project => {
     const metadata = [
       project.client ? `<span><strong>MOA</strong> ${escapeHtml(project.client)}</span>` : '',
       project.year ? `<span><strong>Année</strong> ${escapeHtml(project.year)}</span>` : ''
     ].filter(Boolean).join('');
     const image = withAssetVersion(project.image || 'assets/uploads/references/photo-a-ajouter.svg');
-    return `<article class="project-card reveal is-visible" data-category="${escapeHtml(project.category)}" data-premium="${project.premium === true ? 'true' : 'false'}"><img src="${escapeHtml(image)}" alt="${escapeHtml(project.alt || project.title)}"><div class="project-overlay"><span class="project-tag">${escapeHtml(project.category_label || '')}</span><h3>${escapeHtml(project.title)}</h3><p>${project.location ? `${escapeHtml(project.location)} — ` : ''}${escapeHtml(project.description || '')}</p>${metadata ? `<div class="project-meta">${metadata}</div>` : ''}</div></article>`;
+    const services = inferProjectServices(project).join(' ');
+    return `<article class="project-card reveal is-visible" data-category="${escapeHtml(project.category)}" data-premium="${project.premium === true ? 'true' : 'false'}" data-services="${escapeHtml(services)}"><img src="${escapeHtml(image)}" alt="${escapeHtml(project.alt || project.title)}"><div class="project-overlay"><span class="project-tag">${escapeHtml(project.category_label || '')}</span><h3>${escapeHtml(project.title)}</h3><p>${project.location ? `${escapeHtml(project.location)} — ` : ''}${escapeHtml(project.description || '')}</p>${metadata ? `<div class="project-meta">${metadata}</div>` : ''}</div></article>`;
   };
 
   const renderCertification = item => {
