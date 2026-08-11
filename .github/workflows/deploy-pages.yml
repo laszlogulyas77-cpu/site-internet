@@ -27,6 +27,22 @@ jobs:
       - name: Configurer GitHub Pages
         uses: actions/configure-pages@v5
 
+      - name: Créer la version du déploiement
+        shell: bash
+        run: |
+          mkdir -p data
+          printf '{"sha":"%s","deployed_at":"%s"}\n' "$GITHUB_SHA" "$(date -u +'%Y-%m-%dT%H:%M:%SZ')" > data/deploy-version.json
+
+      - name: Activer l’actualisation automatique
+        shell: bash
+        run: |
+          VERSION="${GITHUB_SHA:0:10}"
+          while IFS= read -r -d '' file; do
+            if ! grep -q 'assets/js/live-refresh.js' "$file"; then
+              sed -i "s#</body>#<script src=\"assets/js/live-refresh.js?v=${VERSION}\"></script></body>#" "$file"
+            fi
+          done < <(find . -maxdepth 1 -type f -name '*.html' -print0)
+
       - name: Préparer les fichiers du site
         uses: actions/upload-pages-artifact@v3
         with:
