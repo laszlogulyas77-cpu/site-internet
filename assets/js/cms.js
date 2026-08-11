@@ -148,6 +148,13 @@
         setText('[data-cms-home-hero-title]', site.home?.hero_title);
         setText('[data-cms-home-hero-highlight]', site.home?.hero_highlight);
         setText('[data-cms-home-hero-lead]', site.home?.hero_lead);
+        const hero = document.querySelector('.hero');
+        if (hero && site.home?.hero_image) {
+          const heroImage = withAssetVersion(site.home.hero_image);
+          hero.style.backgroundImage = `linear-gradient(90deg,rgba(0,20,43,.98) 0%,rgba(0,26,54,.9) 42%,rgba(0,26,54,.28) 76%),url(${JSON.stringify(heroImage)})`;
+          hero.style.backgroundPosition = 'center';
+          hero.style.backgroundSize = 'cover';
+        }
         setText('[data-cms-home-about-eyebrow]', site.home?.about_eyebrow);
         setText('[data-cms-home-about-title]', site.home?.about_title);
         setText('[data-cms-home-about-text]', site.home?.about_text);
