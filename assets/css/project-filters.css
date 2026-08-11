@@ -1,0 +1,23 @@
+.project-filter-shell{margin-bottom:38px;padding:26px 28px 22px;border:1px solid #dfe7ef;border-radius:18px;background:#f8fafc;box-shadow:0 12px 32px rgba(0,26,54,.045)}
+.project-filter-top{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;margin-bottom:22px}
+.project-filter-top p{margin:4px 0 0;font-size:.92rem;color:#66758a}
+.project-filter-label{display:block;font:800 .75rem 'Manrope',sans-serif;letter-spacing:.11em;text-transform:uppercase;color:#24548f}
+.project-filter-modes{display:inline-flex;gap:4px;padding:4px;border:1px solid #dbe4ed;border-radius:10px;background:#fff}
+.project-filter-mode{min-height:42px;padding:0 18px;border:0;border-radius:7px;background:transparent;color:#53667b;font-weight:800;cursor:pointer;transition:.2s ease}
+.project-filter-mode:hover{color:#001a36;background:#eef4fb}
+.project-filter-mode.active{background:#001a36;color:#fff;box-shadow:0 6px 16px rgba(0,26,54,.14)}
+.project-filter-shell .filter-bar{margin:0;gap:9px}
+.project-filter-shell .filter-bar[hidden]{display:none!important}
+.project-filter-shell .filter-btn{padding:9px 15px;background:#fff;border-color:#dce4ec;font-size:.88rem;transition:.2s ease}
+.project-filter-shell .filter-btn:hover,.project-filter-shell .filter-btn.active{transform:none}
+.project-filter-empty{margin:0 0 28px;padding:18px 20px;border:1px dashed #cbd7e3;border-radius:12px;background:#f8fafc;color:#66758a;text-align:center}
+.project-filter-empty[hidden]{display:none!important}
+
+@media(max-width:760px){
+  .project-filter-shell{padding:22px 18px 18px;border-radius:15px}
+  .project-filter-top{display:block;margin-bottom:18px}
+  .project-filter-modes{display:grid;grid-template-columns:1fr 1fr;width:100%;margin-top:16px}
+  .project-filter-mode{padding:0 10px}
+  .project-filter-shell .filter-bar{gap:7px}
+  .project-filter-shell .filter-btn{padding:8px 12px;font-size:.82rem}
+}
