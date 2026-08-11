@@ -15,22 +15,10 @@
     "about_title": "Votre partenaire électrique pour les opérations les plus exigeantes.",
     "about_text": "Entreprise familiale et indépendante, SERILEC intervient sur des projets de rénovation, restructuration et aménagement dans le tertiaire, l’hôtellerie et le retail.",
     "stats": {
-      "stat_1": {
-        "value": "46",
-        "label": "ans d'existence"
-      },
-      "stat_2": {
-        "value": "40+",
-        "label": "collaborateurs engagés"
-      },
-      "stat_3": {
-        "value": "4",
-        "label": "expertises intégrées : CFO, CFA, SSI, GTB"
-      },
-      "stat_4": {
-        "value": "3",
-        "label": "secteurs majeurs : hôtels, bureaux, retail"
-      }
+      "stat_1": {"value": "46", "label": "ans d'existence"},
+      "stat_2": {"value": "40+", "label": "collaborateurs engagés"},
+      "stat_3": {"value": "4", "label": "expertises intégrées : CFO, CFA, SSI, GTB"},
+      "stat_4": {"value": "3", "label": "secteurs majeurs : hôtels, bureaux, retail"}
     },
     "contact_eyebrow": "Parlons de votre projet",
     "contact_title": "Vous préparez une rénovation ou un nouvel aménagement ?",
@@ -40,7 +28,7 @@
     "competences": {
       "eyebrow": "Notre savoir-faire",
       "title": "Des compétences techniques au service de projets exigeants.",
-      "intro": "SERILEC maîtrise l’ensemble des expertises électriques nécessaires à la conception, la réalisation, la mise en service et la maintenance de projets tertiaires performants."
+      "intro": "SERILEC maîtrise les expertises électriques nécessaires aux projets tertiaires performants : courants forts CFO, courants faibles CFA, SSI, GTB, études d’exécution, maintenance, installations photovoltaïques et autoconsommation, ainsi que moyenne tension HTA, postes de livraison et transformation HTA/BT."
     },
     "projects": {
       "eyebrow": "Nos réalisations",
