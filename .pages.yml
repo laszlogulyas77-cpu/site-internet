@@ -224,6 +224,26 @@ content:
         description: URL du logo ou chemin d’un fichier dans le dépôt
       - {name: published, label: Visible sur le site, type: boolean, default: true}
 
+  - name: testimonials
+    label: Témoignages clients
+    type: file
+    path: data/testimonials.json
+    format: json
+    list: true
+    operations: {rename: false, delete: false}
+    fields:
+      - {name: company, label: Entreprise / client, type: string, required: true}
+      - {name: quote, label: Témoignage, type: text, required: true}
+      - {name: author_name, label: Nom du contact, type: string}
+      - {name: author_role, label: Fonction du contact, type: string}
+      - {name: project, label: Projet concerné, type: string}
+      - name: logo
+        label: Logo du client
+        type: image
+        required: true
+        options: {media: images}
+      - {name: published, label: Visible sur le site, type: boolean, default: true}
+
   - name: news
     label: Actualités
     type: file
