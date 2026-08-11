@@ -1,5 +1,5 @@
 (() => {
-  const brandVersion = '20260811-title-palette-v15';
+  const brandVersion = '20260811-certifications-v16';
   const assetVersion = Date.now();
   const brandCss = document.createElement('link');
   brandCss.rel = 'stylesheet';
@@ -56,6 +56,12 @@
     ].filter(Boolean).join('');
     const image = withAssetVersion(project.image || 'assets/uploads/references/photo-a-ajouter.svg');
     return `<article class="project-card reveal is-visible" data-category="${escapeHtml(project.category)}" data-premium="${project.premium === true ? 'true' : 'false'}"><img src="${escapeHtml(image)}" alt="${escapeHtml(project.alt || project.title)}"><div class="project-overlay"><span class="project-tag">${escapeHtml(project.category_label || '')}</span><h3>${escapeHtml(project.title)}</h3><p>${project.location ? `${escapeHtml(project.location)} — ` : ''}${escapeHtml(project.description || '')}</p>${metadata ? `<div class="project-meta">${metadata}</div>` : ''}</div></article>`;
+  };
+
+  const renderCertification = item => {
+    const labels = (item.labels || []).map(label => `<span class="certification-badge">${escapeHtml(label)}</span>`).join('');
+    const bullets = (item.bullets || []).map(bullet => `<li>${escapeHtml(bullet)}</li>`).join('');
+    return `<article class="card certification-card reveal is-visible"><div class="certification-kicker">${escapeHtml(item.kicker || '')}</div><h3>${escapeHtml(item.title || '')}</h3>${labels ? `<div class="certification-badges">${labels}</div>` : ''}${item.description ? `<p>${escapeHtml(item.description)}</p>` : ''}${bullets ? `<ul>${bullets}</ul>` : ''}</article>`;
   };
 
   const getWebLogo = website => {
@@ -127,6 +133,14 @@
       try {
         const items = (await fetchJson('data/competences.json')).filter(item => item.published !== false);
         competenceGrid.innerHTML = items.map(item => `<article class="card service-card reveal is-visible"><div class="service-no">${escapeHtml(item.number)} / ${escapeHtml(item.kicker)}</div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p><ul>${(item.bullets || []).map(bullet => `<li>${escapeHtml(bullet)}</li>`).join('')}</ul></article>`).join('');
+      } catch (error) { console.warn(error); }
+    }
+
+    const certificationGrid = document.querySelector('[data-cms-certifications]');
+    if (certificationGrid) {
+      try {
+        const items = (await fetchJson('data/certifications.json')).filter(item => item.published !== false);
+        certificationGrid.innerHTML = items.map(renderCertification).join('');
       } catch (error) { console.warn(error); }
     }
 
