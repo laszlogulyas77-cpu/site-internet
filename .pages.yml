@@ -172,6 +172,15 @@ content:
         list: true
         description: Ajouter CFO, CFA, SSI, GTB, Photovoltaïque ou IRVE. Laisser vide pour utiliser le classement automatique basé sur la description du projet.
       - {name: location, label: Adresse / lieu, type: string}
+      - name: zone
+        label: Zone géographique
+        type: select
+        description: Facultatif. Laisser vide pour que le site déduise automatiquement la zone à partir de l’adresse ou du lieu.
+        options:
+          values:
+            - {name: paris, label: Paris}
+            - {name: idf, label: Île-de-France hors Paris}
+            - {name: france, label: France hors Île-de-France}
       - {name: description, label: Mission SERILEC, type: text, required: true}
       - {name: client, label: Maître d’ouvrage / client, type: string}
       - {name: amount, label: Montant des travaux (interne, non affiché), type: string}
