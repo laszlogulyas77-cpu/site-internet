@@ -48,6 +48,34 @@ content:
           - {name: about_eyebrow, label: Surtitre de présentation, type: string}
           - {name: about_title, label: Titre de présentation, type: string}
           - {name: about_text, label: Texte de présentation, type: text}
+          - name: stats
+            label: Chiffres clés
+            type: object
+            fields:
+              - name: stat_1
+                label: Chiffre clé 1
+                type: object
+                fields:
+                  - {name: value, label: Valeur, type: string}
+                  - {name: label, label: Texte, type: string}
+              - name: stat_2
+                label: Chiffre clé 2
+                type: object
+                fields:
+                  - {name: value, label: Valeur, type: string}
+                  - {name: label, label: Texte, type: string}
+              - name: stat_3
+                label: Chiffre clé 3
+                type: object
+                fields:
+                  - {name: value, label: Valeur, type: string}
+                  - {name: label, label: Texte, type: string}
+              - name: stat_4
+                label: Chiffre clé 4
+                type: object
+                fields:
+                  - {name: value, label: Valeur, type: string}
+                  - {name: label, label: Texte, type: string}
           - {name: contact_eyebrow, label: Surtitre de contact, type: string}
           - {name: contact_title, label: Titre de contact, type: string}
           - {name: contact_text, label: Texte de contact, type: text}
