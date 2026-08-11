@@ -668,7 +668,8 @@
     "category_label": "Showroom & bureaux",
     "description": "Référence SERILEC issue du site historique pour l'aménagement d'un showroom et de bureaux Hager Electro.",
     "client": "Hager",
-    "image": "assets/uploads/references/photo-a-ajouter.svg",
+    "year": "2019",
+    "image": "assets/uploads/hager.jpg",
     "alt": "Photo showroom Hager Electro à ajouter",
     "featured": false,
     "published": true
