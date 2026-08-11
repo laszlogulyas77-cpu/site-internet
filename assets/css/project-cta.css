@@ -1,0 +1,13 @@
+.band{padding:50px 56px!important;background:linear-gradient(135deg,#001a36 0%,#173f70 100%)!important;border:1px solid rgba(55,108,175,.22)!important;border-radius:20px!important;box-shadow:0 24px 60px rgba(0,26,54,.12)!important;overflow:hidden!important}
+.band::after{content:none!important;display:none!important;background:none!important}
+.band-grid{position:relative!important;z-index:1!important;display:grid!important;grid-template-columns:minmax(0,1fr) minmax(260px,340px)!important;align-items:center!important;gap:56px!important}
+.band-grid>div:first-child{min-width:0;max-width:900px}
+.band-grid>div:last-child{min-width:0;display:flex;justify-content:flex-end}
+.band h2{max-width:900px!important;margin:8px 0 18px!important;color:#f7f9fc!important;font-size:clamp(2rem,3vw,3rem)!important;line-height:1.08!important;letter-spacing:-.035em!important}
+.band p{max-width:860px!important;margin:0!important;color:#d8e3ee!important;font-size:1rem!important;line-height:1.7!important}
+.band .eyebrow{color:#a9c7e8!important}
+.band .eyebrow::before{background:#77a9dc!important}
+.band .btn-primary{width:100%!important;max-width:340px!important;min-height:56px!important;padding:0 22px!important;border:1px solid rgba(255,255,255,.78)!important;border-radius:10px!important;background:#f7f9fc!important;color:#001a36!important;box-shadow:0 12px 28px rgba(0,15,32,.18)!important;font-weight:800!important;text-align:center!important;overflow-wrap:anywhere!important}
+.band .btn-primary:hover{background:#eaf2fb!important;color:#001a36!important;transform:translateY(-2px)!important}
+@media(max-width:900px){.band{padding:42px 38px!important}.band-grid{grid-template-columns:1fr!important;gap:30px!important}.band-grid>div:last-child{justify-content:flex-start}.band .btn-primary{max-width:420px!important}}
+@media(max-width:560px){.band{padding:32px 24px!important;border-radius:16px!important}.band h2{font-size:1.8rem!important}.band p{font-size:.95rem!important}.band .btn-primary{max-width:none!important;width:100%!important}}
