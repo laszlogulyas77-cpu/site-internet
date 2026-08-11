@@ -84,11 +84,17 @@
       "SSI"
     ],
     "location": "4 avenue de l'Atlantique, 56340 Carnac",
+    "zone": "france",
     "description": "Remplacement du poste HT, création du TGBT et tableaux de distribution, réseaux informatiques, SSI, contrôle d'accès, vidéoprotection, Wi-Fi et téléphonie de sécurité.",
     "client": "LBH BOISSEE FINANCES",
     "amount": "2 750 000 €",
     "year": "2025",
-    "image": "assets/uploads/thalazur-carnac.jpg",
+    "image": "assets/uploads/thalazur-carnac-2.avif",
+    "gallery": [
+      "assets/uploads/thalazur-carnac-3.jpg",
+      "assets/uploads/thalazur-carnac-4.jpg",
+      "assets/uploads/thalazur-carnac-5.jpg"
+    ],
     "alt": "Complexe hôtelier et spa",
     "featured": true,
     "published": true
@@ -104,6 +110,7 @@
       "SSI"
     ],
     "location": "6 allée des Rochers, 17200 Royan",
+    "zone": "france",
     "description": "Rénovation complète de l'hôtel, chambres, restaurant et thalassothérapie : Courant fort et courant faible, SSI, contrôle d'accès et vidéosurveillance.",
     "client": "S.H.I.R.",
     "amount": "1 000 000 €",
