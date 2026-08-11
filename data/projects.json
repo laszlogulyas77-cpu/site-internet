@@ -20,7 +20,7 @@
       "assets/uploads/miromesnil-2.jpg",
       "assets/uploads/miromesnil-4.jpg"
     ],
-    "featured": false,
+    "featured": true,
     "published": true
   },
   {
@@ -42,7 +42,7 @@
     "image": "assets/uploads/urban-hibe-ampere.jpg",
     "alt": "Hôtel Urban Hive à Paris",
     "featured": true,
-    "published": true
+    "published": false
   },
   {
     "title": "Hôtel L'Opale Noire",
@@ -55,13 +55,22 @@
       "SSI"
     ],
     "location": "20 rue de Bellechasse, Paris",
+    "zone": "paris",
     "description": "Hotel Bellechasse transformé et rénové en L'Opale Noire. Courants forts et faibles repensés, SSI déployé sur l'ensemble du site, sonorisation et éclairage décoratif remis au goût du jour.",
     "client": "H.P. INVEST",
     "amount": "475 000 €",
     "year": "2025",
     "image": "assets/uploads/hotel-lopale-noirchambre34005-1.jpg",
+    "gallery": [
+      "assets/uploads/hotel-lopale-noirchambre16bathroom003.jpg",
+      "assets/uploads/hotel-lopale-noirchambre42004.jpg",
+      "assets/uploads/hotel-lopale-noirchambre62019.jpg",
+      "assets/uploads/hotel-lopale-noirreception013.jpg",
+      "assets/uploads/hotel-lopale-noirrestaurant008.jpg",
+      "assets/uploads/hotel-lopale-noirrestaurant085.jpg"
+    ],
     "alt": "Hôtel parisien",
-    "featured": true,
+    "featured": false,
     "published": true
   },
   {
