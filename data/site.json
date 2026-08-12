@@ -18,7 +18,7 @@
     "stats": {
       "stat_1": {"value": "46", "label": "ans d'existence"},
       "stat_2": {"value": "40+", "label": "collaborateurs engagés"},
-      "stat_3": {"value": "4", "label": "expertises intégrées : CFO, CFA, SSI, GTB"},
+      "stat_3": {"value": "8", "label": "expertises : CFO, CFA, SSI, GTB, photovoltaïque, IRVE, ingénierie, maintenance"},
       "stat_4": {"value": "3", "label": "secteurs majeurs : hôtels, bureaux, retail"}
     },
     "contact_eyebrow": "Parlons de votre projet",
