@@ -1,0 +1,23 @@
+/* Accueil — grille complète des expertises SERILEC */
+body[data-cms-page="home"] .hero{min-height:900px}
+body[data-cms-page="home"] .hero-metrics{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:64px}
+body[data-cms-page="home"] .hero-metrics .metric{min-width:0;padding:20px 20px 19px;border-right:1px solid rgba(255,255,255,.16);border-bottom:1px solid rgba(255,255,255,.16)}
+body[data-cms-page="home"] .hero-metrics .metric:nth-child(4n){border-right:0}
+body[data-cms-page="home"] .hero-metrics .metric:nth-child(n+5){border-bottom:0}
+body[data-cms-page="home"] .hero-metrics .metric strong{font-size:1.25rem;line-height:1.15;color:#77a9dc!important}
+body[data-cms-page="home"] .hero-metrics .metric span{display:block;margin-top:5px;font-size:.78rem;line-height:1.42;color:#d7e0e9}
+
+@media(max-width:900px){
+  body[data-cms-page="home"] .hero{min-height:auto}
+  body[data-cms-page="home"] .hero-metrics{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:52px}
+  body[data-cms-page="home"] .hero-metrics .metric:nth-child(4n){border-right:1px solid rgba(255,255,255,.16)}
+  body[data-cms-page="home"] .hero-metrics .metric:nth-child(2n){border-right:0}
+  body[data-cms-page="home"] .hero-metrics .metric:nth-child(n+5){border-bottom:1px solid rgba(255,255,255,.16)}
+  body[data-cms-page="home"] .hero-metrics .metric:nth-last-child(-n+2){border-bottom:0}
+}
+
+@media(max-width:560px){
+  body[data-cms-page="home"] .hero-metrics .metric{padding:17px 15px}
+  body[data-cms-page="home"] .hero-metrics .metric strong{font-size:1.05rem}
+  body[data-cms-page="home"] .hero-metrics .metric span{font-size:.7rem}
+}
