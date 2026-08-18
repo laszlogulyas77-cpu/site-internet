@@ -1,0 +1,45 @@
+{
+  "Hôtel Home Moderne": {
+    "images": [
+      "https://www.hotellaconversation.com/cache/img/la-conversation-accueil-256854-516-600-portrait.jpg?q=1748870489"
+    ],
+    "source_url": "https://www.hotellaconversation.com/fr/photo",
+    "source_label": "Galerie officielle Hôtel La Conversation, ancien Home Moderne"
+  },
+  "Cures Marines Thalasso": {
+    "images": [
+      "https://www.lescuresmarines.com/_novaimg/5192935-1531186_400_0_3220_2415_1200_900.jpg",
+      "https://www.lescuresmarines.com/_novaimg/5192936-1531188_184_0_3220_2415_1200_900.jpg",
+      "https://www.lescuresmarines.com/_novaimg/5192937-1531187_400_0_3220_2415_1200_900.jpg"
+    ],
+    "source_url": "https://www.lescuresmarines.com/fr/le-repos.html",
+    "source_label": "Site officiel Les Cures Marines Trouville"
+  },
+  "62-68 rue Jeanne d'Arc": {
+    "images": [
+      "https://calq.fr/data/projets_ab9de/fiche/124/media-full_201127_life_chantier_calq_31_bc096.jpg",
+      "https://calq.fr/data/projets_ab9de/fiche/124/media-full_201127_life_atelierdupont_2_c1950.jpg",
+      "https://calq.fr/data/projets_ab9de/fiche/124/media-full_201127_life_chantier_calq_15_5e8a7.jpg"
+    ],
+    "source_url": "https://calq.fr/fr/projets/life-1358.html",
+    "source_label": "CALQ Architecture, projet LIFE — siège du Groupe VYV"
+  },
+  "Hager Electro - Showroom & bureaux": {
+    "images": [
+      "https://images.loopnet.fr/i2/anViv79_oyqzRzjqV4VULDdMgimUpoorbPp8x7gcI5c/110/20-Rue-Troyon-Paris-Photo-de-limmeuble-1-Large.jpg",
+      "https://images.loopnet.fr/i2/drfSFCLrsbVXSqQckrlC5XuoQsVgdN-Zk-9w6DZQnGo/110/20-Rue-Troyon-Paris-Photo-de-limmeuble-2-Large.jpg",
+      "https://images.loopnet.fr/i2/L-ytpLy3eWYqapY6YPKjxXnfLbmeHiuN35vt2mwt8ug/110/20-Rue-Troyon-Paris-Photo-de-limmeuble-3-Large.jpg"
+    ],
+    "source_url": "https://www.loopnet.fr/annonce/20-rue-troyon-paris/38331163/",
+    "source_label": "20 rue Troyon — showroom et bureaux Hager"
+  },
+  "Mutuelle Arkéa Tour Trinity": {
+    "images": [
+      "https://bysteel-production.fra1.digitaloceanspaces.com/website/347/RICARDO_OLIVEIRA_ALVES_BYSTEEL_TOUR-TRINITY_0214web.jpg",
+      "https://bysteel-production.fra1.digitaloceanspaces.com/website/336/RICARDO_OLIVEIRA_ALVES_BYSTEEL_TOUR-TRINITY_0074-HDRweb.jpg",
+      "https://bysteel-production.fra1.digitaloceanspaces.com/website/349/RICARDO_OLIVEIRA_ALVES_BYSTEEL_TOUR-TRINITY_0230web.jpg"
+    ],
+    "source_url": "https://bysteel.pt/fr/projets/trinity-tower/",
+    "source_label": "Tour Trinity, galerie du projet Bysteel"
+  }
+}
