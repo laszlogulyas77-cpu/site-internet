@@ -33,6 +33,7 @@
   let galleryIndex = 0;
   let activeProject = null;
   let touchStartX = null;
+  let failedGalleryUrls = new Set();
 
   const getProjects = () => {
     if (!projectsPromise) {
@@ -192,6 +193,8 @@
         }
         image.src = candidates[candidateIndex++];
       };
+      image.loading = 'lazy';
+      image.decoding = 'async';
       image.onerror = tryNextImage;
       image.alt = project.alt || project.title || 'Réalisation SERILEC';
       tryNextImage();
@@ -250,14 +253,20 @@
     link.textContent = item.sourceLabel || 'Voir la source';
   };
 
-  const showGalleryImage = index => {
+  const showGalleryImage = (index, failedAttempts = 0) => {
     if (!galleryItems.length || !activeProject) return;
     galleryIndex = (index + galleryItems.length) % galleryItems.length;
     const item = galleryItems[galleryIndex];
     const image = modal.querySelector('[data-project-detail-image]');
     image.onerror = () => {
       image.onerror = null;
+      failedGalleryUrls.add(item.url);
+      if (galleryItems.length > 1 && failedAttempts < galleryItems.length - 1) {
+        showGalleryImage(galleryIndex + 1, failedAttempts + 1);
+        return;
+      }
       image.src = placeholderImage;
+      updatePhotoSource(null);
     };
     image.src = item.url;
     image.alt = galleryIndex === 0 && activeProject.alt
@@ -279,6 +288,7 @@
     activeProject = project;
     galleryItems = getGalleryItems(project, externalIndex);
     galleryIndex = 0;
+    failedGalleryUrls = new Set();
 
     const hasGallery = galleryItems.length > 1;
     const prev = modal.querySelector('[data-project-gallery-prev]');
@@ -338,6 +348,7 @@
       modal.hidden = true;
       activeProject = null;
       galleryItems = [];
+      failedGalleryUrls = new Set();
       updatePhotoSource(null);
       if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') lastFocusedElement.focus();
     }, 220);
