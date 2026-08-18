@@ -13,11 +13,15 @@
   {"name":"Theop","description":"","website":"https://www.theop.fr/","logo":"https://www.google.com/s2/favicons?domain=theop.fr&sz=256","published":true},
   {"name":"OSAE Partners","description":"","website":"https://www.osae-partners.com/","logo":"assets/uploads/clients/osae.svg","published":true},
   {"name":"Rayz Vendôme","description":"","website":"https://www.rayz-suites.com/","logo":"https://www.google.com/s2/favicons?domain=rayz-suites.com&sz=256","published":true},
-  {"name":"Sinfonic","description":"Rénovation et aménagement d’espaces","website":"https://sinfonic.com/","logo":"https://www.google.com/s2/favicons?domain=sinfonic.com&sz=256","published":true},
-  {"name":"Cézame","description":"Tourisme d’affaires","website":"https://cezame.fr/","logo":"https://www.google.com/s2/favicons?domain=cezame.fr&sz=256","published":true},
+  {"name":"Sinfonic","description":"Rénovation et aménagement d’espaces","website":"https://sinfonic.com/","logo":"https://sinfonic.com/wp-content/uploads/2024/09/sinfonic-logo-white.svg","published":true},
+  {"name":"CESAM — Groupe TREUIL","description":"Construction tous corps d’état","website":"https://cesam-treuil.fr/","logo":"https://groupe-treuil.fr/wp-content/uploads/2025/05/logo-bassedef_CESAM.jpg","published":true},
   {"name":"CFE-CGC Métallurgie","description":"Fédération de la Métallurgie","website":"https://www.metallurgie-cfecgc.com/","logo":"https://www.google.com/s2/favicons?domain=metallurgie-cfecgc.com&sz=256","published":true},
   {"name":"Lacoste","description":"Mode & retail","website":"https://www.lacoste.com/fr/","logo":"https://www.google.com/s2/favicons?domain=lacoste.com&sz=256","published":true},
   {"name":"Grape Hospitality","description":"Opérateur hôtelier européen","website":"https://grape-hospitality.com/","logo":"https://www.google.com/s2/favicons?domain=grape-hospitality.com&sz=256","published":true},
   {"name":"Covivio","description":"Immobilier européen","website":"https://www.covivio.eu/fr/","logo":"https://www.google.com/s2/favicons?domain=covivio.eu&sz=256","published":true},
-  {"name":"Korus Group","description":"Conception et aménagement d’espaces professionnels","website":"https://www.korusgroup.com/fr/","logo":"https://www.google.com/s2/favicons?domain=korusgroup.com&sz=256","published":true}
+  {"name":"Korus Group","description":"Conception et aménagement d’espaces professionnels","website":"https://www.korusgroup.com/fr/","logo":"https://www.google.com/s2/favicons?domain=korusgroup.com&sz=256","published":true},
+  {"name":"Euronext","description":"Marchés financiers & bureaux","website":"https://www.euronext.com/","logo":"https://upload.wikimedia.org/wikipedia/commons/7/7d/New_Euronext_logo.svg","published":true},
+  {"name":"Groupe VYV","description":"Santé & protection sociale","website":"https://www.groupe-vyv.fr/","logo":"https://www.groupe-vyv.fr/wp-content/themes/vyv/assets/images/groupe-vyv.png","published":true},
+  {"name":"Hager","description":"Solutions électriques & bâtiment","website":"https://hager.com/fr","logo":"https://upload.wikimedia.org/wikipedia/commons/5/51/Hager_Group_logo.svg","published":true},
+  {"name":"Star’s Service","description":"Logistique du dernier kilomètre","website":"https://www.groupestarservice.com/","logo":"https://www.google.com/s2/favicons?domain=groupestarservice.com&sz=256","published":true}
 ]
