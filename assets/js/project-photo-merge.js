@@ -9,6 +9,28 @@
     'Passage Jouffroy'
   ]);
 
+  const ibisOverride = {
+    images: [
+      'https://www.technilum.com/app/uploads/2024/08/D-La-Rochelle-hotel-ibis-2.jpg',
+      'https://www.technilum.com/app/uploads/2024/08/D-La-Rochelle-hotel-ibis-3.jpg',
+      'https://static.apidae-tourisme.com/filestore/objets-touristiques/images/55/63/40714039-diaporama.jpg',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/77529584.jpg?hp=1&k=77eaafc452c757c74a08e107820628a82b6dc442ebbb37460044945d09667a0c&o='
+    ],
+    source_url: 'https://www.cbarchitectes.fr/projet/combo-greet-ibis-budget',
+    source_label: 'Combo Greet / Ibis Budget, CBA Architectes et Office de tourisme'
+  };
+
+  // Le fichier historique du carrousel définit encore deux photos pour ce projet.
+  // On remplace uniquement cette entrée au moment où son index interne est créé.
+  const nativeMapSet = Map.prototype.set;
+  Map.prototype.set = function(key, value) {
+    if (key === 'ibisbudgetlarochellegreethotel') {
+      Map.prototype.set = nativeMapSet;
+      return nativeMapSet.call(this, key, ibisOverride);
+    }
+    return nativeMapSet.call(this, key, value);
+  };
+
   const builtInExtras = {
     'CNIT - Centre des Nouvelles Industries et Technologies': {
       images: [
@@ -55,12 +77,17 @@
       record.images = (record.images || []).slice(0, limit);
     });
 
-    // Le script principal possède encore un ancien jeu de deux photos pour ce projet.
-    // Cet alias, normalisé de la même façon, est volontairement placé après pour conserver les quatre visuels exacts.
-    const ibis = merged['Ibis Budget La Rochelle & Greet Hôtel'];
-    if (ibis) merged['Ibis Budget La Rochelle & Greet Hotel'] = { ...ibis, images: (ibis.images || []).slice(0, 4) };
-
     return merged;
+  };
+
+  const fetchJsonOrEmpty = async url => {
+    try {
+      const response = await nativeFetch(url, { cache: 'no-store' });
+      return response.ok ? response.json() : {};
+    } catch (error) {
+      console.warn(`Photos complémentaires indisponibles : ${url}`, error);
+      return {};
+    }
   };
 
   window.fetch = async (input, init) => {
@@ -68,16 +95,16 @@
     if (!baseFilePattern.test(requestUrl)) return nativeFetch(input, init);
 
     try {
-      const extraUrl = `data/project-external-images-extra.json?v=${Date.now()}`;
-      const [baseResponse, extraResponse] = await Promise.all([
+      const version = Date.now();
+      const [baseResponse, extraData, extraData2] = await Promise.all([
         nativeFetch(input, init),
-        nativeFetch(extraUrl, { cache: 'no-store' })
+        fetchJsonOrEmpty(`data/project-external-images-extra.json?v=${version}`),
+        fetchJsonOrEmpty(`data/project-external-images-extra-3.json?v=${version}`)
       ]);
       if (!baseResponse.ok) return baseResponse;
 
       const baseData = await baseResponse.json();
-      const extraData = extraResponse.ok ? await extraResponse.json() : {};
-      const mergedData = mergeCollections(baseData, extraData, builtInExtras);
+      const mergedData = mergeCollections(baseData, extraData, extraData2, builtInExtras);
 
       return new Response(JSON.stringify(mergedData), {
         status: 200,
