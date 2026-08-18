@@ -12,5 +12,12 @@
   {"name":"Oralians","description":"","website":"https://oralians.fr/","logo":"assets/uploads/clients/oralians.svg","published":true},
   {"name":"Theop","description":"","website":"https://www.theop.fr/","logo":"https://www.google.com/s2/favicons?domain=theop.fr&sz=256","published":true},
   {"name":"OSAE Partners","description":"","website":"https://www.osae-partners.com/","logo":"assets/uploads/clients/osae.svg","published":true},
-  {"name":"Rayz Vendôme","description":"","website":"https://www.rayz-suites.com/","logo":"https://www.google.com/s2/favicons?domain=rayz-suites.com&sz=256","published":true}
+  {"name":"Rayz Vendôme","description":"","website":"https://www.rayz-suites.com/","logo":"https://www.google.com/s2/favicons?domain=rayz-suites.com&sz=256","published":true},
+  {"name":"Sinfonic","description":"Rénovation et aménagement d’espaces","website":"https://sinfonic.com/","logo":"https://www.google.com/s2/favicons?domain=sinfonic.com&sz=256","published":true},
+  {"name":"Cézame","description":"Tourisme d’affaires","website":"https://cezame.fr/","logo":"https://www.google.com/s2/favicons?domain=cezame.fr&sz=256","published":true},
+  {"name":"CFE-CGC Métallurgie","description":"Fédération de la Métallurgie","website":"https://www.metallurgie-cfecgc.com/","logo":"https://www.google.com/s2/favicons?domain=metallurgie-cfecgc.com&sz=256","published":true},
+  {"name":"Lacoste","description":"Mode & retail","website":"https://www.lacoste.com/fr/","logo":"https://www.google.com/s2/favicons?domain=lacoste.com&sz=256","published":true},
+  {"name":"Grape Hospitality","description":"Opérateur hôtelier européen","website":"https://grape-hospitality.com/","logo":"https://www.google.com/s2/favicons?domain=grape-hospitality.com&sz=256","published":true},
+  {"name":"Covivio","description":"Immobilier européen","website":"https://www.covivio.eu/fr/","logo":"https://www.google.com/s2/favicons?domain=covivio.eu&sz=256","published":true},
+  {"name":"Korus Group","description":"Conception et aménagement d’espaces professionnels","website":"https://www.korusgroup.com/fr/","logo":"https://www.google.com/s2/favicons?domain=korusgroup.com&sz=256","published":true}
 ]
