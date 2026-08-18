@@ -1,0 +1,33 @@
+[
+  {
+    "title": "Star’s Service — Parking boulevard Ney",
+    "category": "office",
+    "premium": false,
+    "category_label": "IRVE / Logistique",
+    "services": ["IRVE", "CFO"],
+    "location": "Boulevard Ney, Porte d’Aubervilliers, Paris 18e",
+    "zone": "paris",
+    "description": "Équipement IRVE du parking de l’espace logistique urbain Star’s Service : déploiement de 50 bornes de recharge pour la flotte de véhicules électriques, avec alimentation, protections, distribution, câblage, raccordement et mise en service.",
+    "client": "Star’s Service",
+    "year": "2017",
+    "image": "assets/uploads/references/photo-a-ajouter.svg",
+    "alt": "Bornes de recharge du parking Star’s Service boulevard Ney",
+    "featured": false,
+    "published": true
+  },
+  {
+    "title": "BC Partners — 24 bornes IRVE",
+    "category": "office",
+    "premium": false,
+    "category_label": "Bureaux / IRVE",
+    "services": ["IRVE", "CFO"],
+    "location": "Paris",
+    "zone": "paris",
+    "description": "Installation de 24 bornes de recharge pour véhicules électriques au sein d’un ensemble tertiaire de 10 000 m² : étude de puissance, protections, distribution, câblage, pilotage énergétique et mise en service.",
+    "client": "BC Partners",
+    "image": "assets/uploads/references/photo-a-ajouter.svg",
+    "alt": "Infrastructure de recharge IRVE de bureaux pour BC Partners",
+    "featured": false,
+    "published": true
+  }
+]
