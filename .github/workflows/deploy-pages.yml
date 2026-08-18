@@ -33,11 +33,17 @@ jobs:
           mkdir -p data
           printf '{"sha":"%s","deployed_at":"%s"}\n' "$GITHUB_SHA" "$(date -u +'%Y-%m-%dT%H:%M:%SZ')" > data/deploy-version.json
 
-      - name: Activer l’actualisation automatique
+      - name: Activer les contenus complémentaires et l’actualisation automatique
         shell: bash
         run: |
           VERSION="${GITHUB_SHA:0:10}"
           while IFS= read -r -d '' file; do
+            if ! grep -q 'assets/js/project-content-merge.js' "$file"; then
+              sed -i "s#</body>#<script src=\"assets/js/project-content-merge.js?v=${VERSION}\"></script></body>#" "$file"
+            fi
+            if ! grep -q 'assets/js/social-links.js' "$file"; then
+              sed -i "s#</body>#<script src=\"assets/js/social-links.js?v=${VERSION}\"></script></body>#" "$file"
+            fi
             if ! grep -q 'assets/js/live-refresh.js' "$file"; then
               sed -i "s#</body>#<script src=\"assets/js/live-refresh.js?v=${VERSION}\"></script></body>#" "$file"
             fi
