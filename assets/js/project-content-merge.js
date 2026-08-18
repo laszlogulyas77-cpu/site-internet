@@ -27,6 +27,14 @@
     }
   });
 
+  const automaticServiceAdditions = project => {
+    const title = normalizeKey(project?.title);
+    const client = normalizeKey(project?.client);
+    return title.includes('thalazur') || client.includes('boissee')
+      ? ['Photovoltaïque']
+      : [];
+  };
+
   const mergeProjects = async baseResponse => {
     const [baseProjects, extraProjects, serviceOverrides] = await Promise.all([
       baseResponse.json(),
@@ -38,20 +46,25 @@
       Object.entries(serviceOverrides || {}).map(([title, services]) => [normalizeKey(title), Array.isArray(services) ? services : []])
     );
 
-    const projects = (Array.isArray(baseProjects) ? baseProjects : []).map(project => {
-      const additions = overrideIndex.get(normalizeKey(project.title)) || [];
-      const existing = Array.isArray(project.services) ? project.services : [];
+    const enrichProject = project => {
+      const additions = [
+        ...(overrideIndex.get(normalizeKey(project?.title)) || []),
+        ...automaticServiceAdditions(project)
+      ];
+      const existing = Array.isArray(project?.services) ? project.services : [];
       return {
         ...project,
         services: [...new Set([...existing, ...additions].filter(Boolean))]
       };
-    });
+    };
 
+    const projects = (Array.isArray(baseProjects) ? baseProjects : []).map(enrichProject);
     const knownTitles = new Set(projects.map(project => normalizeKey(project.title)));
+
     (Array.isArray(extraProjects) ? extraProjects : []).forEach(project => {
       const key = normalizeKey(project?.title);
       if (!key || knownTitles.has(key)) return;
-      projects.push(project);
+      projects.push(enrichProject(project));
       knownTitles.add(key);
     });
 
