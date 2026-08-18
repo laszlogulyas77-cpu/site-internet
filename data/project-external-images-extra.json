@@ -1,0 +1,109 @@
+{
+  "Thalazur Royan": {
+    "images": [
+      "https://www.thalazur.fr/_hotels/assets/images/cordouan/galleries/mini/03.jpg",
+      "https://www.thalazur.fr/_hotels/assets/images/cordouan/galleries/mini/04.jpg",
+      "https://www.thalazur.fr/_hotels/assets/images/cordouan/galleries/mini/coucher-soleil-thalazur-royan.jpg"
+    ],
+    "source_url": "https://www.thalazur.fr/hotel-cordouan/galerie/",
+    "source_label": "Galerie officielle Thalazur Royan"
+  },
+  "Hôtel Tiquetonne": {
+    "images": [
+      "https://hapi.mmcreation.com/hapidam/177f5941-92ef-4473-abb5-43687dbc6199/le-tiquetonne-services-012.jpg?size=lg",
+      "https://hapi.mmcreation.com/hapidam/d88c06b6-39d6-465f-b2e5-8ffd94b3fb46/le-tiquetonne-services-007.jpg?size=lg",
+      "https://hapi.mmcreation.com/hapidam/54390546-3e02-453f-a370-5845664e24b4/le-tiquetonne-services-008.jpg?size=lg"
+    ],
+    "source_url": "https://le6tiquetonnehotel-paris.com/en/",
+    "source_label": "Site officiel Le 6 Tiquetonne"
+  },
+  "Hôtel Courcelles": {
+    "images": [
+      "https://thevendry.com/cdn-cgi/image/width%3D3840%2Cquality%3D75%2Cfit%3Dcontain%2Cmetadata%3Dnone%2Cformat%3Dauto/https%3A%2F%2Ftravelport.leonardocontentcloud.com%2FimageRepo%2F0%2F0%2F201%2F503%2F467%2FReception_%281%29_O.jpg",
+      "https://thevendry.com/cdn-cgi/image/width%3D3840%2Cquality%3D75%2Cfit%3Dcontain%2Cmetadata%3Dnone%2Cformat%3Dauto/https%3A%2F%2Ftravelport.leonardocontentcloud.com%2FimageRepo%2F7%2F0%2F168%2F594%2F957%2Fcourcellesetoile-chambre-tradition-sd-4_O.jpg",
+      "https://travelport.leonardocontentcloud.com/imageRepo/7/0/168/593/963/courcellesetoile-chambre-prestige-sd-4_O.jpg"
+    ],
+    "source_url": "https://thevendry.com/venue/354708/hotel-casimir-paris-france",
+    "source_label": "Hôtel Casimir, 184 rue de Courcelles"
+  },
+  "Hôtel Georges Sand Bordeaux": {
+    "images": [
+      "https://res.cloudinary.com/amenitiz/image/upload/v1674041635/grmvi2dhtbaiqxuxwarm.jpg",
+      "https://res.cloudinary.com/amenitiz/image/upload/v1674041641/p1xaue7p0qxdf3ayunu5.jpg",
+      "https://res.cloudinary.com/amenitiz/image/upload/v1674041648/skneu7ds6m2vdwfekcnr.jpg"
+    ],
+    "source_url": "https://www.lhotel-particulier.com/fr/",
+    "source_label": "Site officiel L'Hôtel Particulier Bordeaux"
+  },
+  "Hôtel Mercure Angoulême": {
+    "images": [
+      "https://www.ahstatic.com/photos/1213_ho_02_p_1024x768.jpg",
+      "https://www.ahstatic.com/photos/1213_ho_03_p_1024x768.jpg"
+    ],
+    "source_url": "https://all.accor.com/hotel/1213/index.fr.shtml",
+    "source_label": "Site officiel Accor, Mercure Angoulême Hôtel de France"
+  },
+  "Thalasso Arcachon": {
+    "images": [
+      "https://www.thalazur.fr/_hotels/assets/images/bainsarguin/bedrooms/chambre-pavillon.jpg",
+      "https://www.thalazur.fr/_hotels/assets/images/bainsarguin/bedrooms/chambre%20premium%201.jpg",
+      "https://www.thalazur.fr/_hotels/assets/images/bainsarguin/bedrooms/premium-twin.jpg"
+    ],
+    "source_url": "https://www.thalazur.fr/arcachon/hotel/galerie/",
+    "source_label": "Galerie officielle Thalazur Arcachon"
+  },
+  "Hôtel Arotel": {
+    "images": [
+      "https://hapi.mmcreation.com/hapidam/f182bd59-b478-4623-8d87-099b2b7ec33e/hotel-les-artistes-communs.jpg?size=lg"
+    ],
+    "source_url": "https://lesartisteshotel.com/fr/page/photo-les-artistes.15649.html",
+    "source_label": "Galerie officielle Hôtel Les Artistes"
+  },
+  "Hôtel Gabbie": {
+    "images": [
+      "https://hapi.mmcreation.com/hapidam/7a53fc73-919f-41fc-8985-cb37f7ca0fab/hotel-gabbie-petit-dej-053.jpg?size=lg",
+      "https://hapi.mmcreation.com/hapidam/cb66db56-9260-4938-a119-6d7ec66151fa/hotel-gabbie-chambres.jpeg?size=lg",
+      "https://hapi.mmcreation.com/hapidam/23c3f935-a913-456b-9bd8-5d8aa06a02fe/hotel-gabbie-classique-015.jpg?size=lg"
+    ],
+    "source_url": "https://www.hotelgabbie.com/fr/page/galerie-photo.22467.html",
+    "source_label": "Galerie officielle Hôtel Gabbie"
+  },
+  "Hôtel Le Pilgrim": {
+    "images": [
+      "https://hapi.mmcreation.com/hapidam/8a0cd41d-6881-43ca-a5ce-8c7bff687cb7/hotel-pilgrim-photos-reception-lobby-006.jpg?size=lg",
+      "https://cdn.mos.cms.futurecdn.net/N6zuwcaYDKt7ShwD79vzoD.jpg",
+      "https://cdn.mos.cms.futurecdn.net/RFiT6ShUajVBHtcfJYvLNP.jpg"
+    ],
+    "source_url": "https://hotelpilgrim.paris/fr/page/galerie-photos-decouvrez-lhotel-pilgrim-hotel-quartier-latin.20959.html",
+    "source_label": "Hôtel Pilgrim / Marie Claire UK"
+  },
+  "Lacoste - Flagship Champs-Élysées": {
+    "images": [
+      "https://a.mktgcdn.com/p/ZLmfAfPkNeq5gXFVjbibUvbEeLxWjkJst7swqqgDpJk/314x300.png",
+      "https://a.mktgcdn.com/p/ZqqsGEnjok-s6Lue5kprNyigt6vsE2coi2LAlGvSNdc/314x300.png",
+      "https://a.mktgcdn.com/p/1DCCIQYET-PzE6PvB9zL8CBAXgs-Zmpk1UTY1dL4_ME/314x300.png",
+      "https://a.mktgcdn.com/p/7JLbN__s_JpVk3cFWIokIMgBizgd_nPdYcwX76Udye0/547x400.png"
+    ],
+    "source_url": "https://www.lacoste.com/fr/stores/france/paris/paris-5434",
+    "source_label": "Boutique officielle Lacoste Paris Arena"
+  },
+  "254 boulevard Saint-Germain": {
+    "images": [
+      "https://www.osae-partners.com/wp-content/uploads/ESINT_3.jpg",
+      "https://www.osae-partners.com/wp-content/uploads/ORSAY-14-Large.jpg",
+      "https://www.osae-partners.com/wp-content/uploads/32_Selection_Finale_VE_Interieurs_254SG.jpg"
+    ],
+    "source_url": "https://www.osae-partners.com/projets/254saintgermain/",
+    "source_label": "Osae Partners, photos JP. Vaillancourt"
+  },
+  "Ibis Budget La Rochelle & Greet Hôtel": {
+    "images": [
+      "https://www.technilum.com/app/uploads/2024/08/D-La-Rochelle-hotel-ibis-2.jpg",
+      "https://www.technilum.com/app/uploads/2024/08/D-La-Rochelle-hotel-ibis-3.jpg",
+      "https://static.apidae-tourisme.com/filestore/objets-touristiques/images/55/63/40714039-diaporama.jpg",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/77529584.jpg?hp=1&k=77eaafc452c757c74a08e107820628a82b6dc442ebbb37460044945d09667a0c&o="
+    ],
+    "source_url": "https://www.cbarchitectes.fr/projet/combo-greet-ibis-budget",
+    "source_label": "Combo Greet / Ibis Budget, CBA Architectes et Office de tourisme"
+  }
+}
