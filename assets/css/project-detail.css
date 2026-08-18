@@ -38,6 +38,10 @@
 .project-detail-meta-value{display:block;color:#071e3d;font-size:.9rem;font-weight:720;overflow-wrap:anywhere}
 .project-detail-services{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
 .project-detail-service{display:inline-flex;padding:6px 10px;border:1px solid #d5e4f4;border-radius:999px;background:#eef4fb;color:#24548f;font-size:.72rem;font-weight:800}
+.project-detail-photo-source{margin:18px 0 0;padding-top:16px;border-top:1px solid #edf1f5;color:#7b8795;font-size:.72rem;line-height:1.55}
+.project-detail-photo-source[hidden]{display:none!important}
+.project-detail-photo-source a{color:#24548f;font-weight:750;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.project-detail-photo-source a:hover{color:#001a36}
 body.project-modal-open{overflow:hidden}
 
 @media(max-width:900px){
