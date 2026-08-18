@@ -47,14 +47,16 @@
     );
 
     const enrichProject = project => {
+      const projectKey = normalizeKey(project?.title);
       const additions = [
-        ...(overrideIndex.get(normalizeKey(project?.title)) || []),
+        ...(overrideIndex.get(projectKey) || []),
         ...automaticServiceAdditions(project)
       ];
       const existing = Array.isArray(project?.services) ? project.services : [];
       return {
         ...project,
-        services: [...new Set([...existing, ...additions].filter(Boolean))]
+        services: [...new Set([...existing, ...additions].filter(Boolean))],
+        published: projectKey === 'urbanhive' ? true : project.published
       };
     };
 
