@@ -1,0 +1,35 @@
+.partner-grid .partner img[alt="Logo Sinfonic"]{
+  max-width:160px;
+  max-height:64px;
+  padding:8px 4px;
+  filter:brightness(0) saturate(100%) invert(12%) sepia(35%) saturate(1500%) hue-rotate(174deg) brightness(88%) contrast(105%);
+}
+
+.partner-grid .partner img[alt="Logo CESAM — Groupe TREUIL"]{
+  max-width:150px;
+  max-height:66px;
+  border-radius:6px;
+}
+
+.partner-grid .partner img[alt="Logo Euronext"],
+.partner-grid .partner img[alt="Logo Groupe VYV"],
+.partner-grid .partner img[alt="Logo Hager"]{
+  max-width:150px;
+  max-height:62px;
+}
+
+.partner-grid .partner img[alt="Logo Star’s Service"]{
+  max-width:82px;
+  max-height:62px;
+}
+
+@media(max-width:680px){
+  .partner-grid .partner img[alt="Logo Sinfonic"],
+  .partner-grid .partner img[alt="Logo CESAM — Groupe TREUIL"],
+  .partner-grid .partner img[alt="Logo Euronext"],
+  .partner-grid .partner img[alt="Logo Groupe VYV"],
+  .partner-grid .partner img[alt="Logo Hager"]{
+    max-width:132px;
+    max-height:54px;
+  }
+}
