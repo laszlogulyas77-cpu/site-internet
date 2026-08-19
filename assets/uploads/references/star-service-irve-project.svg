@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Star's Service - 50 points de charge boulevard Ney</title>
+  <desc id="desc">Visuel technique SERILEC illustrant le projet IRVE Star's Service boulevard Ney à Paris.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#001a36"/>
+      <stop offset="1" stop-color="#174d85"/>
+    </linearGradient>
+    <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eef4fb"/>
+      <stop offset="1" stop-color="#d8e6f5"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#00152c" flood-opacity=".28"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <path d="M0 690 360 510l260 115 280-185 320 155 380-225v630H0z" fill="url(#ground)"/>
+  <path d="M0 742h1600" stroke="#b7cee6" stroke-width="5"/>
+  <g opacity=".26" stroke="#fff" stroke-width="2">
+    <path d="M110 0v470M285 0v410M460 0v355M1180 0v390M1355 0v330M1530 0v270"/>
+  </g>
+  <g transform="translate(92 82)">
+    <rect width="218" height="44" rx="22" fill="#fff200"/>
+    <text x="109" y="29" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="700" fill="#001a36" letter-spacing="2">VISUEL TECHNIQUE</text>
+  </g>
+  <text x="92" y="205" font-family="Arial,Helvetica,sans-serif" font-size="78" font-weight="800" fill="#fff">STAR'S SERVICE</text>
+  <text x="94" y="265" font-family="Arial,Helvetica,sans-serif" font-size="30" font-weight="700" fill="#a9c7e8" letter-spacing="3">PARKING BOULEVARD NEY • PARIS 18E</text>
+  <text x="94" y="365" font-family="Arial,Helvetica,sans-serif" font-size="118" font-weight="900" fill="#fff200">50</text>
+  <text x="280" y="344" font-family="Arial,Helvetica,sans-serif" font-size="50" font-weight="800" fill="#fff">POINTS DE CHARGE</text>
+  <text x="282" y="392" font-family="Arial,Helvetica,sans-serif" font-size="28" font-weight="600" fill="#d9e7f7">Infrastructure IRVE pour flotte de livraison électrique</text>
+  <g transform="translate(930 170)" filter="url(#shadow)">
+    <rect x="0" y="0" width="260" height="430" rx="38" fill="#fff"/>
+    <rect x="40" y="48" width="180" height="118" rx="18" fill="#001a36"/>
+    <path d="M112 76h50l-26 46h35l-64 77 19-58H91z" fill="#fff200"/>
+    <rect x="76" y="224" width="108" height="22" rx="11" fill="#d8e6f5"/>
+    <circle cx="130" cy="320" r="43" fill="#eef4fb" stroke="#24548f" stroke-width="8"/>
+    <path d="M130 286v34l26 17" fill="none" stroke="#24548f" stroke-width="9" stroke-linecap="round"/>
+    <path d="M260 110c104 0 113 71 113 154v86" fill="none" stroke="#fff200" stroke-width="18" stroke-linecap="round"/>
+    <circle cx="373" cy="374" r="30" fill="#001a36" stroke="#fff200" stroke-width="10"/>
+  </g>
+  <g transform="translate(220 600)" filter="url(#shadow)">
+    <g transform="translate(0 35)">
+      <path d="M0 120V34Q0 0 34 0h245q34 0 53 28l60 92v105H0z" fill="#fff"/>
+      <rect x="34" y="32" width="181" height="104" rx="10" fill="#e5eef8"/>
+      <path d="m238 32 62 0 58 88H238z" fill="#a9c7e8"/>
+      <rect x="66" y="72" width="112" height="34" rx="17" fill="#001a36"/>
+      <path d="M92 89h60" stroke="#fff200" stroke-width="8" stroke-linecap="round"/>
+      <circle cx="90" cy="225" r="44" fill="#001a36" stroke="#d8e6f5" stroke-width="10"/>
+      <circle cx="306" cy="225" r="44" fill="#001a36" stroke="#d8e6f5" stroke-width="10"/>
+    </g>
+    <g transform="translate(470 0)">
+      <path d="M0 155V34Q0 0 34 0h245q34 0 53 28l60 92v140H0z" fill="#fff"/>
+      <rect x="34" y="32" width="181" height="104" rx="10" fill="#e5eef8"/>
+      <path d="m238 32 62 0 58 88H238z" fill="#a9c7e8"/>
+      <rect x="66" y="72" width="112" height="34" rx="17" fill="#001a36"/>
+      <path d="M92 89h60" stroke="#fff200" stroke-width="8" stroke-linecap="round"/>
+      <circle cx="90" cy="260" r="44" fill="#001a36" stroke="#d8e6f5" stroke-width="10"/>
+      <circle cx="306" cy="260" r="44" fill="#001a36" stroke="#d8e6f5" stroke-width="10"/>
+    </g>
+  </g>
+  <g transform="translate(1110 760)">
+    <rect width="398" height="112" rx="24" fill="#001a36" opacity=".92"/>
+    <text x="199" y="47" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="26" font-weight="800" fill="#fff">RÉALISATION SERILEC</text>
+    <text x="199" y="82" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="25" font-weight="700" fill="#fff200">2017</text>
+  </g>
+</svg>
