@@ -1,4 +1,14 @@
 {
+  "Thalazur Royan": {
+    "image": "https://www.thalazur.fr/_hotels/assets/images/cordouan/galleries/deco-chambre-royan-thalazur.jpg",
+    "replace_image_values": ["assets/uploads/thalazur-royan.jpg"],
+    "alt": "Chambre rénovée de l’hôtel Thalazur Royan"
+  },
+  "Hôtel Tiquetonne": {
+    "image": "https://hapi.mmcreation.com/hapidam/1e4e2034-99b9-404f-a80c-aaf9f9de848d/le-tiquetonne-partie-commune-009.jpg?size=lg",
+    "replace_image_values": ["assets/uploads/tiquetonne.jpg"],
+    "alt": "Parties communes rénovées de l’Hôtel Le 6 Tiquetonne"
+  },
   "Hôtel Le Pilgrim": {
     "description": "Référence SERILEC pour la rénovation de l’Hôtel Pilgrim, établissement 4 étoiles de 53 chambres et suites au cœur du Quartier latin. L’hôtel comprend notamment un rooftop et un espace bien-être avec piscine intérieure et hammam."
   },
