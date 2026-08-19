@@ -80,6 +80,7 @@
       'premium',
       'featured',
       'published',
+      'image',
       'alt'
     ].forEach(field => {
       if (correction[field] === undefined) return;
