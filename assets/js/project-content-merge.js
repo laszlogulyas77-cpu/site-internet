@@ -9,6 +9,15 @@
     .replace(/[\u0300-\u036f]/g, '')
     .replace(/[^a-z0-9]+/g, '');
 
+  const isBlank = value => value === undefined || value === null || String(value).trim() === '';
+  const isPlaceholderDescription = value => {
+    const text = String(value || '')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase();
+    return /reference serilec|site historique|details?.{0,100}(completer|preciser)|a completer|a preciser/.test(text);
+  };
+
   const fetchJsonOr = async (path, fallback) => {
     try {
       const response = await previousFetch(`${path}?v=${Date.now()}`, { cache: 'no-store' });
@@ -27,6 +36,12 @@
     }
   });
 
+  const uniqueValues = values => [...new Set(
+    (values || [])
+      .map(value => typeof value === 'string' ? value.trim() : value)
+      .filter(Boolean)
+  )];
+
   const automaticServiceAdditions = project => {
     const title = normalizeKey(project?.title);
     const client = normalizeKey(project?.client);
@@ -35,28 +50,76 @@
       : [];
   };
 
+  const applyProjectCorrection = (project, correction) => {
+    if (!correction || typeof correction !== 'object') return { ...project };
+
+    const next = { ...project };
+    if (correction.description && (
+      correction.force_description === true ||
+      isBlank(next.description) ||
+      isPlaceholderDescription(next.description)
+    )) {
+      next.description = correction.description;
+    }
+
+    [
+      'location',
+      'zone',
+      'client',
+      'year',
+      'category',
+      'category_label',
+      'premium',
+      'featured',
+      'published',
+      'alt'
+    ].forEach(field => {
+      if (correction[field] === undefined) return;
+      const force = correction[`force_${field}`] === true;
+      if (force || isBlank(next[field])) next[field] = correction[field];
+    });
+
+    if (Array.isArray(correction.services) && correction.services.length) {
+      const existing = Array.isArray(next.services) ? next.services : [];
+      next.services = uniqueValues([...existing, ...correction.services]);
+    }
+
+    return next;
+  };
+
   const mergeProjects = async baseResponse => {
-    const [baseProjects, extraProjects, serviceOverrides] = await Promise.all([
+    const [baseProjects, extraProjects, serviceOverrides, contentCorrections] = await Promise.all([
       baseResponse.json(),
       fetchJsonOr('data/projects-irve.json', []),
-      fetchJsonOr('data/project-service-overrides.json', {})
+      fetchJsonOr('data/project-service-overrides.json', {}),
+      fetchJsonOr('data/project-content-corrections.json', {})
     ]);
 
     const overrideIndex = new Map(
-      Object.entries(serviceOverrides || {}).map(([title, services]) => [normalizeKey(title), Array.isArray(services) ? services : []])
+      Object.entries(serviceOverrides || {}).map(([title, services]) => [
+        normalizeKey(title),
+        Array.isArray(services) ? services : []
+      ])
+    );
+    const correctionIndex = new Map(
+      Object.entries(contentCorrections || {}).map(([title, correction]) => [
+        normalizeKey(title),
+        correction || {}
+      ])
     );
 
     const enrichProject = project => {
       const projectKey = normalizeKey(project?.title);
+      const corrected = applyProjectCorrection(project, correctionIndex.get(projectKey));
       const additions = [
         ...(overrideIndex.get(projectKey) || []),
-        ...automaticServiceAdditions(project)
+        ...automaticServiceAdditions(corrected)
       ];
-      const existing = Array.isArray(project?.services) ? project.services : [];
+      const existing = Array.isArray(corrected?.services) ? corrected.services : [];
       return {
-        ...project,
-        services: [...new Set([...existing, ...additions].filter(Boolean))],
-        published: projectKey === 'urbanhive' ? true : project.published
+        ...corrected,
+        services: uniqueValues([...existing, ...additions]),
+        published: projectKey === 'urbanhive' ? true : corrected.published
       };
     };
 
@@ -73,27 +136,48 @@
     return projects;
   };
 
+  const findRecordKey = (collection, title) => {
+    const target = normalizeKey(title);
+    return Object.keys(collection || {}).find(key => normalizeKey(key) === target) || title;
+  };
+
+  const mergeImageRecord = (collection, title, record, replace = false) => {
+    if (!record || typeof record !== 'object') return;
+    const key = findRecordKey(collection, title);
+    const current = collection[key] || {};
+    const { replace: ignoredReplace, ...cleanRecord } = record;
+    const currentImages = Array.isArray(current.images) ? current.images : [];
+    const incomingImages = Array.isArray(cleanRecord.images) ? cleanRecord.images : [];
+    const images = replace
+      ? uniqueValues(incomingImages)
+      : uniqueValues([...currentImages, ...incomingImages]);
+
+    collection[key] = {
+      ...current,
+      ...cleanRecord,
+      images: images.slice(0, 12),
+      source_url: cleanRecord.source_url !== undefined
+        ? cleanRecord.source_url
+        : current.source_url || '',
+      source_label: cleanRecord.source_label !== undefined
+        ? cleanRecord.source_label
+        : current.source_label || ''
+    };
+  };
+
   const mergeExternalImages = async baseResponse => {
-    const [baseData, irveData] = await Promise.all([
+    const [baseData, irveData, corrections] = await Promise.all([
       baseResponse.json(),
-      fetchJsonOr('data/project-external-images-irve.json', {})
+      fetchJsonOr('data/project-external-images-irve.json', {}),
+      fetchJsonOr('data/project-external-images-corrections.json', {})
     ]);
 
     const merged = { ...(baseData || {}) };
     Object.entries(irveData || {}).forEach(([title, record]) => {
-      const current = merged[title] || {};
-      const images = [...new Set([
-        ...(Array.isArray(current.images) ? current.images : []),
-        ...(Array.isArray(record?.images) ? record.images : [])
-      ].map(value => String(value || '').trim()).filter(Boolean))];
-
-      merged[title] = {
-        ...current,
-        ...(record || {}),
-        images: images.slice(0, 4),
-        source_url: record?.source_url || current.source_url || '',
-        source_label: record?.source_label || current.source_label || ''
-      };
+      mergeImageRecord(merged, title, record, false);
+    });
+    Object.entries(corrections || {}).forEach(([title, record]) => {
+      mergeImageRecord(merged, title, record, record?.replace === true);
     });
 
     return merged;
@@ -119,7 +203,7 @@
       try {
         return jsonResponse(await mergeExternalImages(baseResponse));
       } catch (error) {
-        console.warn('Fusion des photos IRVE indisponible.', error);
+        console.warn('Fusion des photos complémentaires indisponible.', error);
         return previousFetch(input, init);
       }
     }
