@@ -2,13 +2,13 @@
   "Thalazur Royan": {
     "replace": true,
     "images": [
-      "https://www.thalazur.fr/_hotels/assets/images/cordouan/galleries/deco-chambre-royan-thalazur.jpg",
-      "https://www.thalazur.fr/_hotels/assets/images/cordouan/galleries/espace-be-royan.jpg",
+      "https://www.thalazur.fr/_hotels/assets/images/cordouan/location/header.jpg",
       "https://www.thalazur.fr/_hotels/assets/images/cordouan/galleries/03.jpg",
-      "https://www.thalazur.fr/_hotels/assets/images/cordouan/galleries/04.jpg"
+      "https://www.thalazur.fr/_hotels/assets/images/cordouan/galleries/04.jpg",
+      "https://www.thalazur.fr/_hotels/assets/images/cordouan/galleries/espace-be-royan.jpg"
     ],
     "source_url": "https://www.thalazur.fr/royan/hotel/galerie/",
-    "source_label": "Galerie officielle Thalazur Royan — versions haute définition"
+    "source_label": "Galerie officielle Thalazur Royan"
   },
   "Hôtel Tiquetonne": {
     "replace": true,
@@ -24,19 +24,18 @@
   "Star’s Service — Parking boulevard Ney": {
     "replace": true,
     "images": [
-      "https://www.voxlog.fr/src/actualites/00/00/04/F3/stars_service_ouvre_un_nouvel_espace_032670_a.jpg",
-      "assets/uploads/references/star-service-irve-project.svg"
+      "https://www.voxlog.fr/src/actualites/00/00/04/F3/stars_service_ouvre_un_nouvel_espace_032670_a.jpg"
     ],
     "source_url": "https://www.voxlog.fr/actualite/1267/star-s-service-ouvre-un-nouvel-espace-logistique-urbain-a-paris",
-    "source_label": "Star’s Service boulevard Ney — photo du site et visuel technique SERILEC"
+    "source_label": "Star’s Service — espace logistique urbain du boulevard Ney"
   },
   "BC Partners — 24 bornes IRVE": {
     "replace": true,
     "images": [
-      "assets/uploads/references/bc-partners-irve-project.svg"
+      "https://www.bcpartners.com/wp-content/uploads/2025/06/Paris.png"
     ],
-    "source_url": "",
-    "source_label": "Visuel technique SERILEC — photographies de chantier non publiées"
+    "source_url": "https://www.bcpartners.com/contact/",
+    "source_label": "BC Partners — implantation parisienne"
   },
   "Axone Promotion - Siège social": {
     "replace": true,
@@ -59,6 +58,28 @@
     "source_url": "https://www.inseec.com/actus-msc/decouvrez-notre-campus-coeur-defense-en-video/",
     "source_label": "INSEEC / OMNES Education — campus Cœur Défense"
   },
+  "B&B HOTEL Bois d’Arcy": {
+    "replace": true,
+    "images": [
+      "https://images.trvl-media.com/lodging/72000000/71590000/71589200/71589148/826731be.jpg?impolicy=resizecrop&ra=fit&rw=1200",
+      "https://images.trvl-media.com/lodging/72000000/71590000/71589200/71589148/9e0d21ba.jpg?impolicy=resizecrop&ra=fit&rw=1200",
+      "https://images.trvl-media.com/lodging/72000000/71590000/71589200/71589148/9178f8c2.jpg?impolicy=resizecrop&ra=fit&rw=1200",
+      "https://images.trvl-media.com/lodging/72000000/71590000/71589200/71589148/324fd405.jpg?impolicy=resizecrop&ra=fit&rw=1200"
+    ],
+    "source_url": "https://www.expedia.com/Bois-DArcy-Hotels-BB-Hotel-Bois-DArcy-Saint-Quentin-En-Yvelines.h71589148.Hotel-Information",
+    "source_label": "B&B HOTEL Bois d’Arcy — photographies de l’établissement"
+  },
+  "Hôtel B&B": {
+    "replace": true,
+    "images": [
+      "https://images.trvl-media.com/lodging/72000000/71590000/71589200/71589148/826731be.jpg?impolicy=resizecrop&ra=fit&rw=1200",
+      "https://images.trvl-media.com/lodging/72000000/71590000/71589200/71589148/9e0d21ba.jpg?impolicy=resizecrop&ra=fit&rw=1200",
+      "https://images.trvl-media.com/lodging/72000000/71590000/71589200/71589148/9178f8c2.jpg?impolicy=resizecrop&ra=fit&rw=1200",
+      "https://images.trvl-media.com/lodging/72000000/71590000/71589200/71589148/324fd405.jpg?impolicy=resizecrop&ra=fit&rw=1200"
+    ],
+    "source_url": "https://www.expedia.com/Bois-DArcy-Hotels-BB-Hotel-Bois-DArcy-Saint-Quentin-En-Yvelines.h71589148.Hotel-Information",
+    "source_label": "B&B HOTEL Bois d’Arcy — photographies de l’établissement"
+  },
   "Hôtel Belleville": {
     "replace": true,
     "images": [
@@ -73,13 +94,12 @@
   "Bureaux - 15 rue de Milan": {
     "replace": true,
     "images": [
-      "https://jll-global-gdim-res.cloudinary.com/image/upload/f_avif,dpr_auto,w_3840,q_auto/t_main/a_ignore/v1670505735/Major/OFF_REF_PROD81936_DESCRO1.jpg",
-      "https://jll-global-gdim-res.cloudinary.com/image/upload/f_avif,dpr_auto,w_3840,q_auto/t_main/a_ignore/v1670505736/Major/OFF_REF_PROD81936_DESCRO2.jpg",
-      "https://jll-global-gdim-res.cloudinary.com/image/upload/f_avif,dpr_auto,w_3840,q_auto/t_main/a_ignore/v1670505738/Major/OFF_REF_PROD81936_DESCRO3.jpg",
-      "https://jll-global-gdim-res.cloudinary.com/image/upload/f_avif,dpr_auto,w_3840,q_auto/t_main/a_ignore/v1670850501/Major/OFF_REF_PROD81936_PORTFOLIO1.jpg"
+      "https://cdn.spliit.fr/v7/_storageimg_/R3cJapFKQ7egPI5jz-SiCA-11231.jpg?func=bound&h=1500&org_if_sml=1",
+      "https://cdn.spliit.fr/v7/_storageimg_/ZuefsuX7T5y4-CrAXvqKsg-4300.jpg?func=bound&h=1500&org_if_sml=1",
+      "https://cdn.spliit.fr/v7/_storageimg_/ZuefsuX7T5y4-CrAXvqKsg-4308.jpg?func=bound&h=1500&org_if_sml=1"
     ],
-    "source_url": "https://immobilier.jll.fr/location-bureaux/bureaux-a-louer-paris-75009-674075",
-    "source_label": "JLL France — 15 rue de Milan"
+    "source_url": "https://www.spliit.fr/location-bureaux/paris/75009-paris-9/15-rue-de-milan-5484/",
+    "source_label": "Spliit — bureaux du 15 rue de Milan"
   },
   "OCIRP - 17 rue Marignan": {
     "replace": true,
@@ -91,5 +111,14 @@
     ],
     "source_url": "https://archimage.fr/projet/ocirp/",
     "source_label": "Archimage — bureaux OCIRP, photos Yann Audic"
+  },
+  "Restaurant Le Taillevent": {
+    "replace": true,
+    "images": [
+      "https://gardinier.tailormaag.com/storage/covers/desktop/2921_a-legend-called-le-taillevent.jpg",
+      "https://francetoday.com/wp-content/uploads/2022/03/IMG_3432HDnew_MD.jpg"
+    ],
+    "source_url": "https://gardinier.tailormaag.com/en/magazine/a-legend-called-le-taillevent",
+    "source_label": "Le Taillevent — Maison Gardinier"
   }
 }
