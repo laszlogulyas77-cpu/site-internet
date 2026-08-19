@@ -50,6 +50,14 @@
       : [];
   };
 
+  const shouldReplaceField = (currentValue, correction, field) => {
+    if (correction[`force_${field}`] === true || isBlank(currentValue)) return true;
+    const acceptedCurrentValues = correction[`replace_${field}_values`];
+    if (!Array.isArray(acceptedCurrentValues)) return false;
+    const currentKey = normalizeKey(currentValue);
+    return acceptedCurrentValues.some(value => normalizeKey(value) === currentKey);
+  };
+
   const applyProjectCorrection = (project, correction) => {
     if (!correction || typeof correction !== 'object') return { ...project };
 
@@ -75,8 +83,7 @@
       'alt'
     ].forEach(field => {
       if (correction[field] === undefined) return;
-      const force = correction[`force_${field}`] === true;
-      if (force || isBlank(next[field])) next[field] = correction[field];
+      if (shouldReplaceField(next[field], correction, field)) next[field] = correction[field];
     });
 
     if (Array.isArray(correction.services) && correction.services.length) {
