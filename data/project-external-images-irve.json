@@ -2,21 +2,16 @@
   "Star’s Service — Parking boulevard Ney": {
     "images": [
       "https://www.voxlog.fr/src/actualites/00/00/04/F3/stars_service_ouvre_un_nouvel_espace_032670_a.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/3/34/Electric_vehicle_charging_station_in_a_parking_garage_in_Antwerp.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/c/ce/Electric_vehicle_parking_in_Annecy.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/b/b2/Instavolt_charging_station_at_McDonald%27s_East_Grinstead_%28December_2023%29.jpg"
+      "assets/uploads/references/star-service-irve-project.svg"
     ],
     "source_url": "https://www.voxlog.fr/actualite/1267/star-s-service-ouvre-un-nouvel-espace-logistique-urbain-a-paris",
-    "source_label": "Voxlog — site Star’s Service boulevard Ney ; Wikimedia Commons — illustrations IRVE"
+    "source_label": "Star’s Service boulevard Ney — photo du site et visuel technique SERILEC"
   },
   "BC Partners — 24 bornes IRVE": {
     "images": [
-      "https://www.bcpartners.com/wp-content/uploads/2025/04/Paris.webp",
-      "https://upload.wikimedia.org/wikipedia/commons/3/34/Electric_vehicle_charging_station_in_a_parking_garage_in_Antwerp.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/c/ce/Electric_vehicle_parking_in_Annecy.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/b/b2/Instavolt_charging_station_at_McDonald%27s_East_Grinstead_%28December_2023%29.jpg"
+      "assets/uploads/references/bc-partners-irve-project.svg"
     ],
-    "source_url": "https://www.bcpartners.com/contact/",
-    "source_label": "BC Partners — bureau de Paris ; Wikimedia Commons — illustrations IRVE"
+    "source_url": "",
+    "source_label": "Visuel technique SERILEC — photographies de chantier non publiées"
   }
 }
