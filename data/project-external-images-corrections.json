@@ -1,0 +1,95 @@
+{
+  "Thalazur Royan": {
+    "replace": true,
+    "images": [
+      "https://www.thalazur.fr/_hotels/assets/images/cordouan/galleries/deco-chambre-royan-thalazur.jpg",
+      "https://www.thalazur.fr/_hotels/assets/images/cordouan/galleries/espace-be-royan.jpg",
+      "https://www.thalazur.fr/_hotels/assets/images/cordouan/galleries/03.jpg",
+      "https://www.thalazur.fr/_hotels/assets/images/cordouan/galleries/04.jpg"
+    ],
+    "source_url": "https://www.thalazur.fr/royan/hotel/galerie/",
+    "source_label": "Galerie officielle Thalazur Royan — versions haute définition"
+  },
+  "Hôtel Tiquetonne": {
+    "replace": true,
+    "images": [
+      "https://hapi.mmcreation.com/hapidam/1e4e2034-99b9-404f-a80c-aaf9f9de848d/le-tiquetonne-partie-commune-009.jpg?size=lg",
+      "https://hapi.mmcreation.com/hapidam/177f5941-92ef-4473-abb5-43687dbc6199/le-tiquetonne-services-012.jpg?size=lg",
+      "https://hapi.mmcreation.com/hapidam/d88c06b6-39d6-465f-b2e5-8ffd94b3fb46/le-tiquetonne-services-007.jpg?size=lg",
+      "https://hapi.mmcreation.com/hapidam/54390546-3e02-453f-a370-5845664e24b4/le-tiquetonne-services-008.jpg?size=lg"
+    ],
+    "source_url": "https://le6tiquetonnehotel-paris.com/en/",
+    "source_label": "Site officiel Le 6 Tiquetonne — versions haute définition"
+  },
+  "Star’s Service — Parking boulevard Ney": {
+    "replace": true,
+    "images": [
+      "https://www.voxlog.fr/src/actualites/00/00/04/F3/stars_service_ouvre_un_nouvel_espace_032670_a.jpg",
+      "assets/uploads/references/star-service-irve-project.svg"
+    ],
+    "source_url": "https://www.voxlog.fr/actualite/1267/star-s-service-ouvre-un-nouvel-espace-logistique-urbain-a-paris",
+    "source_label": "Star’s Service boulevard Ney — photo du site et visuel technique SERILEC"
+  },
+  "BC Partners — 24 bornes IRVE": {
+    "replace": true,
+    "images": [
+      "assets/uploads/references/bc-partners-irve-project.svg"
+    ],
+    "source_url": "",
+    "source_label": "Visuel technique SERILEC — photographies de chantier non publiées"
+  },
+  "Axone Promotion - Siège social": {
+    "replace": true,
+    "images": [
+      "https://quadrifiore.fr/wp-content/uploads/2018/06/AXONE_SITE1-1920x1200.jpg",
+      "https://quadrifiore.fr/wp-content/uploads/2018/06/AXONE_SITE3-1.jpg",
+      "https://quadrifiore.fr/wp-content/uploads/2018/06/AXONE_SITE2-1.jpg"
+    ],
+    "source_url": "https://quadrifiore.fr/projet/foxtrot-2/",
+    "source_label": "Quadri Fiore Architecture — siège social Axone Promotion"
+  },
+  "INSEEC MSc & MBA - OMNES Education": {
+    "replace": true,
+    "images": [
+      "https://www.inseec.com/wp-content/uploads/sites/32/2025/11/campus-slider-vr-campus-paris-la-defense-inseec.jpg?w=1200",
+      "https://www.defense-92.fr/wp-content/uploads/2022/10/DSC_0186-2048x1365.jpg",
+      "https://www.defense-92.fr/wp-content/uploads/2022/10/DSC_0393-1920x1280.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/6/67/OMNES_Education_Paris_La_D%C3%A9fense.jpg"
+    ],
+    "source_url": "https://www.inseec.com/actus-msc/decouvrez-notre-campus-coeur-defense-en-video/",
+    "source_label": "INSEEC / OMNES Education — campus Cœur Défense"
+  },
+  "Hôtel Belleville": {
+    "replace": true,
+    "images": [
+      "https://www.labellevilleparis.com/cache/img/la-belle-ville-single-room-147063-1620-1080-auto.jpg?q=1736442400",
+      "https://www.labellevilleparis.com/cache/img/la-belle-ville-superieure-room-169704-1620-1080-auto.jpg?q=1736442401",
+      "https://www.labellevilleparis.com/cache/img/la-belle-ville-twin-room-169708-1620-1080-auto.jpg?q=1736442401",
+      "https://www.labellevilleparis.com/cache/img/la-belle-ville-accueil-249712-1920-650-crop.jpg?q=1743094616"
+    ],
+    "source_url": "https://www.labellevilleparis.com/fr/photos",
+    "source_label": "Galerie officielle La Belle Ville"
+  },
+  "Bureaux - 15 rue de Milan": {
+    "replace": true,
+    "images": [
+      "https://jll-global-gdim-res.cloudinary.com/image/upload/f_avif,dpr_auto,w_3840,q_auto/t_main/a_ignore/v1670505735/Major/OFF_REF_PROD81936_DESCRO1.jpg",
+      "https://jll-global-gdim-res.cloudinary.com/image/upload/f_avif,dpr_auto,w_3840,q_auto/t_main/a_ignore/v1670505736/Major/OFF_REF_PROD81936_DESCRO2.jpg",
+      "https://jll-global-gdim-res.cloudinary.com/image/upload/f_avif,dpr_auto,w_3840,q_auto/t_main/a_ignore/v1670505738/Major/OFF_REF_PROD81936_DESCRO3.jpg",
+      "https://jll-global-gdim-res.cloudinary.com/image/upload/f_avif,dpr_auto,w_3840,q_auto/t_main/a_ignore/v1670850501/Major/OFF_REF_PROD81936_PORTFOLIO1.jpg"
+    ],
+    "source_url": "https://immobilier.jll.fr/location-bureaux/bureaux-a-louer-paris-75009-674075",
+    "source_label": "JLL France — 15 rue de Milan"
+  },
+  "OCIRP - 17 rue Marignan": {
+    "replace": true,
+    "images": [
+      "https://archimage.fr/wp-content/uploads/2025/07/012-Archimages-Yann-Audic-ORCIP-2025-YA5_8944-web-scaled.jpg",
+      "https://archimage.fr/wp-content/uploads/2025/07/001-Archimages-Yann-Audic-ORCIP-2025-YA5_8887-web.jpg",
+      "https://archimage.fr/wp-content/uploads/2025/07/049-Archimages-Yann-Audic-ORCIP-2025-YA5_9134-web.jpg",
+      "https://archimage.fr/wp-content/uploads/2025/07/010-Archimages-Yann-Audic-ORCIP-2025-YA5_8930-HDR-web.jpg"
+    ],
+    "source_url": "https://archimage.fr/projet/ocirp/",
+    "source_label": "Archimage — bureaux OCIRP, photos Yann Audic"
+  }
+}
