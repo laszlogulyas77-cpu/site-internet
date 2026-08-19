@@ -1,8 +1,8 @@
 {
   "Thalazur Royan": {
-    "image": "https://www.thalazur.fr/_hotels/assets/images/cordouan/galleries/deco-chambre-royan-thalazur.jpg",
+    "image": "https://www.thalazur.fr/_hotels/assets/images/cordouan/location/header.jpg",
     "replace_image_values": ["assets/uploads/thalazur-royan.jpg"],
-    "alt": "Chambre rénovée de l’hôtel Thalazur Royan"
+    "alt": "Hôtel Thalazur Royan face à l’océan"
   },
   "Hôtel Tiquetonne": {
     "image": "https://hapi.mmcreation.com/hapidam/1e4e2034-99b9-404f-a80c-aaf9f9de848d/le-tiquetonne-partie-commune-009.jpg?size=lg",
@@ -43,7 +43,12 @@
     "year": "2022"
   },
   "Hôtel B&B": {
-    "description": "Référence historique SERILEC pour un établissement B&B Hotels. L’ancien site ne publie ni l’adresse précise ni le périmètre détaillé de l’opération ; ces éléments restent à confirmer dans les archives avant d’associer des photographies au projet."
+    "description": "Référence SERILEC pour le B&B HOTEL Bois d’Arcy Saint-Quentin-en-Yvelines, établissement 3 étoiles de 84 chambres avec parking souterrain. L’adresse et l’établissement sont désormais identifiés ; le détail technique de l’intervention pourra être complété depuis les archives chantier.",
+    "location": "1 bis avenue Fritz Lang, 78390 Bois-d’Arcy",
+    "zone": "idf",
+    "image": "https://images.trvl-media.com/lodging/72000000/71590000/71589200/71589148/826731be.jpg?impolicy=resizecrop&ra=fit&rw=1200",
+    "replace_image_values": ["assets/uploads/references/photo-a-ajouter.svg"],
+    "alt": "Façade du B&B HOTEL Bois d’Arcy Saint-Quentin-en-Yvelines"
   },
   "Hôtel Belleville": {
     "description": "Référence SERILEC pour La Belle Ville, hôtel de 62 chambres en R+8 au 349 rue de Belleville. L’établissement de 2 368 m² comprend un restaurant, un bar et des salles de réunion, derrière une façade végétalisée de 600 m².",
@@ -53,11 +58,19 @@
   },
   "Bureaux - 15 rue de Milan": {
     "description": "Réhabilitation d’un immeuble haussmannien de bureaux de plus de 2 000 m² à proximité de Saint-Lazare. Les espaces proposent open spaces, zones de détente, cuisine et café-restaurant. SERILEC est intervenue sur l’aménagement électrique du site.",
-    "zone": "paris"
+    "zone": "paris",
+    "image": "https://cdn.spliit.fr/v7/_storageimg_/R3cJapFKQ7egPI5jz-SiCA-11231.jpg?func=bound&h=1500&org_if_sml=1",
+    "replace_image_values": ["assets/uploads/references/photo-a-ajouter.svg"],
+    "alt": "Espaces de bureaux du 15 rue de Milan à Paris"
   },
   "OCIRP - 17 rue Marignan": {
     "description": "Rénovation des bureaux de l’OCIRP au 17 rue de Marignan. Le projet transforme 2 700 m² en 140 postes de travail avec des espaces ouverts et fermés, en préservant le caractère haussmannien et en intégrant confort, flexibilité, réemploi et accessibilité.",
     "zone": "paris",
     "year": "2025"
+  },
+  "Restaurant Le Taillevent": {
+    "image": "https://gardinier.tailormaag.com/storage/covers/desktop/2921_a-legend-called-le-taillevent.jpg",
+    "replace_image_values": ["assets/uploads/taillevent.jpg"],
+    "alt": "Salle du restaurant Le Taillevent à Paris"
   }
 }
