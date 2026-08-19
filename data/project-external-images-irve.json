@@ -1,17 +1,16 @@
 {
   "Star’s Service — Parking boulevard Ney": {
     "images": [
-      "https://www.voxlog.fr/src/actualites/00/00/04/F3/stars_service_ouvre_un_nouvel_espace_032670_a.jpg",
-      "assets/uploads/references/star-service-irve-project.svg"
+      "https://www.voxlog.fr/src/actualites/00/00/04/F3/stars_service_ouvre_un_nouvel_espace_032670_a.jpg"
     ],
     "source_url": "https://www.voxlog.fr/actualite/1267/star-s-service-ouvre-un-nouvel-espace-logistique-urbain-a-paris",
-    "source_label": "Star’s Service boulevard Ney — photo du site et visuel technique SERILEC"
+    "source_label": "Star’s Service — espace logistique urbain du boulevard Ney"
   },
   "BC Partners — 24 bornes IRVE": {
     "images": [
-      "assets/uploads/references/bc-partners-irve-project.svg"
+      "https://www.bcpartners.com/wp-content/uploads/2025/06/Paris.png"
     ],
-    "source_url": "",
-    "source_label": "Visuel technique SERILEC — photographies de chantier non publiées"
+    "source_url": "https://www.bcpartners.com/contact/",
+    "source_label": "BC Partners — implantation parisienne"
   }
 }
