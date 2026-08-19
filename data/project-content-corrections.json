@@ -1,0 +1,65 @@
+{
+  "Hôtel Le Pilgrim": {
+    "description": "Référence SERILEC pour la rénovation de l’Hôtel Pilgrim, établissement 4 étoiles de 53 chambres et suites au cœur du Quartier latin. L’hôtel comprend notamment un rooftop et un espace bien-être avec piscine intérieure et hammam.",
+    "force_description": true
+  },
+  "CNIT - Centre des Nouvelles Industries et Technologies": {
+    "description": "Intervention SERILEC au CNIT, bâtiment emblématique de Paris La Défense, dans le cadre d’une opération tertiaire menée en environnement à forte fréquentation. Le périmètre détaillé de la mission sera complété à partir des archives chantier.",
+    "force_description": true
+  },
+  "Axone Promotion - Siège social": {
+    "description": "Aménagement du siège social d’Axone Promotion au sein de l’ensemble Foxtrot à Chessy. Le programme associe des bureaux intelligents à énergie positive et des logements dans une architecture inspirée des années 1930. SERILEC est intervenue sur les installations électriques du siège.",
+    "location": "22 avenue Hergé, 77700 Chessy",
+    "zone": "idf",
+    "year": "2020",
+    "force_description": true,
+    "force_location": true
+  },
+  "Ibis Budget La Rochelle & Greet Hôtel": {
+    "description": "Référence SERILEC sur le combo hôtelier Greet 3 étoiles et Ibis Budget 2 étoiles de La Rochelle : 149 chambres, 4 280 m² et un parking silo de 100 places. Le projet de construction neuve met en avant des matériaux bruts et le réemploi propre au concept Greet.",
+    "location": "27 rue de Périgny, 17000 La Rochelle",
+    "zone": "france",
+    "year": "2022",
+    "force_description": true,
+    "force_location": true
+  },
+  "Lacoste - Flagship Champs-Élysées": {
+    "description": "Aménagement électrique du Lacoste Arena, flagship de 1 600 m² installé au 50 avenue des Champs-Élysées. Le magasin réunit espaces de vente, tunnel immersif, personnalisation et univers sport dans une expérience entièrement dédiée à la marque.",
+    "location": "50 avenue des Champs-Élysées, 75008 Paris",
+    "zone": "paris",
+    "year": "2022",
+    "force_description": true,
+    "force_location": true
+  },
+  "INSEEC MSc & MBA - OMNES Education": {
+    "description": "Référence SERILEC pour le campus Cœur Défense d’OMNES Education, ouvert en 2022 aux MSc & MBA Finance et Immobilier de l’INSEEC. Déployé sur 13 000 m², le campus comprend 50 salles de cours, 5 amphithéâtres, 2 rooftops et des espaces collaboratifs.",
+    "location": "Campus Cœur Défense, 92400 Courbevoie",
+    "zone": "idf",
+    "year": "2022",
+    "force_description": true,
+    "force_location": true
+  },
+  "Hôtel B&B": {
+    "description": "Référence historique SERILEC pour un établissement B&B Hotels. L’ancien site ne publie ni l’adresse précise ni le périmètre détaillé de l’opération ; ces éléments restent à confirmer dans les archives avant d’associer des photographies au projet.",
+    "force_description": true
+  },
+  "Hôtel Belleville": {
+    "description": "Référence SERILEC pour La Belle Ville, hôtel de 62 chambres en R+8 au 349 rue de Belleville. L’établissement de 2 368 m² comprend un restaurant, un bar et des salles de réunion, derrière une façade végétalisée de 600 m².",
+    "location": "349 rue de Belleville, 75019 Paris",
+    "zone": "paris",
+    "year": "2021",
+    "force_description": true,
+    "force_location": true
+  },
+  "Bureaux - 15 rue de Milan": {
+    "description": "Réhabilitation d’un immeuble haussmannien de bureaux de plus de 2 000 m² à proximité de Saint-Lazare. Les espaces proposent open spaces, zones de détente, cuisine et café-restaurant. SERILEC est intervenue sur l’aménagement électrique du site.",
+    "zone": "paris",
+    "force_description": true
+  },
+  "OCIRP - 17 rue Marignan": {
+    "description": "Rénovation des bureaux de l’OCIRP au 17 rue de Marignan. Le projet transforme 2 700 m² en 140 postes de travail avec des espaces ouverts et fermés, en préservant le caractère haussmannien et en intégrant confort, flexibilité, réemploi et accessibilité.",
+    "zone": "paris",
+    "year": "2025",
+    "force_description": true
+  }
+}
