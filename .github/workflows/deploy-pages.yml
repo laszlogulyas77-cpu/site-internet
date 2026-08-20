@@ -41,6 +41,9 @@ jobs:
             if ! grep -q 'assets/js/project-content-merge.js' "$file"; then
               sed -i "s#</body>#<script src=\"assets/js/project-content-merge.js?v=${VERSION}\"></script></body>#" "$file"
             fi
+            if ! grep -q 'assets/js/royan-photo-fix.js' "$file"; then
+              sed -i "s#</body>#<script src=\"assets/js/royan-photo-fix.js?v=${VERSION}\"></script></body>#" "$file"
+            fi
             if ! grep -q 'assets/js/social-links.js' "$file"; then
               sed -i "s#</body>#<script src=\"assets/js/social-links.js?v=${VERSION}\"></script></body>#" "$file"
             fi
