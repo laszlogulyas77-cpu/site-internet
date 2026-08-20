@@ -47,7 +47,7 @@
   {
     "title": "Hôtel L'Opale Noire",
     "category": "hotel",
-    "premium": true,
+    "premium": false,
     "category_label": "Hôtellerie",
     "services": [
       "CFO",
