@@ -16,10 +16,15 @@
     "description": "Intervention SERILEC au CNIT, bâtiment emblématique de Paris La Défense, dans le cadre d’une opération tertiaire menée en environnement à forte fréquentation. Le périmètre détaillé de la mission sera complété à partir des archives chantier."
   },
   "Axone Promotion - Siège social": {
-    "description": "Aménagement du siège social d’Axone Promotion à Chessy. Le bâtiment de bureaux de 3 300 m² se développe sur deux niveaux de soubassement et cinq niveaux, dans une écriture Art Déco, et bénéficie d’une certification BEPOS. SERILEC est intervenue sur les installations électriques du siège.",
+    "description": "Aménagement électrique complet du siège social d’Axone Promotion à Chessy, dans un bâtiment tertiaire de 3 300 m² développé sur cinq niveaux et deux niveaux de soubassement. SERILEC a réalisé les courants forts et faibles : alimentation et distribution, tableaux, éclairage architectural et fonctionnel, appareillage haut de gamme, VDI et réseaux, contrôle d’accès, vidéoprotection et SSI, jusqu’aux essais et à la mise en service. L’opération, d’inspiration Art déco et certifiée BEPOS, est classée parmi nos références de bureaux haut de gamme.",
     "location": "22 avenue Hergé, 77700 Chessy",
     "zone": "idf",
-    "year": "2021"
+    "year": "2021",
+    "premium": true,
+    "replace_premium_values": [false],
+    "category_label": "Bureaux haut de gamme",
+    "replace_category_label_values": ["Bureaux"],
+    "services": ["CFO", "CFA", "SSI"]
   },
   "Ibis Budget La Rochelle & Greet Hôtel": {
     "description": "Référence SERILEC sur le combo hôtelier Greet 3 étoiles et Ibis Budget 2 étoiles de La Rochelle : 149 chambres, 4 280 m² et un parking silo de 100 places. Le projet de construction neuve met en avant des matériaux bruts et le réemploi propre au concept Greet.",
@@ -43,9 +48,11 @@
     "year": "2022"
   },
   "Hôtel B&B": {
-    "description": "Référence SERILEC pour le B&B HOTEL Bois d’Arcy Saint-Quentin-en-Yvelines, établissement 3 étoiles de 84 chambres avec parking souterrain. L’adresse et l’établissement sont désormais identifiés ; le détail technique de l’intervention pourra être complété depuis les archives chantier.",
+    "description": "Aménagement électrique du B&B HOTEL Bois d’Arcy Saint-Quentin-en-Yvelines, établissement 3 étoiles de 84 chambres avec parking souterrain. SERILEC a pris en charge le lot CFO/CFA et SSI : alimentation générale, tableaux et distributions, éclairage des chambres, circulations et parties communes, appareillage, VDI et réseaux, contrôle d’accès, vidéosurveillance et équipements de sécurité, puis essais et mise en service. Une réalisation hôtelière pensée pour conjuguer fiabilité, confort d’exploitation et maintenance.",
     "location": "1 bis avenue Fritz Lang, 78390 Bois-d’Arcy",
     "zone": "idf",
+    "year": "2022",
+    "services": ["CFO", "CFA", "SSI"],
     "image": "https://images.trvl-media.com/lodging/72000000/71590000/71589200/71589148/826731be.jpg?impolicy=resizecrop&ra=fit&rw=1200",
     "replace_image_values": ["assets/uploads/references/photo-a-ajouter.svg"],
     "alt": "Façade du B&B HOTEL Bois d’Arcy Saint-Quentin-en-Yvelines"
