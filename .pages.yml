@@ -287,6 +287,10 @@ content:
         type: date
         options: {format: yyyy-MM-dd}
       - {name: excerpt, label: Résumé, type: text, required: true}
+      - name: content
+        label: Texte complet de l’article
+        type: text
+        description: Ce texte s’affiche dans la grande fiche ouverte au clic. Laisser vide pour afficher uniquement le résumé.
       - name: image
         label: Image
         type: image
