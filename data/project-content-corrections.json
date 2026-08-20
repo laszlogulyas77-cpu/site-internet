@@ -66,6 +66,8 @@
   "Bureaux - 15 rue de Milan": {
     "description": "Réhabilitation d’un immeuble haussmannien de bureaux de plus de 2 000 m² à proximité de Saint-Lazare. Les espaces proposent open spaces, zones de détente, cuisine et café-restaurant. SERILEC est intervenue sur l’aménagement électrique du site.",
     "zone": "paris",
+    "client": "Schoolab",
+    "year": "2019",
     "image": "https://cdn.spliit.fr/v7/_storageimg_/R3cJapFKQ7egPI5jz-SiCA-11231.jpg?func=bound&h=1500&org_if_sml=1",
     "replace_image_values": ["assets/uploads/references/photo-a-ajouter.svg"],
     "alt": "Espaces de bureaux du 15 rue de Milan à Paris"
@@ -74,6 +76,10 @@
     "description": "Rénovation des bureaux de l’OCIRP au 17 rue de Marignan. Le projet transforme 2 700 m² en 140 postes de travail avec des espaces ouverts et fermés, en préservant le caractère haussmannien et en intégrant confort, flexibilité, réemploi et accessibilité.",
     "zone": "paris",
     "year": "2025"
+  },
+  "Passage Jouffroy": {
+    "client": "A26 — Département Patrimoine",
+    "year": "2019"
   },
   "Restaurant Le Taillevent": {
     "image": "https://gardinier.tailormaag.com/storage/covers/desktop/2921_a-legend-called-le-taillevent.jpg",
