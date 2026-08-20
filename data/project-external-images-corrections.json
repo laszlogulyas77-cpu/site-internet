@@ -32,10 +32,13 @@
   "BC Partners — 24 bornes IRVE": {
     "replace": true,
     "images": [
-      "https://www.bcpartners.com/wp-content/uploads/2025/06/Paris.png"
+      "https://www.factory.fr/_next/image?url=%2Fuploads%2Fbcpartners_2_1_44e84f89df.webp&w=1920&q=75",
+      "https://www.factory.fr/_next/image?url=%2Fuploads%2Fbcpartners_1b_ba25d57121.webp&w=1920&q=75",
+      "https://www.factory.fr/_next/image?url=%2Fuploads%2Fbcpartners_7_bc0ec1f57e.webp&w=1920&q=75",
+      "https://www.factory.fr/_next/image?url=%2Fuploads%2Fbcpartners_3_db8ad0531b.webp&w=1920&q=75"
     ],
-    "source_url": "https://www.bcpartners.com/contact/",
-    "source_label": "BC Partners — implantation parisienne"
+    "source_url": "https://www.factory.fr/projects/bcpartners",
+    "source_label": "Factory — projet BC Partners / Rise à Issy-les-Moulineaux"
   },
   "Axone Promotion - Siège social": {
     "replace": true,
