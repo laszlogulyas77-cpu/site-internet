@@ -181,13 +181,26 @@
   const init = () => {
     const grid = document.querySelector('[data-cms-news]');
     if (!grid) return;
-    decorateCards(grid);
-    const observer = new MutationObserver(mutations => {
-      mutations.forEach(mutation => mutation.addedNodes.forEach(node => {
-        if (node.nodeType === 1) decorateCards(node);
-      }));
+    const section = grid.closest('[data-news-section]') || grid.closest('section');
+
+    getNews().then(items => {
+      if (section) section.hidden = items.length === 0;
+      if (!items.length) {
+        grid.innerHTML = '';
+        return;
+      }
+
+      decorateCards(grid);
+      const observer = new MutationObserver(mutations => {
+        mutations.forEach(mutation => mutation.addedNodes.forEach(node => {
+          if (node.nodeType === 1) decorateCards(node);
+        }));
+      });
+      observer.observe(grid, { childList: true, subtree: true });
+    }).catch(error => {
+      if (section) section.hidden = true;
+      console.warn('La liste des actualités ne peut pas être chargée.', error);
     });
-    observer.observe(grid, { childList: true, subtree: true });
   };
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
