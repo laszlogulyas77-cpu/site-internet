@@ -50,7 +50,10 @@
         <h2 id="article-detail-title" data-article-title></h2>
         <p class="article-detail-lead" data-article-lead hidden></p>
         <div class="article-detail-body" id="article-detail-body" data-article-body></div>
-        <a class="article-detail-link" data-article-link href="" target="_blank" rel="noopener noreferrer" hidden>Voir la publication liée <span aria-hidden="true">↗</span></a>
+        <div class="article-detail-actions">
+          <a class="article-project-link" data-article-project-link href="" hidden>Voir le projet <span aria-hidden="true">→</span></a>
+          <a class="article-detail-link" data-article-link href="" target="_blank" rel="noopener noreferrer" hidden>Voir la publication LinkedIn <span aria-hidden="true">↗</span></a>
+        </div>
       </div>
     </div>`;
   document.body.appendChild(modal);
@@ -64,6 +67,8 @@
   const lead = modal.querySelector('[data-article-lead]');
   const body = modal.querySelector('[data-article-body]');
   const link = modal.querySelector('[data-article-link]');
+  const projectLink = modal.querySelector('[data-article-project-link]');
+  const content = modal.querySelector('.article-detail-content');
 
   const closeArticle = () => {
     if (modal.hidden) return;
@@ -94,6 +99,15 @@
     lead.textContent = hasSeparateLead ? excerpt : '';
     body.textContent = fullText || excerpt;
 
+    if (article.project_link) {
+      projectLink.hidden = false;
+      projectLink.href = article.project_link;
+      projectLink.firstChild.textContent = `${article.project_title || 'Voir le projet'} `;
+    } else {
+      projectLink.hidden = true;
+      projectLink.removeAttribute('href');
+    }
+
     if (article.link) {
       link.hidden = false;
       link.href = article.link;
@@ -104,6 +118,7 @@
 
     modal.hidden = false;
     document.body.classList.add('article-modal-open');
+    if (content) content.scrollTop = 0;
     requestAnimationFrame(() => {
       modal.classList.add('is-open');
       closeButton.focus();
@@ -133,6 +148,7 @@
     else card.querySelector('.news-card-content')?.appendChild(hint);
 
     const activate = async event => {
+      if (event.target.closest?.('a')) return;
       if (event.type === 'keydown' && !['Enter', ' '].includes(event.key)) return;
       if (event.type === 'keydown') event.preventDefault();
       if (event.type === 'click') event.preventDefault();
