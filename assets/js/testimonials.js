@@ -108,6 +108,13 @@
 
       show(0);
       start();
+
+      const requestedTestimonial = new URLSearchParams(window.location.search).get('temoignage');
+      if (requestedTestimonial === 'ad-equation') {
+        const index = items.findIndex(item => String(item.company || '').toLowerCase().includes('ad equation'));
+        if (index >= 0) show(index);
+        window.setTimeout(() => section.scrollIntoView({ behavior: 'smooth', block: 'center' }), 80);
+      }
     } catch (error) {
       console.warn(error);
     }
