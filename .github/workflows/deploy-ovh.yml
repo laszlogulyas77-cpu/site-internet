@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: ovh-production
@@ -24,6 +24,23 @@ jobs:
     steps:
       - name: Récupérer le site
         uses: actions/checkout@v4
+
+      - name: Importer les visuels LinkedIn
+        shell: bash
+        run: python3 scripts/import-linkedin-images.py
+
+      - name: Archiver les visuels LinkedIn dans le dépôt
+        shell: bash
+        run: |
+          if [ -n "$(git status --porcelain -- assets/uploads/linkedin)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add assets/uploads/linkedin
+            git commit -m "Importer les visuels LinkedIn [skip ci]"
+            git push || echo "::warning::Les images seront bien déployées sur OVH mais leur archivage GitHub a échoué."
+          else
+            echo "Aucun nouveau visuel LinkedIn à archiver."
+          fi
 
       - name: Vérifier la configuration OVH
         shell: bash
