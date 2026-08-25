@@ -45,9 +45,6 @@ jobs:
             if ! grep -q 'assets/js/social-links.js' "$file"; then
               sed -i "s#</body>#<script src=\"assets/js/social-links.js?v=${VERSION}\"></script></body>#" "$file"
             fi
-            if ! grep -q 'assets/js/news-nav.js' "$file"; then
-              sed -i "s#</body>#<script src=\"assets/js/news-nav.js?v=${VERSION}\"></script></body>#" "$file"
-            fi
             if ! grep -q 'assets/js/live-refresh.js' "$file"; then
               sed -i "s#</body>#<script src=\"assets/js/live-refresh.js?v=${VERSION}\"></script></body>#" "$file"
             fi
@@ -65,13 +62,17 @@ jobs:
           OVH_FTP_PASSWORD: ${{ secrets.OVH_FTP_PASSWORD }}
           OVH_FTP_TARGET: ${{ secrets.OVH_FTP_TARGET }}
         run: |
-          TARGET="${OVH_FTP_TARGET:-www}"
+          # Par sécurité, on déploie dans un dossier séparé de l'ancien site.
+          # La bascule du domaine se fait ensuite depuis l'onglet Multisite d'OVH.
+          TARGET="${OVH_FTP_TARGET:-serilec-v2}"
+          test "$TARGET" != "www" || { echo "Refus de déployer directement dans www : utilisez un dossier V2 pour conserver un rollback immédiat."; exit 1; }
           lftp -c "
             set ftp:ssl-force true;
             set ftp:ssl-protect-data true;
             set ssl:verify-certificate no;
             set net:max-retries 2;
             open -u \"$OVH_FTP_USER\",\"$OVH_FTP_PASSWORD\" \"$OVH_FTP_HOST\";
+            mkdir -p \"$TARGET\";
             mirror -R --delete --verbose \
               --exclude-glob .git* \
               --exclude-glob .github* \
