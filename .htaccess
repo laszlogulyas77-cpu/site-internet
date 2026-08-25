@@ -4,7 +4,9 @@ ErrorDocument 404 /404.html
 
 RewriteEngine On
 
-# Forcer HTTPS et le domaine canonique
+# Autoriser le domaine SERILEC de prévisualisation sans redirection vers la production
+# puis forcer HTTPS et le domaine canonique pour tous les autres hôtes.
+RewriteCond %{HTTP_HOST} !^(www\.)?serilec-fr\.com$ [NC]
 RewriteCond %{HTTPS} !=on [OR]
 RewriteCond %{HTTP_HOST} !^www\.groupe-serilec\.fr$ [NC]
 RewriteRule ^ https://www.groupe-serilec.fr%{REQUEST_URI} [R=301,L]
