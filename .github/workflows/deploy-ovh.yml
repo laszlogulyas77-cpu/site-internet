@@ -15,8 +15,8 @@ concurrency:
 env:
   OVH_SFTP_HOST: ssh.cluster131.hosting.ovh.net
   OVH_SFTP_PORT: 22
-  OVH_SFTP_USER: serileq
-  OVH_SFTP_TARGET: serilec-v2
+  OVH_SFTP_USER: serileq-deploy
+  OVH_SFTP_TARGET: .
 
 jobs:
   deploy-ovh:
@@ -31,7 +31,8 @@ jobs:
           OVH_FTP_PASSWORD: ${{ secrets.OVH_FTP_PASSWORD }}
         run: |
           test -n "$OVH_FTP_PASSWORD" || { echo "Secret OVH_FTP_PASSWORD manquant"; exit 1; }
-          test "$OVH_SFTP_TARGET" != "www" || { echo "Refus de déployer directement dans www : le déploiement doit rester isolé dans serilec-v2."; exit 1; }
+          test "$OVH_SFTP_USER" = "serileq-deploy" || { echo "Utilisateur SFTP inattendu"; exit 1; }
+          test "$OVH_SFTP_TARGET" = "." || { echo "Le compte de déploiement est déjà limité à serilec-v2 : la cible doit rester sa racine."; exit 1; }
 
       - name: Préparer la version de production
         shell: bash
@@ -69,7 +70,6 @@ jobs:
             set net:max-retries 2;
             set net:timeout 20;
             open -u \"$OVH_SFTP_USER\",\"$OVH_FTP_PASSWORD\" sftp://$OVH_SFTP_HOST:$OVH_SFTP_PORT;
-            mkdir -p \"$OVH_SFTP_TARGET\";
             mirror -R --delete --verbose \
               --exclude-glob .git* \
               --exclude-glob .github* \
