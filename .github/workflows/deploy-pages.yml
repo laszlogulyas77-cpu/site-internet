@@ -33,30 +33,9 @@ jobs:
           mkdir -p data
           printf '{"sha":"%s","deployed_at":"%s"}\n' "$GITHUB_SHA" "$(date -u +'%Y-%m-%dT%H:%M:%SZ')" > data/deploy-version.json
 
-      - name: Préparer immédiatement la photo d’accueil du CMS
+      - name: Préparer la version de production
         shell: bash
-        run: |
-          HERO_IMAGE="$(jq -r '.home.hero_image // empty' data/site.json)"
-          if [ -n "$HERO_IMAGE" ] && [ -f "$HERO_IMAGE" ]; then
-            python3 - "$HERO_IMAGE" <<'PY'
-          import sys
-          from pathlib import Path
-
-          hero = sys.argv[1].replace("'", "%27")
-          path = Path('index.html')
-          html = path.read_text(encoding='utf-8')
-          preload = f'<link rel="preload" as="image" href="{hero}">'
-          style = (
-              '<style id="cms-hero-initial">'
-              '.hero{background-image:linear-gradient(90deg,rgba(0,20,43,.98) 0%,rgba(0,26,54,.9) 42%,rgba(0,26,54,.28) 76%),'
-              f"url('{hero}')!important;background-position:center!important;background-size:cover!important}}"
-              '</style>'
-          )
-          if 'id="cms-hero-initial"' not in html:
-              html = html.replace('</head>', preload + style + '</head>')
-          path.write_text(html, encoding='utf-8')
-          PY
-          fi
+        run: python3 scripts/prepare-production.py
 
       - name: Activer les contenus complémentaires et l’actualisation automatique
         shell: bash
