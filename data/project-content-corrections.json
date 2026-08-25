@@ -1,4 +1,7 @@
 {
+  "Hôtel Miromesnil": {
+    "description": "Hôtel 4 étoiles situé dans le 8e arrondissement de Paris. Un ancien immeuble de bureaux a été restructuré en hôtel de 37 chambres. SERILEC a accompagné son client dans la réalisation des installations électriques courants forts, courants faibles et SSI sur l’ensemble des 7 niveaux."
+  },
   "Thalazur Royan": {
     "image": "https://www.thalazur.fr/_hotels/assets/images/cordouan/location/header.jpg",
     "replace_image_values": ["assets/uploads/thalazur-royan.jpg"],
