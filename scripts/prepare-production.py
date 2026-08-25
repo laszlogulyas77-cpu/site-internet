@@ -9,8 +9,6 @@ ROOT = Path('.')
 BASE = 'https://www.groupe-serilec.fr'
 
 site = json.loads((ROOT / 'data/site.json').read_text(encoding='utf-8'))
-news = json.loads((ROOT / 'data/news.json').read_text(encoding='utf-8'))
-has_news = isinstance(news, list) and any(item and item.get('published', True) is not False for item in news)
 hero_image = (site.get('home') or {}).get('hero_image') or ''
 hero_url = f"{BASE}/{hero_image}" if hero_image else f"{BASE}/assets/uploads/chatgpt-image-10-aout-2026-235845.png"
 logo_url = f"{BASE}/{site.get('logo', 'assets/uploads/chatgpt-image-10-aout-2026-235845.png')}"
@@ -50,7 +48,6 @@ pages = {
         'description': 'Les actualités SERILEC : chantiers, équipes, innovations et vie de l’entreprise.',
         'priority': '0.6',
         'changefreq': 'weekly',
-        'index': has_news,
     },
     'mentions-legales.html': {
         'path': '/mentions-legales.html',
