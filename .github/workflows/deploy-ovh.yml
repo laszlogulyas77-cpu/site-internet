@@ -13,9 +13,10 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  OVH_FTP_HOST: ftp.cluster131.hosting.ovh.net
-  OVH_FTP_USER: serileq
-  OVH_FTP_TARGET: serilec-v2
+  OVH_SFTP_HOST: ssh.cluster131.hosting.ovh.net
+  OVH_SFTP_PORT: 22
+  OVH_SFTP_USER: serileq
+  OVH_SFTP_TARGET: serilec-v2
 
 jobs:
   deploy-ovh:
@@ -30,7 +31,7 @@ jobs:
           OVH_FTP_PASSWORD: ${{ secrets.OVH_FTP_PASSWORD }}
         run: |
           test -n "$OVH_FTP_PASSWORD" || { echo "Secret OVH_FTP_PASSWORD manquant"; exit 1; }
-          test "$OVH_FTP_TARGET" != "www" || { echo "Refus de déployer directement dans www : le déploiement doit rester isolé dans serilec-v2."; exit 1; }
+          test "$OVH_SFTP_TARGET" != "www" || { echo "Refus de déployer directement dans www : le déploiement doit rester isolé dans serilec-v2."; exit 1; }
 
       - name: Préparer la version de production
         shell: bash
@@ -54,27 +55,26 @@ jobs:
             fi
           done < <(find . -maxdepth 1 -type f -name '*.html' -print0)
 
-      - name: Installer le client FTPS
+      - name: Installer le client SFTP
         shell: bash
         run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
 
-      - name: Publier sur l’hébergement OVH
+      - name: Publier sur l’hébergement OVH en SFTP
         shell: bash
         env:
           OVH_FTP_PASSWORD: ${{ secrets.OVH_FTP_PASSWORD }}
         run: |
           lftp -c "
-            set ftp:ssl-force true;
-            set ftp:ssl-protect-data true;
-            set ssl:verify-certificate no;
+            set sftp:auto-confirm yes;
             set net:max-retries 2;
-            open -u \"$OVH_FTP_USER\",\"$OVH_FTP_PASSWORD\" \"$OVH_FTP_HOST\";
-            mkdir -p \"$OVH_FTP_TARGET\";
+            set net:timeout 20;
+            open -u \"$OVH_SFTP_USER\",\"$OVH_FTP_PASSWORD\" sftp://$OVH_SFTP_HOST:$OVH_SFTP_PORT;
+            mkdir -p \"$OVH_SFTP_TARGET\";
             mirror -R --delete --verbose \
               --exclude-glob .git* \
               --exclude-glob .github* \
               --exclude-glob scripts/ \
               --exclude-glob GUIDE-PAGES-CMS.md \
               --exclude-glob .pages.yml \
-              ./ \"$OVH_FTP_TARGET\";
+              ./ \"$OVH_SFTP_TARGET\";
           "
