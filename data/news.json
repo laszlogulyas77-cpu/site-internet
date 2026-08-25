@@ -1,1 +1,37 @@
-[]
+[
+  {
+    "title": "Installation sur mesure : 3 onduleurs et 800 kg de batteries",
+    "category": "Expertise technique",
+    "date": "2026-08-22",
+    "excerpt": "Une contrainte à la fois électrique et mécanique : nos équipes ont conçu une structure métallique spécifique pour sécuriser trois onduleurs et leurs packs batteries.",
+    "content": "Pour répondre aux besoins spécifiques d’un client, SERILEC a réalisé une installation intégrant trois onduleurs, chacun associé à son pack batteries, pour un poids total d’environ 800 kg. Une fixation classique étant impossible, nos équipes ont conçu une structure métallique sur mesure afin de garantir stabilité, sécurité et continuité d’alimentation des équipements sensibles.",
+    "image": "assets/uploads/hero-maintenance.jpg",
+    "alt": "Installation électrique technique SERILEC",
+    "link": "https://fr.linkedin.com/company/groupe-serilec",
+    "published": true
+  },
+  {
+    "title": "Concevoir aujourd’hui. Performer demain.",
+    "category": "Performance énergétique",
+    "date": "2026-08-13",
+    "excerpt": "Les exigences énergétiques évoluent : les installations électriques doivent être pensées globalement dès les premières phases du projet.",
+    "content": "Optimiser les distributions, anticiper les usages futurs, concevoir des installations évolutives et garantir performance, sécurité et conformité : chez SERILEC, ces sujets sont intégrés dès la conception, en coordination avec architectes, bureaux d’études et maîtres d’ouvrage.",
+    "image": "assets/uploads/hero-competences.jpg",
+    "alt": "Conception et performance des installations électriques",
+    "link": "https://fr.linkedin.com/posts/groupe-serilec_concevoir-aujourdhui-performer-demain-activity-7488160165167345664-0V6s",
+    "published": true
+  },
+  {
+    "title": "Hôtel Miromesnil : transformation livrée au cœur de Paris",
+    "category": "Projet livré",
+    "date": "2026-08-18",
+    "excerpt": "Un ancien immeuble de bureaux transformé en hôtel 4 étoiles de 37 chambres, avec intervention SERILEC sur 7 niveaux.",
+    "content": "Après plusieurs mois de travaux, l’Hôtel Miromesnil a été livré au 48 rue de Miromesnil, dans le 8e arrondissement de Paris. SERILEC a accompagné la restructuration du bâtiment sur les installations électriques courants forts, courants faibles et SSI. La commission de sécurité a rendu un avis favorable avant l’ouverture de l’établissement.",
+    "image": "assets/uploads/miromesnil.jpg",
+    "alt": "Hôtel Miromesnil à Paris",
+    "link": "https://fr.linkedin.com/posts/groupe-serilec_de-bureaux-%C3%A0-h%C3%B4tel-4-%C3%A9toiles-activity-7490696894445309953-ZbR6",
+    "project_link": "projets.html?projet=hotel-miromesnil",
+    "project_title": "Voir le projet Hôtel Miromesnil",
+    "published": true
+  }
+]
