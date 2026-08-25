@@ -71,10 +71,12 @@ jobs:
             set net:timeout 20;
             open -u \"$OVH_SFTP_USER\",\"$OVH_FTP_PASSWORD\" sftp://$OVH_SFTP_HOST:$OVH_SFTP_PORT;
             mirror -R --delete --verbose \
-              --exclude-glob .git* \
-              --exclude-glob .github* \
-              --exclude-glob scripts/ \
-              --exclude-glob GUIDE-PAGES-CMS.md \
-              --exclude-glob .pages.yml \
+              --exclude-glob '.git/**' \
+              --exclude-glob '.github/**' \
+              --exclude-glob 'scripts/**' \
+              --exclude-glob 'GUIDE-PAGES-CMS.md' \
+              --exclude-glob '.pages.yml' \
               ./ \"$OVH_SFTP_TARGET\";
+            rm -rf .git .github scripts;
+            rm -f GUIDE-PAGES-CMS.md .pages.yml;
           "
