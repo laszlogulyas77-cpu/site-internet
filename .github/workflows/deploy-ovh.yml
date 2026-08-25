@@ -1,0 +1,82 @@
+name: Déployer SERILEC sur OVH
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ovh-production
+  cancel-in-progress: false
+
+jobs:
+  deploy-ovh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le site
+        uses: actions/checkout@v4
+
+      - name: Vérifier la configuration OVH
+        shell: bash
+        env:
+          OVH_FTP_HOST: ${{ secrets.OVH_FTP_HOST }}
+          OVH_FTP_USER: ${{ secrets.OVH_FTP_USER }}
+          OVH_FTP_PASSWORD: ${{ secrets.OVH_FTP_PASSWORD }}
+        run: |
+          test -n "$OVH_FTP_HOST" || { echo "Secret OVH_FTP_HOST manquant"; exit 1; }
+          test -n "$OVH_FTP_USER" || { echo "Secret OVH_FTP_USER manquant"; exit 1; }
+          test -n "$OVH_FTP_PASSWORD" || { echo "Secret OVH_FTP_PASSWORD manquant"; exit 1; }
+
+      - name: Préparer la version de production
+        shell: bash
+        run: |
+          mkdir -p data
+          printf '{"sha":"%s","deployed_at":"%s"}\n' "$GITHUB_SHA" "$(date -u +'%Y-%m-%dT%H:%M:%SZ')" > data/deploy-version.json
+          python3 scripts/prepare-production.py
+          VERSION="${GITHUB_SHA:0:10}"
+          while IFS= read -r -d '' file; do
+            if ! grep -q 'assets/js/project-content-merge.js' "$file"; then
+              sed -i "s#</body>#<script src=\"assets/js/project-content-merge.js?v=${VERSION}\"></script></body>#" "$file"
+            fi
+            if ! grep -q 'assets/js/royan-photo-fix.js' "$file"; then
+              sed -i "s#</body>#<script src=\"assets/js/royan-photo-fix.js?v=${VERSION}\"></script></body>#" "$file"
+            fi
+            if ! grep -q 'assets/js/social-links.js' "$file"; then
+              sed -i "s#</body>#<script src=\"assets/js/social-links.js?v=${VERSION}\"></script></body>#" "$file"
+            fi
+            if ! grep -q 'assets/js/news-nav.js' "$file"; then
+              sed -i "s#</body>#<script src=\"assets/js/news-nav.js?v=${VERSION}\"></script></body>#" "$file"
+            fi
+            if ! grep -q 'assets/js/live-refresh.js' "$file"; then
+              sed -i "s#</body>#<script src=\"assets/js/live-refresh.js?v=${VERSION}\"></script></body>#" "$file"
+            fi
+          done < <(find . -maxdepth 1 -type f -name '*.html' -print0)
+
+      - name: Installer le client FTPS
+        shell: bash
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
+      - name: Publier sur l’hébergement OVH
+        shell: bash
+        env:
+          OVH_FTP_HOST: ${{ secrets.OVH_FTP_HOST }}
+          OVH_FTP_USER: ${{ secrets.OVH_FTP_USER }}
+          OVH_FTP_PASSWORD: ${{ secrets.OVH_FTP_PASSWORD }}
+          OVH_FTP_TARGET: ${{ secrets.OVH_FTP_TARGET }}
+        run: |
+          TARGET="${OVH_FTP_TARGET:-www}"
+          lftp -c "
+            set ftp:ssl-force true;
+            set ftp:ssl-protect-data true;
+            set ssl:verify-certificate no;
+            set net:max-retries 2;
+            open -u \"$OVH_FTP_USER\",\"$OVH_FTP_PASSWORD\" \"$OVH_FTP_HOST\";
+            mirror -R --delete --verbose \
+              --exclude-glob .git* \
+              --exclude-glob .github* \
+              --exclude-glob scripts/ \
+              --exclude-glob GUIDE-PAGES-CMS.md \
+              --exclude-glob .pages.yml \
+              ./ \"$TARGET\";
+          "
