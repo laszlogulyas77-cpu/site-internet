@@ -1,0 +1,41 @@
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+RewriteEngine On
+
+# Forcer HTTPS et le domaine canonique
+RewriteCond %{HTTPS} !=on [OR]
+RewriteCond %{HTTP_HOST} !^www\.groupe-serilec\.fr$ [NC]
+RewriteRule ^ https://www.groupe-serilec.fr%{REQUEST_URI} [R=301,L]
+
+# Redirections des principales URL de l'ancien site
+RewriteRule ^presentation/?$ /competences.html [R=301,L]
+RewriteRule ^presentation\.html?$ /competences.html [R=301,L]
+RewriteRule ^savoir-faire/?$ /competences.html [R=301,L]
+RewriteRule ^competences/?$ /competences.html [R=301,L]
+RewriteRule ^references/?$ /projets.html [R=301,L]
+RewriteRule ^references\.html?$ /projets.html [R=301,L]
+RewriteRule ^realisations/?$ /projets.html [R=301,L]
+RewriteRule ^projets/?$ /projets.html [R=301,L]
+RewriteRule ^clients/?$ /partenaires.html [R=301,L]
+RewriteRule ^partenaires/?$ /partenaires.html [R=301,L]
+RewriteRule ^actualites/?$ /actualites.html [R=301,L]
+RewriteRule ^contact/?$ /#contact [R=301,L]
+RewriteRule ^mentions-legales/?$ /mentions-legales.html [R=301,L]
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=3600, must-revalidate"
+  </FilesMatch>
+  <FilesMatch "\.(jpg|jpeg|png|webp|avif|svg)$">
+    Header set Cache-Control "public, max-age=604800"
+  </FilesMatch>
+  <FilesMatch "\.(html|json)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript application/javascript application/json application/xml image/svg+xml
+</IfModule>
