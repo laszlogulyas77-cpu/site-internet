@@ -51,9 +51,6 @@ jobs:
             if ! grep -q 'assets/js/social-links.js' "$file"; then
               sed -i "s#</body>#<script src=\"assets/js/social-links.js?v=${VERSION}\"></script></body>#" "$file"
             fi
-            if ! grep -q 'assets/js/news-nav.js' "$file"; then
-              sed -i "s#</body>#<script src=\"assets/js/news-nav.js?v=${VERSION}\"></script></body>#" "$file"
-            fi
             if ! grep -q 'assets/js/live-refresh.js' "$file"; then
               sed -i "s#</body>#<script src=\"assets/js/live-refresh.js?v=${VERSION}\"></script></body>#" "$file"
             fi
