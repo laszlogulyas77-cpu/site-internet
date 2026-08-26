@@ -1,0 +1,74 @@
+/* Correctif UX mobile des galeries projets.
+   - respecte le ratio naturel de chaque photo au lieu d'imposer un cadre fixe
+   - garde la barre des miniatures séparée du visuel
+   - maintient le bouton de fermeture accessible dans le viewport mobile */
+
+@media (max-width: 560px) {
+  .project-detail-modal {
+    padding-top: max(8px, env(safe-area-inset-top));
+    padding-right: max(8px, env(safe-area-inset-right));
+    padding-bottom: max(8px, env(safe-area-inset-bottom));
+    padding-left: max(8px, env(safe-area-inset-left));
+  }
+
+  .project-detail-dialog {
+    width: 100%;
+    max-height: calc(100dvh - 16px);
+  }
+
+  /* La croix reste visible même quand le contenu de la fiche défile. */
+  .project-detail-close {
+    position: fixed;
+    top: max(14px, calc(env(safe-area-inset-top) + 8px));
+    right: max(14px, calc(env(safe-area-inset-right) + 8px));
+    width: 48px;
+    height: 48px;
+    z-index: 5100;
+    font-size: 1.55rem;
+    box-shadow: 0 8px 28px rgba(0, 15, 32, .28);
+  }
+
+  /* En vue normale, la hauteur suit le ratio de la photo :
+     une photo très panoramique n'est plus enfermée dans un grand cadre vide. */
+  .project-detail-dialog:not(.is-gallery-expanded) .project-detail-media {
+    box-sizing: border-box;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    padding: 58px 8px 66px;
+  }
+
+  .project-detail-dialog:not(.is-gallery-expanded) .project-detail-media > img,
+  .project-detail-dialog:not(.is-gallery-expanded) .project-detail-media.has-gallery > img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 48dvh;
+    padding: 0;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .project-detail-dialog:not(.is-gallery-expanded) .project-gallery-expand {
+    top: 12px;
+    left: 12px;
+  }
+
+  .project-detail-dialog:not(.is-gallery-expanded) .project-gallery-footer {
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+  }
+
+  /* Les flèches restent centrées sur la photo et non sur la zone des miniatures. */
+  .project-detail-dialog:not(.is-gallery-expanded) .project-gallery-arrow {
+    top: calc(50% - 30px);
+  }
+
+  /* Le mode galerie plein écran conserve un maximum d'espace utile. */
+  .project-detail-dialog.is-gallery-expanded {
+    width: calc(100vw - 8px);
+    height: calc(100dvh - 8px);
+    max-height: calc(100dvh - 8px);
+  }
+}
