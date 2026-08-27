@@ -1,10 +1,40 @@
-/* Correctif UX mobile des galeries projets.
-   - respecte le ratio naturel de chaque photo au lieu d'imposer un cadre fixe
-   - garde la barre des miniatures séparée du visuel
-   - maintient le bouton de fermeture accessible dans le viewport mobile */
+/* Correctif responsive des galeries projets.
+   Desktop : le visuel remplit proprement le panneau, sans bandes inutiles.
+   Mobile/tablette : le cadre suit le ratio naturel de la photo, sans écrasement.
+   La croix reste toujours accessible dans la safe zone du viewport. */
 
-@media (max-width: 560px) {
+/* Desktop : la galerie est une vraie scène visuelle. Le mode Agrandir conserve
+   l'affichage intégral en contain. */
+@media (min-width: 921px) {
+  .project-detail-dialog:not(.is-gallery-expanded) .project-detail-media > img,
+  .project-detail-dialog:not(.is-gallery-expanded) .project-detail-media.has-gallery > img {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .project-detail-dialog:not(.is-gallery-expanded) .project-gallery-prev {
+    left: 22px;
+  }
+
+  .project-detail-dialog:not(.is-gallery-expanded) .project-gallery-next {
+    right: 22px;
+  }
+
+  .project-detail-dialog.is-gallery-expanded .project-detail-media > img,
+  .project-detail-dialog.is-gallery-expanded .project-detail-media.has-gallery > img {
+    object-fit: contain;
+    object-position: center;
+  }
+}
+
+/* La fiche est déjà en layout vertical à 920px dans project-detail.css :
+   le correctif doit donc couvrir toute cette plage, et pas seulement <560px. */
+@media (max-width: 920px) {
   .project-detail-modal {
+    align-items: start;
     padding-top: max(8px, env(safe-area-inset-top));
     padding-right: max(8px, env(safe-area-inset-right));
     padding-bottom: max(8px, env(safe-area-inset-bottom));
@@ -13,29 +43,36 @@
 
   .project-detail-dialog {
     width: 100%;
-    max-height: calc(100dvh - 16px);
+    max-height: calc(100dvh - max(16px, env(safe-area-inset-top) + env(safe-area-inset-bottom)));
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
 
-  /* La croix reste visible même quand le contenu de la fiche défile. */
+  /* Toujours visible, même après avoir scrollé le texte de la fiche. */
   .project-detail-close {
-    position: fixed;
-    top: max(14px, calc(env(safe-area-inset-top) + 8px));
-    right: max(14px, calc(env(safe-area-inset-right) + 8px));
-    width: 48px;
-    height: 48px;
-    z-index: 5100;
-    font-size: 1.55rem;
-    box-shadow: 0 8px 28px rgba(0, 15, 32, .28);
+    position: fixed !important;
+    top: max(14px, calc(env(safe-area-inset-top) + 8px)) !important;
+    right: max(14px, calc(env(safe-area-inset-right) + 8px)) !important;
+    width: 50px !important;
+    height: 50px !important;
+    z-index: 5300 !important;
+    font-size: 1.6rem;
+    touch-action: manipulation;
+    pointer-events: auto;
+    box-shadow: 0 8px 28px rgba(0, 15, 32, .32);
   }
 
-  /* En vue normale, la hauteur suit le ratio de la photo :
-     une photo très panoramique n'est plus enfermée dans un grand cadre vide. */
+  /* Le bloc suit réellement la photo. Une panoramique reste panoramique,
+     une photo plus haute obtient naturellement davantage de hauteur. */
   .project-detail-dialog:not(.is-gallery-expanded) .project-detail-media {
     box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: auto;
     min-height: 0;
     max-height: none;
-    padding: 58px 8px 66px;
+    padding: 60px 0 70px;
   }
 
   .project-detail-dialog:not(.is-gallery-expanded) .project-detail-media > img,
@@ -43,7 +80,8 @@
     display: block;
     width: 100%;
     height: auto;
-    max-height: 48dvh;
+    max-width: 100%;
+    max-height: 52dvh;
     padding: 0;
     object-fit: contain;
     object-position: center;
@@ -60,15 +98,57 @@
     bottom: 8px;
   }
 
-  /* Les flèches restent centrées sur la photo et non sur la zone des miniatures. */
   .project-detail-dialog:not(.is-gallery-expanded) .project-gallery-arrow {
-    top: calc(50% - 30px);
+    top: 50%;
   }
 
-  /* Le mode galerie plein écran conserve un maximum d'espace utile. */
+  .project-detail-dialog:not(.is-gallery-expanded) .project-gallery-prev {
+    left: 10px;
+  }
+
+  .project-detail-dialog:not(.is-gallery-expanded) .project-gallery-next {
+    right: 10px;
+  }
+
+  /* Plein écran : on montre toujours 100 % de la photo. */
   .project-detail-dialog.is-gallery-expanded {
     width: calc(100vw - 8px);
     height: calc(100dvh - 8px);
     max-height: calc(100dvh - 8px);
+    overflow: hidden;
+  }
+
+  .project-detail-dialog.is-gallery-expanded .project-detail-media {
+    height: 100%;
+    min-height: 0;
+  }
+
+  .project-detail-dialog.is-gallery-expanded .project-detail-media > img,
+  .project-detail-dialog.is-gallery-expanded .project-detail-media.has-gallery > img {
+    width: 100%;
+    height: 100%;
+    padding: 64px 10px 84px;
+    object-fit: contain;
+    object-position: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .project-detail-dialog {
+    border-radius: 14px;
+  }
+
+  .project-detail-dialog:not(.is-gallery-expanded) .project-detail-media {
+    padding-top: 58px;
+    padding-bottom: 66px;
+  }
+
+  .project-gallery-expand-label {
+    display: none;
+  }
+
+  .project-gallery-arrow {
+    width: 42px;
+    height: 42px;
   }
 }
