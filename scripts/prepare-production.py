@@ -72,7 +72,7 @@ organization = {
     '@id': organization_id,
     'name': 'SERILEC',
     'legalName': 'SERILEC',
-    'alternateName': ['SERILEC Cesson', 'Groupe SERILEC'],
+    'alternateName': ['SERILEC Cesson', 'SERILEC Électricité'],
     'url': f'{BASE}/',
     'logo': {
         '@type': 'ImageObject',
