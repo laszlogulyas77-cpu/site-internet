@@ -1,64 +1,79 @@
-/* Galerie projets — cadrage responsive v3.
-   Objectif : afficher 100 % de chaque photo sans deformation ni bande vide franche.
-   Les zones libres utilisent la meme photo en fond floute, et le mobile respecte
-   le ratio naturel du visuel. */
+/* Galerie projets — responsive v4.
+   Principe :
+   - vue normale = plein cadre (cover) pour eviter les bandes et les photos ecrasees ;
+   - vue Agrandir = photo complete (contain) ;
+   - mobile = cadre stable, croix toujours accessible dans la safe zone. */
 
 .project-detail-media {
-  background:#061a31;
+  background:#061a31 !important;
 }
 
-/* Le fond reprend la photo courante : les marges dues aux formats differents
-   deviennent un fond photographique doux au lieu d'une bande bleu marine. */
-.project-detail-media::before {
-  inset:-42px !important;
-  background-image:var(--project-gallery-bg) !important;
-  background-position:center !important;
-  background-size:cover !important;
-  filter:blur(30px) saturate(.82) !important;
-  opacity:.72 !important;
-  transform:scale(1.16) !important;
-}
+/* Plus de faux fond floute dans la vue normale : il accentuait les bandes. */
+.project-detail-media::before,
 .project-detail-media::after {
-  background:linear-gradient(180deg,rgba(2,20,39,.34),rgba(2,20,39,.08) 48%,rgba(2,20,39,.34)) !important;
+  display:none !important;
 }
 
-/* Desktop : on privilegie toujours l'image complete. Le panneau reste fixe,
-   mais les marges eventuelles sont absorbees par le fond floute. */
+/* Vue normale, tous ecrans : le visuel remplit reellement son panneau. */
+.project-detail-dialog:not(.is-gallery-expanded) .project-detail-media {
+  position:relative;
+  display:block;
+  padding:0 !important;
+  overflow:hidden;
+}
+
+.project-detail-dialog:not(.is-gallery-expanded) .project-detail-media > img,
+.project-detail-dialog:not(.is-gallery-expanded) .project-detail-media.has-gallery > img {
+  position:absolute !important;
+  inset:0 !important;
+  display:block !important;
+  width:100% !important;
+  height:100% !important;
+  max-width:none !important;
+  max-height:none !important;
+  padding:0 !important;
+  margin:0 !important;
+  object-fit:cover !important;
+  object-position:center center !important;
+  filter:none !important;
+}
+
+/* Le mode Agrandir reste la vue de reference pour voir 100 % de la photo. */
+.project-detail-dialog.is-gallery-expanded .project-detail-media {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#061a31 !important;
+}
+
+.project-detail-dialog.is-gallery-expanded .project-detail-media > img,
+.project-detail-dialog.is-gallery-expanded .project-detail-media.has-gallery > img {
+  position:relative !important;
+  inset:auto !important;
+  display:block !important;
+  width:auto !important;
+  height:auto !important;
+  max-width:calc(100% - 24px) !important;
+  max-height:calc(100% - 112px) !important;
+  padding:0 !important;
+  margin:auto !important;
+  object-fit:contain !important;
+  object-position:center !important;
+  filter:none !important;
+}
+
+/* Desktop : la colonne image doit etre remplie bord a bord. */
 @media (min-width:921px) {
   .project-detail-dialog:not(.is-gallery-expanded) .project-detail-media {
-    box-sizing:border-box;
-    padding:18px 18px 88px;
-  }
-
-  .project-detail-dialog:not(.is-gallery-expanded) .project-detail-media > img,
-  .project-detail-dialog:not(.is-gallery-expanded) .project-detail-media.has-gallery > img {
-    display:block;
-    flex:0 1 auto;
-    width:auto !important;
-    height:auto !important;
-    max-width:100% !important;
-    max-height:100% !important;
-    padding:0 !important;
-    object-fit:contain !important;
-    object-position:center !important;
+    height:100% !important;
+    min-height:0 !important;
   }
 
   .project-detail-dialog:not(.is-gallery-expanded) .project-gallery-prev { left:18px; }
   .project-detail-dialog:not(.is-gallery-expanded) .project-gallery-next { right:18px; }
-
-  .project-detail-dialog.is-gallery-expanded .project-detail-media > img,
-  .project-detail-dialog.is-gallery-expanded .project-detail-media.has-gallery > img {
-    width:auto !important;
-    height:auto !important;
-    max-width:100% !important;
-    max-height:100% !important;
-    object-fit:contain !important;
-    object-position:center !important;
-  }
 }
 
-/* Tablette + mobile : la fiche passe deja en colonne a 920 px. La hauteur du
-   slider est donc dictee par le ratio naturel de la photo et non par un cadre fixe. */
+/* Tablette + mobile : cadre stable, lisible et suffisamment haut pour les panoramiques. */
 @media (max-width:920px) {
   .project-detail-modal {
     align-items:start;
@@ -69,17 +84,25 @@
   }
 
   .project-detail-dialog {
-    width:100%;
-    max-height:calc(100dvh - max(16px,env(safe-area-inset-top) + env(safe-area-inset-bottom)));
-    overflow-y:auto;
+    width:100% !important;
+    max-height:calc(100dvh - max(16px,env(safe-area-inset-top) + env(safe-area-inset-bottom))) !important;
+    overflow-y:auto !important;
     overscroll-behavior:contain;
   }
 
-  /* Toujours accessible, y compris apres scroll et avec l'encoche / Dynamic Island. */
+  .project-detail-dialog:not(.is-gallery-expanded) .project-detail-media {
+    width:100%;
+    height:auto !important;
+    min-height:0 !important;
+    aspect-ratio:4 / 3;
+    max-height:58dvh;
+  }
+
+  /* Croix toujours atteignable, y compris avec encoche / Dynamic Island et apres scroll. */
   .project-detail-close {
     position:fixed !important;
-    top:max(16px,calc(env(safe-area-inset-top) + 10px)) !important;
-    right:max(16px,calc(env(safe-area-inset-right) + 10px)) !important;
+    top:max(14px,calc(env(safe-area-inset-top) + 8px)) !important;
+    right:max(14px,calc(env(safe-area-inset-right) + 8px)) !important;
     width:52px !important;
     height:52px !important;
     z-index:7000 !important;
@@ -91,33 +114,6 @@
     touch-action:manipulation;
     pointer-events:auto;
     box-shadow:0 10px 34px rgba(0,15,32,.34) !important;
-  }
-
-  .project-detail-dialog:not(.is-gallery-expanded) .project-detail-media {
-    box-sizing:border-box;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    width:100%;
-    height:auto !important;
-    min-height:0 !important;
-    max-height:none !important;
-    padding:62px 10px 74px;
-  }
-
-  /* Important : width:auto + height:auto. C'est ce qui empeche une photo haute
-     ou panoramique d'etre etiree quand max-height entre en jeu. */
-  .project-detail-dialog:not(.is-gallery-expanded) .project-detail-media > img,
-  .project-detail-dialog:not(.is-gallery-expanded) .project-detail-media.has-gallery > img {
-    display:block;
-    flex:0 1 auto;
-    width:auto !important;
-    height:auto !important;
-    max-width:100% !important;
-    max-height:56dvh !important;
-    padding:0 !important;
-    object-fit:contain !important;
-    object-position:center !important;
   }
 
   .project-detail-dialog:not(.is-gallery-expanded) .project-gallery-expand {
@@ -138,31 +134,23 @@
   .project-detail-dialog:not(.is-gallery-expanded) .project-gallery-next { right:10px; }
 
   .project-detail-dialog.is-gallery-expanded {
-    width:calc(100vw - 8px);
-    height:calc(100dvh - 8px);
-    max-height:calc(100dvh - 8px);
-    overflow:hidden;
+    width:calc(100vw - 8px) !important;
+    height:calc(100dvh - 8px) !important;
+    max-height:calc(100dvh - 8px) !important;
+    overflow:hidden !important;
   }
+
   .project-detail-dialog.is-gallery-expanded .project-detail-media {
-    height:100%;
-    min-height:0;
-  }
-  .project-detail-dialog.is-gallery-expanded .project-detail-media > img,
-  .project-detail-dialog.is-gallery-expanded .project-detail-media.has-gallery > img {
-    width:auto !important;
-    height:auto !important;
-    max-width:calc(100% - 20px) !important;
-    max-height:calc(100% - 148px) !important;
-    padding:0 !important;
-    object-fit:contain !important;
-    object-position:center !important;
+    height:100% !important;
+    min-height:0 !important;
   }
 }
 
 @media (max-width:560px) {
   .project-detail-dialog { border-radius:14px; }
   .project-detail-dialog:not(.is-gallery-expanded) .project-detail-media {
-    padding:60px 8px 70px;
+    aspect-ratio:4 / 3;
+    max-height:54dvh;
   }
   .project-gallery-expand-label { display:none; }
   .project-gallery-arrow { width:42px;height:42px; }
