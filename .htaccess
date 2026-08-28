@@ -4,9 +4,8 @@ ErrorDocument 404 /404.html
 
 RewriteEngine On
 
-# Autoriser le domaine SERILEC de prévisualisation sans redirection vers la production
-# puis forcer HTTPS et le domaine canonique pour tous les autres hôtes.
-RewriteCond %{HTTP_HOST} !^(www\.)?serilec-fr\.com$ [NC]
+# Forcer HTTPS et le domaine canonique de production pour tous les hôtes.
+# Les anciens domaines, notamment serilec-fr.com, conservent le chemin demandé.
 RewriteCond %{HTTPS} !=on [OR]
 RewriteCond %{HTTP_HOST} !^www\.groupe-serilec\.fr$ [NC]
 RewriteRule ^ https://www.groupe-serilec.fr%{REQUEST_URI} [R=301,L]
@@ -26,12 +25,7 @@ RewriteRule ^actualites/?$ /actualites.html [R=301,L]
 RewriteRule ^contact/?$ /#contact [R=301,L]
 RewriteRule ^mentions-legales/?$ /mentions-legales.html [R=301,L]
 
-# Empêcher l'indexation du domaine de prévisualisation, sans affecter le futur domaine public.
-SetEnvIfNoCase Host "^(www\.)?serilec-fr\.com$" serilec_preview
-
 <IfModule mod_headers.c>
-  Header always set X-Robots-Tag "noindex, nofollow, noarchive" env=serilec_preview
-
   <FilesMatch "\.(css|js)$">
     Header set Cache-Control "public, max-age=3600, must-revalidate"
   </FilesMatch>
