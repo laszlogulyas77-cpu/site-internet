@@ -7,5 +7,12 @@
     "project": "Hôtel Bellechasse / Hôtel Belleville / Hôtel Courcelles / Hôtel Edgar Quinet",
     "logo": "assets/uploads/ad-equation-logo-noir.png",
     "published": true
+  },
+  {
+    "company": "L'Opale Noire / RAYZ Vendôme",
+    "quote": "Aujourd’hui, je sais que je peux compter sur eux les yeux fermés, et c’est un vrai plaisir de continuer à avancer ensemble.",
+    "author_name": "Ronan Perennes",
+    "project": "L’Opale Noire / Hôtel Rayz Vendôme",
+    "published": true
   }
 ]
