@@ -1,15 +1,33 @@
+const siteRoot = '/';
 const brandStyles = document.createElement('link');
 brandStyles.rel = 'stylesheet';
-brandStyles.href = 'assets/css/brand-fix.css?v=20260811-stable-v18';
+brandStyles.href = `${siteRoot}assets/css/brand-fix.css?v=20260811-stable-v18`;
 document.head.appendChild(brandStyles);
 
-const applyBrandLogo = (src = 'assets/uploads/chatgpt-image-10-aout-2026-235845.png') => {
+const cleanHeadingPunctuation = (root = document) => {
+  root.querySelectorAll?.('h1, h2, h3').forEach(heading => {
+    const text = heading.textContent || '';
+    if (/\.\s*$/.test(text)) heading.textContent = text.replace(/\.\s*$/, '');
+  });
+};
+
+const applyBrandLogo = (src = `${siteRoot}assets/uploads/chatgpt-image-10-aout-2026-235845.png`) => {
   document.querySelectorAll('.logo, .footer-logo').forEach(container => {
     const logoClass = container.classList.contains('footer-logo') ? 'footer-brand-logo' : 'brand-logo';
     container.innerHTML = `<img class="${logoClass}" data-cms-logo src="${src}" alt="Logo SERILEC">`;
   });
 };
 applyBrandLogo();
+cleanHeadingPunctuation();
+
+const headingObserver = new MutationObserver(mutations => {
+  mutations.forEach(mutation => mutation.addedNodes.forEach(node => {
+    if (node.nodeType !== 1) return;
+    if (node.matches?.('h1, h2, h3')) cleanHeadingPunctuation(node.parentElement || document);
+    else cleanHeadingPunctuation(node);
+  }));
+});
+headingObserver.observe(document.documentElement, { childList: true, subtree: true });
 
 const menuButton = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.nav-links');
@@ -73,7 +91,7 @@ const getProjectServices = project => {
 const escapeProjectHtml = value => String(value ?? '').replace(/[&<>'"]/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
 
 const renderProjectFallback = project => {
-  const image = project.image || 'assets/uploads/references/photo-a-ajouter.svg';
+  const image = project.image || `${siteRoot}assets/uploads/references/photo-a-ajouter.svg`;
   const services = getProjectServices(project).join(' ');
   const metadata = [
     project.client ? `<span><strong>MOA</strong> ${escapeProjectHtml(project.client)}</span>` : '',
@@ -87,7 +105,7 @@ const ensureProjectsRendered = async () => {
   const featuredGrid = document.querySelector('[data-cms-featured-projects]');
   if (!fullGrid && !featuredGrid) return;
   try {
-    const response = await fetch(`data/projects.json?v=${Date.now()}`, { cache: 'no-store' });
+    const response = await fetch(`${siteRoot}data/projects.json?v=${Date.now()}`, { cache: 'no-store' });
     if (!response.ok) return;
     const projects = (await response.json()).filter(item => item.published !== false);
     if (fullGrid && !fullGrid.children.length) {
@@ -97,6 +115,7 @@ const ensureProjectsRendered = async () => {
       featuredGrid.innerHTML = projects.filter(item => item.featured).slice(0, 3).map(renderProjectFallback).join('');
     }
     observeReveals();
+    cleanHeadingPunctuation();
     applyProjectFilter();
   } catch (error) {
     console.warn('Chargement de secours des projets indisponible.', error);
@@ -169,12 +188,17 @@ document.addEventListener('click', event => {
 
 document.addEventListener('cms:projects-rendered', () => {
   observeReveals();
+  cleanHeadingPunctuation();
   applyProjectFilter();
 });
 
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', ensureProjectsRendered, { once: true });
+  document.addEventListener('DOMContentLoaded', () => {
+    cleanHeadingPunctuation();
+    ensureProjectsRendered();
+  }, { once: true });
 } else {
+  cleanHeadingPunctuation();
   ensureProjectsRendered();
 }
 
