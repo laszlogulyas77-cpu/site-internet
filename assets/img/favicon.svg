@@ -1,1 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#041b34"/><path d="M43 17H25c-7 0-11 4-11 10 0 7 5 9 13 11 7 2 9 3 9 6 0 2-2 4-6 4H16" fill="none" stroke="#d8a34a" stroke-width="6" stroke-linecap="round"/><path d="M48 17v30" stroke="#43b9c8" stroke-width="5" stroke-linecap="round"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="SERILEC">
+  <rect width="64" height="64" rx="15" fill="#001a36"/>
+  <path fill="#fff200" d="M8 27.5 23 20v6l12-6v7l21-9v7.5L35 35v-6l-12 6v-5.5L8 37z"/>
+  <path fill="#fff200" d="M18 43.5 32 37v5l11-5v5.5L56 37v7L42 51v-5l-11 5v-5L18 52z"/>
+</svg>
