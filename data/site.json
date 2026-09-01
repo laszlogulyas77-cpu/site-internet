@@ -10,7 +10,7 @@
   "home": {
     "hero_eyebrow": "Entreprise d’électricité générale",
     "hero_title": "L’exigence électrique au service de vos",
-    "hero_highlight": "projets tertiaires.",
+    "hero_highlight": "projets tertiaires. •",
     "hero_lead": "SERILEC conçoit, réalise et maintient des installations électriques performantes pour les hôtels, bureaux, commerces, restaurants et bâtiments à forte exigence architecturale.",
     "hero_image": "assets/uploads/chatgpt-image-24-aout-2026-085159.png",
     "about_eyebrow": "À propos de SERILEC",
@@ -41,22 +41,22 @@
   "pages": {
     "competences": {
       "eyebrow": "Notre savoir-faire",
-      "title": "Des compétences techniques au service de projets exigeants.",
+      "title": "Des compétences techniques au service de projets exigeants. •",
       "intro": "SERILEC couvre l’ensemble des installations électriques tertiaires : CFO et HTA/BT, CFA, SSI, GTB, photovoltaïque, IRVE, études d’exécution et maintenance."
     },
     "projects": {
       "eyebrow": "Nos réalisations",
-      "title": "Des projets tertiaires livrés avec exigence.",
+      "title": "Des projets tertiaires livrés avec exigence. •",
       "intro": "Hôtels, bureaux, retail ou rénovations complexes : SERILEC accompagne ses clients de la conception à l’exploitation avec des solutions électriques fiables et durables."
     },
     "partners": {
       "eyebrow": "Ils nous font confiance",
-      "title": "Des clients et des partenaires qui font la différence.",
+      "title": "Des clients et des partenaires qui font la différence. •",
       "intro": "Découvrez les clients qui confient leurs opérations à SERILEC et les partenaires techniques qui accompagnent nos équipes dans la réussite des projets."
     },
     "news": {
       "eyebrow": "Actualités SERILEC",
-      "title": "Nos chantiers, notre équipe et nos innovations au quotidien.",
+      "title": "Nos chantiers, notre équipe et nos innovations au quotidien. •",
       "intro": "Suivez les avancées de nos opérations, les temps forts de l’entreprise et les solutions techniques déployées par nos équipes."
     }
   }
