@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-label="Visuel SERILEC rentrée et reprise des projets">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#001a36"/>
+      <stop offset="1" stop-color="#062a53"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" rx="28" fill="url(#bg)"/>
+  <path d="M0 520L380 150l260 525H0z" fill="#0a3b70" opacity=".26"/>
+  <g transform="translate(180 115)">
+    <rect width="520" height="430" rx="26" fill="#fff"/>
+    <rect width="520" height="82" rx="26" fill="#0a3b70"/>
+    <circle cx="72" cy="41" r="10" fill="#fff200"/>
+    <circle cx="110" cy="41" r="10" fill="#fff" opacity=".45"/>
+    <g stroke="#dfe7ef" stroke-width="3">
+      <path d="M42 150h436M42 220h436M42 290h436M42 360h436"/>
+      <path d="M115 112v290M188 112v290M261 112v290M334 112v290M407 112v290"/>
+    </g>
+    <rect x="188" y="220" width="73" height="70" rx="8" fill="#fff200"/>
+    <circle cx="224.5" cy="255" r="15" fill="#001a36" opacity=".9"/>
+  </g>
+  <g transform="translate(790 170)" fill="none" stroke="#fff200" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M0 250h190"/>
+    <path d="M25 230l55-55 42 42 92-112"/>
+    <path d="M181 105h33v33"/>
+  </g>
+  <g transform="translate(830 410)" fill="none" stroke="#376caf" stroke-width="10" opacity=".95">
+    <rect width="190" height="118" rx="12"/>
+    <path d="M28 35h134M28 66h98M28 92h70"/>
+  </g>
+  <path d="M85 85h145" stroke="#fff200" stroke-width="8"/>
+  <path d="M966 585h145" stroke="#fff200" stroke-width="8"/>
+</svg>
