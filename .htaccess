@@ -10,6 +10,9 @@ RewriteCond %{HTTPS} !=on [OR]
 RewriteCond %{HTTP_HOST} !^www\.groupe-serilec\.fr$ [NC]
 RewriteRule ^ https://www.groupe-serilec.fr%{REQUEST_URI} [R=301,L]
 
+# Consolider la page d'accueil sur l'URL canonique racine.
+RewriteRule ^index\.html$ / [R=301,L]
+
 # Redirections des principales URL de l'ancien site
 RewriteRule ^presentation/?$ /competences.html [R=301,L]
 RewriteRule ^presentation\.html?$ /competences.html [R=301,L]
