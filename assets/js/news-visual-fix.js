@@ -1,8 +1,8 @@
 (function(){
   const rules=[
-    {match:(img)=>/Éric Arasse|Constantin Sinnesal|évolution professionnelle/i.test(img.alt||''),src:'assets/uploads/news-bienvenue-equipe.jpg'},
-    {match:(img)=>/nouveau site internet|SERILEC — nouveau site/i.test(img.alt||''),src:'assets/uploads/news-nouveau-site.jpg'},
-    {match:(img)=>/rentrée/i.test(img.alt||''),src:'assets/uploads/news-rentree.jpg'}
+    {match:(img)=>/Éric Arasse|Constantin Sinnesal|évolution professionnelle/i.test(img.alt||''),src:'assets/uploads/news-bienvenue-equipe-v2.svg'},
+    {match:(img)=>/nouveau site internet|SERILEC — nouveau site/i.test(img.alt||''),src:'assets/uploads/news-nouveau-site-v2.svg'},
+    {match:(img)=>/rentrée/i.test(img.alt||''),src:'assets/uploads/news-rentree-v2.svg'}
   ];
   function apply(root=document){
     root.querySelectorAll('img').forEach(img=>{
@@ -10,6 +10,7 @@
       if(rule && img.getAttribute('src')!==rule.src){
         img.setAttribute('src',rule.src);
         img.removeAttribute('srcset');
+        img.style.objectFit='cover';
       }
     });
   }
