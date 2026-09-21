@@ -124,9 +124,18 @@
     return `<div class="partner">${content}</div>`;
   };
 
+  const newsInternalPages = {
+    'Coordination chantier : plusieurs métiers, un même objectif': 'actualites/coordination-chantier.html',
+    'Évolution d’équipe : Éric Arasse et Constantin Sinnesal prennent de nouvelles responsabilités': 'actualites/evolution-equipe-eric-arasse-constantin-sinnesal.html',
+    'SERILEC dévoile son nouveau site internet': 'actualites/nouveau-site-serilec.html',
+    'La rentrée est lancée chez SERILEC': 'actualites/rentree-2026.html',
+    'Ronan Perennes : une relation de confiance construite dans la durée': 'actualites/temoignage-client-hotellerie-opale-noire-rayz-vendome.html'
+  };
+
   const renderNews = item => {
     const image = withAssetVersion(item.image);
-    return `<article class="card news-card reveal is-visible"><img src="${escapeHtml(image)}" alt="${escapeHtml(item.alt || item.title)}"><div class="news-card-content"><span class="news-meta">${escapeHtml(item.category)}${item.date ? ` • ${new Date(item.date).toLocaleDateString('fr-FR')}` : ''}</span><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.excerpt)}</p>${item.link ? `<a class="news-link" href="${escapeHtml(item.link)}">Lire l’article</a>` : '<span class="news-link">Actualité SERILEC</span>'}</div></article>`;
+    const target = item.page || newsInternalPages[item.title] || item.link || '';
+    return `<article class="card news-card reveal is-visible"><img src="${escapeHtml(image)}" alt="${escapeHtml(item.alt || item.title)}"><div class="news-card-content"><span class="news-meta">${escapeHtml(item.category)}${item.date ? ` • ${new Date(item.date).toLocaleDateString('fr-FR')}` : ''}</span><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.excerpt)}</p>${target ? `<a class="news-link" href="${escapeHtml(target)}">Lire l’article</a>` : '<span class="news-link">Actualité SERILEC</span>'}</div></article>`;
   };
 
   document.addEventListener('DOMContentLoaded', async () => {
@@ -223,7 +232,10 @@
     const newsGrid = document.querySelector('[data-cms-news]');
     if (newsGrid) {
       try {
-        const news = (await fetchJson('data/news.json')).filter(item => item.published !== false).sort((a,b) => String(b.date).localeCompare(String(a.date)));
+        const featuredTitles = new Set([...document.querySelectorAll('[data-featured-news-title]')].map(item => item.dataset.featuredNewsTitle).filter(Boolean));
+        const news = (await fetchJson('data/news.json'))
+          .filter(item => item.published !== false && !featuredTitles.has(item.title))
+          .sort((a,b) => String(b.date).localeCompare(String(a.date)));
         newsGrid.innerHTML = news.map(renderNews).join('');
       } catch (error) { console.warn(error); }
     }
