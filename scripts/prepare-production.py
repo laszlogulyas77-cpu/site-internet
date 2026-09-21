@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 from datetime import date
 from html import escape
 from pathlib import Path
@@ -131,6 +132,26 @@ for filename, cfg in pages.items():
     if not path.exists():
         continue
     html = path.read_text(encoding='utf-8')
+
+    html = re.sub(
+        r'<title>.*?</title>',
+        f'<title>{escape(cfg["title"])}</title>',
+        html,
+        count=1,
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    description_tag = f'<meta name="description" content="{escape(cfg["description"])}">'
+    if re.search(r'<meta\s+name=["\']description["\'][^>]*>', html, flags=re.IGNORECASE):
+        html = re.sub(
+            r'<meta\s+name=["\']description["\'][^>]*>',
+            description_tag,
+            html,
+            count=1,
+            flags=re.IGNORECASE,
+        )
+    else:
+        html = html.replace('</head>', description_tag + '</head>', 1)
+
     canonical = f"{BASE}{cfg['path']}"
     indexable = cfg.get('index', True)
     robots = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1' if indexable else 'noindex,follow'
