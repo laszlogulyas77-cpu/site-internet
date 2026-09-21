@@ -32,6 +32,14 @@ pages = {
         'priority': '0.9',
         'changefreq': 'monthly',
     },
+    'electricite-hotellerie-paris.html': {
+        'path': '/electricite-hotellerie-paris.html',
+        'label': 'Électricité hôtelière à Paris',
+        'title': 'Électricité hôtelière à Paris | CFO, CFA, SSI | SERILEC',
+        'description': 'SERILEC réalise les installations électriques CFO, CFA et SSI pour hôtels à Paris : rénovation, TGBT, VDI, sûreté, sécurité incendie, éclairage et maintenance.',
+        'priority': '0.9',
+        'changefreq': 'monthly',
+    },
     'projets.html': {
         'path': '/projets.html',
         'label': 'Projets réalisés',
@@ -226,6 +234,28 @@ for filename, cfg in pages.items():
                     }
                     for index, item in enumerate(published_projects, start=1)
                     if str(item.get('title', '')).strip()
+                ],
+            },
+        })
+
+    if filename == 'electricite-hotellerie-paris.html':
+        graph.append({
+            '@type': 'Service',
+            '@id': f'{canonical}#service',
+            'name': 'Électricité hôtelière à Paris',
+            'serviceType': 'Électricité hôtelière',
+            'url': canonical,
+            'description': cfg['description'],
+            'provider': {'@id': organization_id},
+            'areaServed': {'@type': 'City', 'name': 'Paris'},
+            'hasOfferCatalog': {
+                '@type': 'OfferCatalog',
+                'name': 'Prestations électriques pour hôtels',
+                'itemListElement': [
+                    {'@type': 'Offer', 'itemOffered': {'@type': 'Service', 'name': 'Courants forts CFO'}},
+                    {'@type': 'Offer', 'itemOffered': {'@type': 'Service', 'name': 'Courants faibles CFA'}},
+                    {'@type': 'Offer', 'itemOffered': {'@type': 'Service', 'name': 'Sécurité incendie SSI'}},
+                    {'@type': 'Offer', 'itemOffered': {'@type': 'Service', 'name': 'Maintenance électrique'}},
                 ],
             },
         })
