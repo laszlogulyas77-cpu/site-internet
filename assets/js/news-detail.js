@@ -133,6 +133,13 @@
 
   const decorateCard = card => {
     if (!card || card.dataset.newsDetailReady === 'true') return;
+    const existingLink = card.querySelector('.news-link');
+    const existingHref = existingLink?.getAttribute('href') || '';
+    if (existingHref.startsWith('actualites/') || existingHref.startsWith('/actualites/')) {
+      card.dataset.newsDetailReady = 'true';
+      return;
+    }
+
     card.dataset.newsDetailReady = 'true';
     card.setAttribute('role', 'button');
     card.setAttribute('tabindex', '0');
