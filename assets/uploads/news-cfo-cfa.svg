@@ -1,29 +1,49 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
-  <title id="title">CFO ou CFA : quelle différence ?</title>
-  <desc id="desc">Visuel pédagogique SERILEC distinguant le courant fort du courant faible.</desc>
-  <rect width="1600" height="900" fill="#0b0f14"/>
-  <rect x="70" y="70" width="1460" height="760" rx="34" fill="#111821" stroke="#2a3542" stroke-width="2"/>
-  <text x="120" y="170" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="62" font-weight="700">CFO OU CFA ?</text>
-  <text x="120" y="228" fill="#aab6c3" font-family="Arial, Helvetica, sans-serif" font-size="30">Deux familles indispensables au fonctionnement d’un bâtiment</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="t d">
+<title id="t">CFO ou CFA : quelle différence ?</title>
+<desc id="d">Visuel SERILEC expliquant la différence entre courant fort et courant faible.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" x2="1"><stop stop-color="#061a31"/><stop offset="1" stop-color="#0a335c"/></linearGradient>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffe13b"/><stop offset="1" stop-color="#ff9d00"/></linearGradient>
+  <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#56a6ff"/><stop offset="1" stop-color="#02c7d9"/></linearGradient>
+  <filter id="s"><feDropShadow dx="0" dy="14" stdDeviation="18" flood-opacity=".22"/></filter>
+</defs>
+<rect width="1200" height="675" fill="url(#bg)"/>
+<circle cx="1060" cy="80" r="180" fill="#174b78" opacity=".38"/>
+<circle cx="120" cy="635" r="220" fill="#031426" opacity=".7"/>
+<text x="72" y="74" fill="#d6e3ef" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" letter-spacing="3">SERILEC • EXPERTISE TECHNIQUE</text>
+<text x="72" y="145" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="54" font-weight="800">CFO ou CFA : quelle différence ?</text>
 
-  <rect x="120" y="310" width="620" height="390" rx="28" fill="#18212c"/>
-  <text x="175" y="395" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="700">CFO</text>
-  <text x="175" y="447" fill="#d4dde6" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700">COURANT FORT</text>
-  <text x="175" y="515" fill="#d4dde6" font-family="Arial, Helvetica, sans-serif" font-size="27">Alimenter le bâtiment</text>
-  <text x="175" y="570" fill="#9fb0c0" font-family="Arial, Helvetica, sans-serif" font-size="24">Éclairage • Prises • TGBT</text>
-  <text x="175" y="610" fill="#9fb0c0" font-family="Arial, Helvetica, sans-serif" font-size="24">Tableaux • Équipements</text>
-  <path d="M615 405h34l-28 55h31l-72 92 22-64h-31z" fill="#ffffff"/>
+<g filter="url(#s)">
+  <rect x="72" y="205" width="500" height="385" rx="30" fill="#fff"/>
+  <rect x="628" y="205" width="500" height="385" rx="30" fill="#fff"/>
+</g>
+<rect x="72" y="205" width="500" height="14" rx="7" fill="url(#gold)"/>
+<rect x="628" y="205" width="500" height="14" rx="7" fill="url(#blue)"/>
 
-  <rect x="860" y="310" width="620" height="390" rx="28" fill="#18212c"/>
-  <text x="915" y="395" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="700">CFA</text>
-  <text x="915" y="447" fill="#d4dde6" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700">COURANT FAIBLE</text>
-  <text x="915" y="515" fill="#d4dde6" font-family="Arial, Helvetica, sans-serif" font-size="27">Connecter &amp; sécuriser</text>
-  <text x="915" y="570" fill="#9fb0c0" font-family="Arial, Helvetica, sans-serif" font-size="24">VDI • SSI • Interphonie</text>
-  <text x="915" y="610" fill="#9fb0c0" font-family="Arial, Helvetica, sans-serif" font-size="24">Contrôle d’accès • Réseaux</text>
-  <circle cx="1350" cy="438" r="16" fill="#ffffff"/>
-  <circle cx="1350" cy="438" r="48" fill="none" stroke="#ffffff" stroke-width="8" opacity="0.8"/>
-  <circle cx="1350" cy="438" r="82" fill="none" stroke="#ffffff" stroke-width="8" opacity="0.45"/>
+<text x="118" y="286" fill="#071b33" font-family="Arial,Helvetica,sans-serif" font-size="64" font-weight="800">CFO</text>
+<text x="118" y="326" fill="#66798b" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="700">COURANT FORT</text>
+<path d="M455 260l-44 82h43l-24 80 79-111h-46l26-51z" fill="url(#gold)"/>
+<g fill="none" stroke="#071b33" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="118" y="375" width="100" height="126" rx="11"/>
+  <path d="M141 406h54M141 438h54M141 470h54"/>
+  <path d="M277 438h92M323 392v92M391 438h92"/>
+</g>
+<circle cx="323" cy="438" r="15" fill="#ffd53a"/>
+<text x="118" y="548" fill="#071b33" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="700">Alimenter le bâtiment</text>
 
-  <text x="120" y="778" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="31" font-weight="700">SERILEC</text>
-  <text x="300" y="778" fill="#8f9baa" font-family="Arial, Helvetica, sans-serif" font-size="25">Courants forts • Courants faibles • Études • Réalisation • Maintenance</text>
+<text x="674" y="286" fill="#071b33" font-family="Arial,Helvetica,sans-serif" font-size="64" font-weight="800">CFA</text>
+<text x="674" y="326" fill="#66798b" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="700">COURANT FAIBLE</text>
+<g fill="none" stroke="#071b33" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="674" y="374" width="98" height="128" rx="12"/>
+  <path d="M697 406h52M697 438h52M697 470h52"/>
+  <circle cx="884" cy="413" r="34"/>
+  <path d="M844 492h80M884 447v45"/>
+  <path d="M1010 378v126M974 414h72M974 454h72"/>
+</g>
+<circle cx="884" cy="413" r="11" fill="#04bfd5"/>
+<circle cx="1010" cy="414" r="10" fill="#5aa8ff"/>
+<circle cx="1010" cy="454" r="10" fill="#04bfd5"/>
+<text x="674" y="548" fill="#071b33" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="700">Connecter &amp; sécuriser</text>
+
+<text x="72" y="635" fill="#c8d8e7" font-family="Arial,Helvetica,sans-serif" font-size="24">Deux expertises indispensables • Une seule équipe SERILEC</text>
 </svg>
