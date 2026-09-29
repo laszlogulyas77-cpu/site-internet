@@ -215,7 +215,11 @@ def discover_posts() -> list[tuple[int, str]]:
             if m:
                 found[m.group(1)] = m.group(0).split("&", 1)[0]
     if not found:
-        raise RuntimeError("Aucun post SERILEC public détecté. Sources inaccessibles: " + " | ".join(errors[-3:]))
+        if errors:
+            print("LinkedIn bloque ou limite la découverte directe depuis GitHub ; aucune nouveauté détectée par ce canal.", file=sys.stderr)
+            for error in errors[-3:]:
+                print(f"- {error}", file=sys.stderr)
+        return []
     return sorted(((int(a), u) for a, u in found.items()), reverse=True)
 
 
