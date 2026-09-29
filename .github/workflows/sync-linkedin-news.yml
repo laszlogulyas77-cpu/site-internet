@@ -35,6 +35,9 @@ jobs:
 
       - name: Rechercher et synchroniser les posts LinkedIn
         shell: bash
+        env:
+          LINKEDIN_LI_AT: ${{ secrets.LINKEDIN_LI_AT }}
+          LINKEDIN_JSESSIONID: ${{ secrets.LINKEDIN_JSESSIONID }}
         run: python3 scripts/sync-linkedin-news.py
 
       - name: Valider le JSON
