@@ -25,6 +25,10 @@ jobs:
       - name: Récupérer le site
         uses: actions/checkout@v4
 
+      - name: Installer Poppler pour les PDF LinkedIn
+        shell: bash
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
+
       - name: Importer les visuels LinkedIn
         shell: bash
         run: python3 scripts/import-linkedin-images.py
