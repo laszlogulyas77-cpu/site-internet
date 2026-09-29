@@ -3,7 +3,9 @@ from __future__ import annotations
 
 import json
 import mimetypes
+import subprocess
 import sys
+import tempfile
 import time
 import urllib.request
 from pathlib import Path
@@ -15,15 +17,41 @@ USER_AGENT = "Mozilla/5.0 (compatible; SERILEC-Site-Importer/1.0)"
 
 def download(url: str, target: Path) -> None:
     target.parent.mkdir(parents=True, exist_ok=True)
-    request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8"})
+    request = urllib.request.Request(
+        url,
+        headers={
+            "User-Agent": USER_AGENT,
+            "Accept": "application/pdf,image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
+            "Referer": "https://www.linkedin.com/",
+        },
+    )
     last_error = None
     for attempt in range(3):
         try:
-            with urllib.request.urlopen(request, timeout=30) as response:
+            with urllib.request.urlopen(request, timeout=45) as response:
                 payload = response.read()
                 content_type = response.headers.get_content_type()
             if len(payload) < 10_000:
-                raise RuntimeError(f"Image trop petite ({len(payload)} octets)")
+                raise RuntimeError(f"Fichier trop petit ({len(payload)} octets)")
+
+            is_pdf = content_type == "application/pdf" or payload.startswith(b"%PDF-")
+            if is_pdf:
+                with tempfile.TemporaryDirectory(prefix="linkedin-pdf-") as tmpdir:
+                    pdf_path = Path(tmpdir) / "source.pdf"
+                    out_prefix = Path(tmpdir) / "page"
+                    pdf_path.write_bytes(payload)
+                    subprocess.run(
+                        ["pdftoppm", "-f", "1", "-singlefile", "-png", "-r", "180", str(pdf_path), str(out_prefix)],
+                        check=True,
+                        stdout=subprocess.DEVNULL,
+                        stderr=subprocess.PIPE,
+                    )
+                    rendered = out_prefix.with_suffix(".png")
+                    if not rendered.exists() or rendered.stat().st_size < 10_000:
+                        raise RuntimeError("Conversion de la première page PDF en PNG échouée")
+                    target.write_bytes(rendered.read_bytes())
+                return
+
             if content_type and not content_type.startswith("image/"):
                 raise RuntimeError(f"Type MIME inattendu: {content_type}")
             target.write_bytes(payload)
