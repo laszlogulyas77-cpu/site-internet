@@ -219,33 +219,165 @@ def discover_posts() -> list[tuple[int, str]]:
     return sorted(((int(a), u) for a, u in found.items()), reverse=True)
 
 
+def post_source_urls(activity: str, canonical_url: str) -> list[str]:
+    urls = [
+        canonical_url,
+        f"https://www.linkedin.com/feed/update/urn:li:activity:{activity}/",
+        f"https://www.linkedin.com/embed/feed/update/urn:li:activity:{activity}",
+        f"https://fr.linkedin.com/feed/update/urn:li:activity:{activity}/",
+    ]
+    seen = set()
+    result = []
+    for url in urls:
+        if url and url not in seen:
+            seen.add(url)
+            result.append(url)
+    return result
+
+
+def decode_linkedin_url(value: str) -> str:
+    value = html.unescape(value or "")
+    value = value.replace("\\u0026", "&").replace("\\u002F", "/").replace("\\/", "/")
+    try:
+        value = urllib.parse.unquote(value)
+    except Exception:
+        pass
+    return value.strip().rstrip("\\")
+
+
+def collect_image_candidates(body: str, parser: MetaParser) -> list[str]:
+    candidates: list[str] = []
+    for key in ("og:image", "og:image:secure_url", "twitter:image", "twitter:image:src"):
+        if parser.meta.get(key):
+            candidates.append(parser.meta[key])
+    decoded = html.unescape(body).replace("\\u0026", "&").replace("\\u002F", "/").replace("\\/", "/")
+    candidates.extend(m.group(0) for m in MEDIA_URL_RE.finditer(decoded))
+    candidates.extend(m.group(1) for m in JSON_IMAGE_URL_RE.finditer(decoded))
+    clean: list[str] = []
+    seen = set()
+    for candidate in candidates:
+        url = decode_linkedin_url(candidate)
+        if not url.startswith("http"):
+            continue
+        low = url.lower()
+        if any(term in low for term in ("profile-displayphoto", "company-logo", "ghost", "emoji")):
+            continue
+        if url not in seen:
+            seen.add(url)
+            clean.append(url)
+    return clean
+
+
+def image_dimensions(payload: bytes, ctype: str | None = None) -> tuple[int, int] | None:
+    try:
+        if payload.startswith(b"\x89PNG\r\n\x1a\n") and len(payload) >= 24:
+            return struct.unpack(">II", payload[16:24])
+        if payload[:2] == b"\xff\xd8":
+            pos = 2
+            while pos + 9 < len(payload):
+                if payload[pos] != 0xFF:
+                    pos += 1
+                    continue
+                marker = payload[pos + 1]
+                pos += 2
+                if marker in (0xD8, 0xD9):
+                    continue
+                if pos + 2 > len(payload):
+                    break
+                size = int.from_bytes(payload[pos:pos + 2], "big")
+                if size < 2 or pos + size > len(payload):
+                    break
+                if marker in (0xC0, 0xC1, 0xC2, 0xC3, 0xC5, 0xC6, 0xC7, 0xC9, 0xCA, 0xCB, 0xCD, 0xCE, 0xCF) and size >= 7:
+                    height = int.from_bytes(payload[pos + 3:pos + 5], "big")
+                    width = int.from_bytes(payload[pos + 5:pos + 7], "big")
+                    return width, height
+                pos += size
+    except Exception:
+        return None
+    return None
+
+
+def score_image(payload: bytes, ctype: str | None, url: str) -> tuple[int, int, int, str]:
+    dims = image_dimensions(payload, ctype)
+    width, height = dims or (0, 0)
+    area = width * height
+    ratio_bonus = 500_000 if width and height and 0.75 <= width / height <= 2.1 else 0
+    domain_bonus = 500_000 if "licdn.com" in url else 0
+    return (area + ratio_bonus + domain_bonus, len(payload), width + height, url)
+
+
 def extract_post(url: str) -> tuple[str, str | None]:
-    body, _, _ = fetch(url)
-    parser = MetaParser()
-    parser.feed(body)
-    description = (
-        parser.meta.get("description")
-        or parser.meta.get("og:description")
-        or parser.meta.get("twitter:description")
-        or ""
-    )
-    description = clean_post_text(description)
-    # Certains templates préfixent le texte par "Post de SERILEC".
-    description = re.sub(r"^.*?SERILEC\s+\d[\d\s ]*\s+abonnés\s+", "", description, flags=re.I)
-    image_url = parser.meta.get("og:image") or parser.meta.get("twitter:image")
-    if len(description) < 40:
-        # Dernier recours : contenu textuel visible.
-        visible = re.sub(r"<script\b[^>]*>.*?</script>", " ", body, flags=re.I | re.S)
-        visible = re.sub(r"<style\b[^>]*>.*?</style>", " ", visible, flags=re.I | re.S)
-        visible = re.sub(r"<[^>]+>", " ", visible)
-        visible = clean_post_text(visible)
-        anchor = visible.find("SERILEC")
-        if anchor >= 0:
-            visible = visible[anchor:]
-        description = visible[:4000]
-    if len(description) < 40:
-        raise RuntimeError(f"Texte LinkedIn inexploitable pour {url}")
-    return description, image_url
+    m = ACTIVITY_RE.search(url)
+    activity = m.group(1) if m else ""
+    best_description = ""
+    image_candidates: list[str] = []
+    errors: list[str] = []
+
+    sources = post_source_urls(activity, url) if activity else [url]
+    for source in sources:
+        try:
+            body, _, _ = fetch(source)
+        except Exception as exc:  # noqa: BLE001
+            errors.append(f"{source}: {exc}")
+            continue
+
+        parser = MetaParser()
+        try:
+            parser.feed(body)
+        except Exception:
+            pass
+
+        description = (
+            parser.meta.get("description")
+            or parser.meta.get("og:description")
+            or parser.meta.get("twitter:description")
+            or ""
+        )
+        description = clean_post_text(description)
+        description = re.sub(r"^.*?SERILEC\s+\d[\d\s ]*\s+abonnés\s+", "", description, flags=re.I)
+        if len(description) > len(best_description):
+            best_description = description
+
+        image_candidates.extend(collect_image_candidates(body, parser))
+
+        if len(best_description) < 40:
+            visible = re.sub(r"<script\b[^>]*>.*?</script>", " ", body, flags=re.I | re.S)
+            visible = re.sub(r"<style\b[^>]*>.*?</style>", " ", visible, flags=re.I | re.S)
+            visible = re.sub(r"<[^>]+>", " ", visible)
+            visible = clean_post_text(visible)
+            anchor = visible.find("SERILEC")
+            if anchor >= 0:
+                visible = visible[anchor:]
+            if len(visible) > len(best_description):
+                best_description = visible[:4000]
+
+    if len(best_description) < 40:
+        raise RuntimeError(f"Texte LinkedIn inexploitable pour {url}. " + " | ".join(errors[-2:]))
+
+    image_url = None
+    ranked = []
+    seen = set()
+    for candidate in image_candidates:
+        if candidate in seen:
+            continue
+        seen.add(candidate)
+        try:
+            payload, ctype, final_url = fetch(candidate, binary=True, attempts=2)
+        except Exception:
+            continue
+        if len(payload) < 12_000 or not str(ctype).startswith("image/"):
+            continue
+        dims = image_dimensions(payload, ctype)
+        if dims and (dims[0] < 400 or dims[1] < 220):
+            continue
+        selected_url = final_url or candidate
+        ranked.append((score_image(payload, ctype, selected_url), selected_url))
+
+    if ranked:
+        ranked.sort(reverse=True)
+        image_url = ranked[0][1]
+
+    return best_description, image_url
 
 
 def project_match(text: str, projects: list[dict]) -> dict | None:
@@ -328,7 +460,10 @@ def download_visual(activity: str, image_url: str | None, recent_hashes: set[str
         payload, ctype, _ = fetch(image_url, binary=True)
     except Exception:
         return None
-    if len(payload) < 10_000 or not str(ctype).startswith("image/"):
+    if len(payload) < 12_000 or not str(ctype).startswith("image/"):
+        return None
+    dims = image_dimensions(payload, ctype)
+    if dims and (dims[0] < 400 or dims[1] < 220):
         return None
     digest = hashlib.sha256(payload).hexdigest()
     if digest in recent_hashes:
