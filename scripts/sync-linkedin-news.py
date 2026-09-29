@@ -5,7 +5,9 @@ import hashlib
 import html
 import json
 import mimetypes
+import os
 import re
+import struct
 import sys
 import time
 import unicodedata
@@ -40,6 +42,10 @@ POST_RE = re.compile(
     re.I,
 )
 ACTIVITY_RE = re.compile(r"activity-(\d+)", re.I)
+MEDIA_URL_RE = re.compile(r"https?://[^\s\"'<>]*(?:media|static-exp\d*)\.licdn\.com/[^\s\"'<>]+", re.I)
+JSON_IMAGE_URL_RE = re.compile(r'(?:(?:contentUrl|url|imageUrl|rootUrl|downloadUrl)\s*[\"\']?\s*[:=]\s*[\"\'])(https?:\/\/[^\"\']+)', re.I)
+LINKEDIN_LI_AT = os.getenv("LINKEDIN_LI_AT", "").strip()
+LINKEDIN_JSESSIONID = os.getenv("LINKEDIN_JSESSIONID", "").strip()
 
 STOPWORDS = {
     "serilec", "actualite", "projet", "projets", "chantier", "chantiers",
@@ -68,18 +74,34 @@ class MetaParser(HTMLParser):
                 self.links.append(href)
 
 
+def linkedin_cookie_header() -> str:
+    cookies = []
+    if LINKEDIN_LI_AT:
+        cookies.append(f"li_at={LINKEDIN_LI_AT}")
+    if LINKEDIN_JSESSIONID:
+        jsession = LINKEDIN_JSESSIONID
+        if not (jsession.startswith('"') and jsession.endswith('"')):
+            jsession = f'"{jsession}"'
+        cookies.append(f"JSESSIONID={jsession}")
+    return "; ".join(cookies)
+
+
 def fetch(url: str, binary: bool = False, attempts: int = 3):
     last = None
     for attempt in range(attempts):
         for ua in USER_AGENTS:
-            req = urllib.request.Request(
-                url,
-                headers={
-                    "User-Agent": ua,
-                    "Accept-Language": "fr-FR,fr;q=0.9,en;q=0.6",
-                    "Accept": "*/*" if binary else "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-                },
-            )
+            headers = {
+                "User-Agent": ua,
+                "Accept-Language": "fr-FR,fr;q=0.9,en;q=0.6",
+                "Accept": "*/*" if binary else "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+                "Referer": "https://www.linkedin.com/",
+            }
+            cookie = linkedin_cookie_header()
+            if cookie and "linkedin.com" in urllib.parse.urlparse(url).netloc:
+                headers["Cookie"] = cookie
+                if LINKEDIN_JSESSIONID:
+                    headers["csrf-token"] = LINKEDIN_JSESSIONID.strip('"')
+            req = urllib.request.Request(url, headers=headers)
             try:
                 with urllib.request.urlopen(req, timeout=30) as response:
                     payload = response.read()
