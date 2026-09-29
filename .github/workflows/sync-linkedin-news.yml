@@ -7,7 +7,7 @@ on:
   push:
     branches: [main]
     paths:
-      - ".github/workflows/sync-linkedin-news.yml"
+      - ".github/workflows/sync-linkedin-news.yml"\n      - "scripts/sync-linkedin-news.py"
 
 permissions:
   contents: write
