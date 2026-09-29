@@ -41,6 +41,13 @@ POST_RE = re.compile(
 )
 ACTIVITY_RE = re.compile(r"activity-(\d+)", re.I)
 
+STOPWORDS = {
+    "serilec", "actualite", "projet", "projets", "chantier", "chantiers",
+    "le", "la", "les", "un", "une", "des", "de", "du", "et", "ou", "a", "au",
+    "aux", "pour", "sur", "dans", "avec", "notre", "nos", "votre", "vos",
+    "plus", "mieux", "nous", "vous", "ce", "cette", "ces", "son", "ses",
+}
+
 
 class MetaParser(HTMLParser):
     def __init__(self) -> None:
@@ -361,19 +368,87 @@ def pick_project_visual(project: dict | None, news: list[dict]) -> str | None:
     return None
 
 
-def dedup(news: list[dict], activity: str, link: str, title: str, project: dict | None) -> bool:
+def meaningful_tokens(text: str) -> set[str]:
+    return {
+        token
+        for token in normalize(text).split()
+        if len(token) >= 4 and token not in STOPWORDS
+    }
+
+
+def dedup(news: list[dict], activity: str, link: str, title: str, text: str, project: dict | None) -> bool:
     nt = normalize(title)
+    candidate_text = normalize(text)
+    candidate_tokens = meaningful_tokens(text + " " + title)
     project_title = normalize(project.get("title", "")) if project else ""
     for entry in news:
         e_link = str(entry.get("link", ""))
         if activity in e_link or e_link == link:
             return True
-        if nt and normalize(str(entry.get("title", ""))) == nt:
+
+        entry_title = str(entry.get("title", ""))
+        entry_excerpt = str(entry.get("excerpt", ""))
+        entry_content = str(entry.get("content", ""))
+        entry_norm_title = normalize(entry_title)
+        if nt and entry_norm_title == nt:
             return True
-        # Déduplication chantier seulement si le titre d'article est quasi identique.
-        if project_title and project_title in normalize(str(entry.get("title", ""))) and nt == normalize(str(entry.get("title", ""))):
-            return True
+
+        e_title_tokens = meaningful_tokens(entry_title)
+        if e_title_tokens:
+            overlap = len(e_title_tokens & candidate_tokens) / len(e_title_tokens)
+            if overlap >= 0.70:
+                return True
+
+        combined = normalize(entry_title + " " + entry_excerpt + " " + entry_content)
+        distinctive = meaningful_tokens(entry_title + " " + entry_excerpt)
+        if len(distinctive) >= 3:
+            present = sum(1 for token in distinctive if token in candidate_text)
+            if present / len(distinctive) >= 0.75:
+                return True
+
+        if project_title and project_title in combined and project_title in candidate_text:
+            e_tokens = meaningful_tokens(entry_content + " " + entry_excerpt)
+            if e_tokens:
+                denom = min(len(e_tokens), max(1, len(candidate_tokens)))
+                similarity = len(e_tokens & candidate_tokens) / denom
+                if similarity >= 0.55:
+                    return True
     return False
+
+
+def recent_image_hashes_excluding(news: list[dict], skip_index: int) -> set[str]:
+    hashes: set[str] = set()
+    for index, entry in enumerate(news[:5]):
+        if index == skip_index:
+            continue
+        h = file_hash(ROOT / str(entry.get("image", "")))
+        if h:
+            hashes.add(h)
+    return hashes
+
+
+def upgrade_recent_visuals(news: list[dict]) -> int:
+    changed = 0
+    for index, entry in enumerate(news[:6]):
+        link = str(entry.get("link", ""))
+        m = ACTIVITY_RE.search(link)
+        if not m:
+            continue
+        activity = m.group(1)
+        current = str(entry.get("image", ""))
+        if current.startswith(f"assets/uploads/linkedin/{activity}."):
+            continue
+        try:
+            _, image_url = extract_post(link)
+        except Exception:
+            continue
+        visual = download_visual(activity, image_url, recent_image_hashes_excluding(news, index))
+        if not visual:
+            continue
+        entry["image"] = visual
+        entry["alt"] = f"Visuel exact de la publication LinkedIn SERILEC : {entry.get('title', 'Actualité SERILEC')}"
+        changed += 1
+    return changed
 
 
 def validate_latest_images(news: list[dict]) -> None:
@@ -399,9 +474,10 @@ def main() -> int:
         if m
     }
 
+    visual_upgrades = upgrade_recent_visuals(news)
     candidates = discover_posts()
     missing = [(str(activity), url) for activity, url in candidates if str(activity) not in existing_ids]
-    if not missing:
+    if not missing and not visual_upgrades:
         print("Aucune nouvelle publication SERILEC à synchroniser.")
         return 0
 
@@ -414,7 +490,7 @@ def main() -> int:
         category = classify(text)
         title = better_title(text, category)
         project = project_match(text, projects) if is_project_post(text) else None
-        if dedup(news, activity, url, title, project):
+        if dedup(news, activity, url, title, text, project):
             continue
 
         recent_hashes = recent_image_hashes(news)
@@ -442,13 +518,13 @@ def main() -> int:
         news.insert(0, entry)
         changed += 1
 
-    if not changed:
+    if not changed and not visual_upgrades:
         print("Nouvelles URLs détectées mais aucune actualité valide à ajouter.")
         return 0
 
     validate_latest_images(news)
     NEWS_FILE.write_text(json.dumps(news, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"{changed} publication(s) SERILEC synchronisée(s).")
+    print(f"{changed} publication(s) SERILEC synchronisée(s), {visual_upgrades} visuel(s) exact(s) actualisé(s).")
     return 0
 
 
