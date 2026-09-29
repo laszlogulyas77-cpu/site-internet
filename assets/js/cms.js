@@ -229,14 +229,30 @@
       } catch (error) { console.warn(error); }
     }
 
+    const featuredNewsGrid = document.querySelector('[data-cms-featured-news]');
     const newsGrid = document.querySelector('[data-cms-news]');
-    if (newsGrid) {
+    if (featuredNewsGrid || newsGrid) {
       try {
-        const featuredTitles = new Set([...document.querySelectorAll('[data-featured-news-title]')].map(item => item.dataset.featuredNewsTitle).filter(Boolean));
         const news = (await fetchJson('data/news.json'))
-          .filter(item => item.published !== false && !featuredTitles.has(item.title))
+          .filter(item => item.published !== false)
           .sort((a,b) => String(b.date).localeCompare(String(a.date)));
-        newsGrid.innerHTML = news.map(renderNews).join('');
+
+        const featuredNews = news.slice(0, 3);
+        const remainingNews = news.slice(featuredNews.length);
+
+        if (featuredNewsGrid) {
+          featuredNewsGrid.innerHTML = featuredNews.map(renderNews).join('');
+        }
+
+        if (newsGrid) {
+          newsGrid.innerHTML = remainingNews.map(renderNews).join('');
+          const newsSection = document.querySelector('[data-news-section]');
+          if (newsSection) newsSection.hidden = remainingNews.length === 0;
+        }
+
+        document.dispatchEvent(new CustomEvent('cms:news-rendered', {
+          detail: { featured: featuredNews.length, remaining: remainingNews.length }
+        }));
       } catch (error) { console.warn(error); }
     }
   });
