@@ -1,0 +1,65 @@
+name: Synchroniser LinkedIn SERILEC
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/sync-linkedin-news.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: linkedin-serilec-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Se caler sur main
+        shell: bash
+        run: git pull --rebase origin main
+
+      - name: Rechercher et synchroniser les posts LinkedIn
+        shell: bash
+        run: python3 scripts/sync-linkedin-news.py
+
+      - name: Valider le JSON
+        shell: bash
+        run: python3 -m json.tool data/news.json > /dev/null
+
+      - name: Committer uniquement si nécessaire
+        shell: bash
+        run: |
+          if [ -z "$(git status --porcelain -- data/news.json assets/uploads/linkedin)" ]; then
+            echo "Aucune modification à publier."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/news.json assets/uploads/linkedin
+          git commit -m "Synchroniser LinkedIn SERILEC"
+
+          for attempt in 1 2 3; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Nouvelle tentative de push ($attempt/3)"
+            sleep $((attempt * 3))
+          done
+
+          echo "::error::Impossible de pousser la synchronisation LinkedIn sur main après 3 tentatives."
+          exit 1
