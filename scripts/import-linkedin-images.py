@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import mimetypes
+import struct
 import subprocess
 import sys
 import tempfile
@@ -13,6 +14,31 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "data" / "linkedin-image-import.json"
 USER_AGENT = "Mozilla/5.0 (compatible; SERILEC-Site-Importer/1.0)"
+
+
+MIN_PNG_WIDTH = 1400
+
+
+def png_dimensions(path: Path) -> tuple[int, int] | None:
+    try:
+        header = path.read_bytes()[:24]
+        if len(header) >= 24 and header.startswith(b"\x89PNG\r\n\x1a\n"):
+            width, height = struct.unpack(">II", header[16:24])
+            return width, height
+    except OSError:
+        pass
+    return None
+
+
+def existing_target_is_good(target: Path) -> bool:
+    if not target.exists() or target.stat().st_size < 10_000:
+        return False
+    if target.suffix.lower() == ".png":
+        dims = png_dimensions(target)
+        if dims and dims[0] < MIN_PNG_WIDTH:
+            print(f"Régénération HD requise pour {target.name}: {dims[0]}x{dims[1]}")
+            return False
+    return True
 
 
 def download(url: str, target: Path) -> None:
@@ -41,7 +67,7 @@ def download(url: str, target: Path) -> None:
                     out_prefix = Path(tmpdir) / "page"
                     pdf_path.write_bytes(payload)
                     subprocess.run(
-                        ["pdftoppm", "-f", "1", "-singlefile", "-png", "-r", "180", str(pdf_path), str(out_prefix)],
+                        ["pdftoppm", "-f", "1", "-singlefile", "-png", "-scale-to-x", "1800", "-scale-to-y", "-1", str(pdf_path), str(out_prefix)],
                         check=True,
                         stdout=subprocess.DEVNULL,
                         stderr=subprocess.PIPE,
@@ -49,6 +75,9 @@ def download(url: str, target: Path) -> None:
                     rendered = out_prefix.with_suffix(".png")
                     if not rendered.exists() or rendered.stat().st_size < 10_000:
                         raise RuntimeError("Conversion de la première page PDF en PNG échouée")
+                    dims = png_dimensions(rendered)
+                    if not dims or dims[0] < MIN_PNG_WIDTH:
+                        raise RuntimeError(f"PNG LinkedIn encore trop petit après conversion: {dims}")
                     target.write_bytes(rendered.read_bytes())
                 return
 
@@ -75,7 +104,7 @@ def main() -> int:
 
     for entry in entries:
         target = ROOT / entry["target"]
-        if target.exists() and target.stat().st_size >= 10_000:
+        if existing_target_is_good(target):
             skipped += 1
             continue
         try:
