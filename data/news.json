@@ -5,10 +5,11 @@
     "date": "2026-09-26",
     "excerpt": "SERILEC dépasse les 1 000 abonnés sur LinkedIn, une étape symbolique portée par les clients, partenaires, collaborateurs et abonnés qui suivent l’entreprise.",
     "content": "SERILEC a franchi le cap des 1 000 abonnés sur LinkedIn. Depuis plusieurs mois, l’entreprise y partage ses chantiers, ses projets, ses équipes, ses métiers et les collaborations qui font vivre son activité au quotidien. Cette étape est l’occasion de remercier les clients, partenaires, collaborateurs et toutes les personnes qui suivent, commentent, partagent et découvrent le travail de SERILEC. L’aventure continue avec de prochains chantiers, projets et actualités à partager.",
-    "image": "assets/uploads/linkedin/7509543605754159104.png",
-    "alt": "Visuel exact de la publication LinkedIn SERILEC : SERILEC franchit le cap des 1 000 abonnés sur LinkedIn",
+    "image": "assets/uploads/linkedin/7509543605754159104-document.png",
+    "alt": "Première page du document LinkedIn SERILEC célébrant les 1 000 abonnés",
     "link": "https://fr.linkedin.com/posts/groupe-serilec_merci-de-suivre-laventure-serilec-sur-linkedin-activity-7509543605754159104-RN9b",
-    "published": true
+    "published": true,
+    "image_fit": "contain"
   },
   {
     "title": "SERILEC recrute un Chef de Chantier",
@@ -16,10 +17,11 @@
     "date": "2026-09-23",
     "excerpt": "SERILEC recherche un Chef de Chantier spécialisé en électricité/BTP pour piloter ses opérations tertiaires, hôtelières et industrielles.",
     "content": "SERILEC recrute un Chef de Chantier spécialisé en électricité/BTP. Le poste consiste à piloter les chantiers, encadrer et coordonner les équipes sur site, veiller au respect des délais, de la sécurité et de la qualité, et assurer le lien avec les clients et partenaires. Le profil recherché dispose d’une expérience confirmée en conduite de chantier électrique, avec organisation, autonomie, sens du management et permis B. Les candidatures peuvent être adressées à SERILEC par message privé ou par mail.",
-    "image": "assets/uploads/news-recrutement-chef-chantier.svg",
-    "alt": "Visuel de recrutement SERILEC pour un poste de Chef de Chantier en électricité et BTP",
+    "image": "assets/uploads/linkedin/7508453863595745280.png",
+    "alt": "Première page du document LinkedIn SERILEC « ENVIE DE PRENDRE LES COMMANDES ? »",
     "link": "https://fr.linkedin.com/posts/groupe-serilec_envie-de-prendre-les-commandes-activity-7508453863595745280-I3cP",
-    "published": true
+    "published": true,
+    "image_fit": "contain"
   },
   {
     "title": "CFO ou CFA : quelle différence ?",
@@ -31,7 +33,8 @@
     "alt": "Première page du document LinkedIn SERILEC « CFO OU CFA - QUELLE DIFFÉRENCE »",
     "link": "https://fr.linkedin.com/posts/groupe-serilec_cfo-ou-cfa-quelle-diff%C3%A9rence-activity-7507004370463674368-neEe",
     "page": "actualites/cfo-cfa-quelle-difference.html",
-    "published": true
+    "published": true,
+    "image_fit": "contain"
   },
   {
     "title": "Coordination chantier : plusieurs métiers, un même objectif",
