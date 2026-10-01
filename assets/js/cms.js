@@ -135,7 +135,9 @@
   const renderNews = item => {
     const image = withAssetVersion(item.image);
     const target = item.page || newsInternalPages[item.title] || item.link || '';
-    return `<article class="card news-card reveal is-visible"><img src="${escapeHtml(image)}" alt="${escapeHtml(item.alt || item.title)}"><div class="news-card-content"><span class="news-meta">${escapeHtml(item.category)}${item.date ? ` • ${new Date(item.date).toLocaleDateString('fr-FR')}` : ''}</span><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.excerpt)}</p>${target ? `<a class="news-link" href="${escapeHtml(target)}">Lire l’article</a>` : '<span class="news-link">Actualité SERILEC</span>'}</div></article>`;
+    const fit = item.image_fit === 'contain' ? 'contain' : 'cover';
+    const imageStyle = fit === 'contain' ? 'object-fit:contain;background:#f4f6f8;' : 'object-fit:cover;';
+    return `<article class="card news-card reveal is-visible"><img src="${escapeHtml(image)}" alt="${escapeHtml(item.alt || item.title)}" style="${imageStyle}"><div class="news-card-content"><span class="news-meta">${escapeHtml(item.category)}${item.date ? ` • ${new Date(item.date).toLocaleDateString('fr-FR')}` : ''}</span><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.excerpt)}</p>${target ? `<a class="news-link" href="${escapeHtml(target)}">Lire l’article</a>` : '<span class="news-link">Actualité SERILEC</span>'}</div></article>`;
   };
 
   document.addEventListener('DOMContentLoaded', async () => {
