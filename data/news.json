@@ -1,5 +1,27 @@
 [
   {
+    "title": "De bureaux à hôtel : repenser toute l’infrastructure technique",
+    "category": "Expertise technique",
+    "date": "2026-10-07",
+    "excerpt": "Transformer un immeuble de bureaux en hôtel impose de repenser distribution électrique, SSI, réseaux, éclairage, CVC et coordination des lots techniques.",
+    "content": "Quand un bâtiment change d’usage, toute son infrastructure doit être adaptée à sa nouvelle fonction. Pour une transformation de bureaux en hôtel, cela implique notamment de repenser la distribution électrique et les tableaux, les installations de sécurité incendie, les réseaux et systèmes de communication, l’éclairage, l’alimentation des équipements et les interfaces avec le CVC. SERILEC illustre ces enjeux avec l’Hôtel Miromesnil, au 48 rue de Miromesnil à Paris : un ancien immeuble de bureaux transformé en hôtel 4 étoiles de 37 chambres, sur 7 niveaux, avec intervention SERILEC en courant fort, courant faible et CVC.",
+    "image": "assets/uploads/miromesnil.jpg",
+    "alt": "Hôtel Miromesnil, transformation d’un immeuble de bureaux en hôtel 4 étoiles",
+    "link": "https://fr.linkedin.com/posts/groupe-serilec_repenser-la-technique-activity-7513527413545558016-XSe3",
+    "published": true
+  },
+  {
+    "title": "Changer la destination d’un bâtiment : transformer plutôt que reconstruire",
+    "category": "Transformation immobilière",
+    "date": "2026-10-03",
+    "excerpt": "Réutiliser un actif existant peut redonner de la valeur à un bâtiment, répondre à de nouveaux usages et limiter le recours à une reconstruction complète.",
+    "content": "Le changement de destination transforme progressivement le paysage immobilier. Un immeuble de bureaux peut être repensé pour accueillir un hôtel, une résidence, des logements ou une nouvelle activité. Réutiliser l’existant permet de redonner de la valeur à un actif sous-exploité, de répondre à de nouveaux besoins et de gagner en sobriété par rapport à une reconstruction. Cette transformation nécessite toutefois de repenser le bâtiment pour son nouvel usage, avec de nouvelles contraintes techniques, réglementaires et fonctionnelles.",
+    "image": "assets/uploads/miromesnil-3.jpg",
+    "alt": "Exemple SERILEC de transformation d’un bâtiment existant vers un nouvel usage",
+    "link": "https://fr.linkedin.com/posts/groupe-serilec_le-changement-de-destination-des-actifs-cest-activity-7512077768449347584-qWI2",
+    "published": true
+  },
+  {
     "title": "SERILEC soutient Octobre Rose",
     "category": "Engagement",
     "date": "2026-09-30",
