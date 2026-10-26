@@ -1,7 +1,11 @@
-name: Synchroniser LinkedIn SERILEC
+name: Veille LinkedIn SERILEC via Windsor.ai
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/sync-linkedin-news.yml'
   schedule:
     - cron: '23 6 * * *'  # chaque matin, UTC
 
@@ -27,9 +31,18 @@ jobs:
         shell: bash
         run: git pull --rebase origin main
 
-      - name: Rechercher et synchroniser les posts LinkedIn
+      - name: Tester la validation des données Windsor
         shell: bash
-        run: python3 scripts/sync-linkedin-news.py
+        run: python3 scripts/sync-windsor-linkedin.py --self-test
+
+      - name: Récupérer les posts SERILEC depuis Windsor.ai (lecture seule)
+        shell: bash
+        env:
+          WINDSOR_API_KEY: ${{ secrets.WINDSOR_API_KEY }}
+          WINDSOR_LINKEDIN_ACCOUNT_ID: ${{ secrets.WINDSOR_LINKEDIN_ACCOUNT_ID }}
+        run: |
+          test -n "$WINDSOR_API_KEY" || { echo '::error::Secret WINDSOR_API_KEY manquant dans GitHub Actions'; exit 1; }
+          python3 scripts/sync-windsor-linkedin.py
 
       - name: Valider le JSON
         shell: bash
