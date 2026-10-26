@@ -194,7 +194,7 @@ def discover_posts() -> list[tuple[int, str]]:
     sources = COMPANY_URLS + SEARCH_URLS
     for url in sources:
         try:
-            body, _, _ = fetch(url)
+            body, _, _ = fetch(url, attempts=1)
         except Exception as exc:  # noqa: BLE001
             errors.append(str(exc))
             continue
