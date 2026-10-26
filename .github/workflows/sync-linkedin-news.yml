@@ -2,10 +2,11 @@ name: Synchroniser LinkedIn SERILEC
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '23 6 * * *'  # chaque matin, UTC
 
 permissions:
   contents: write
-  actions: write
 
 concurrency:
   group: linkedin-serilec-sync
@@ -32,13 +33,17 @@ jobs:
 
       - name: Valider le JSON
         shell: bash
-        run: python3 -m json.tool data/news.json > /dev/null
+        run: |
+          python3 -m json.tool data/news.json > /dev/null
+          if [ -f data/linkedin-pending.json ]; then
+            python3 -m json.tool data/linkedin-pending.json > /dev/null
+          fi
 
       - name: Committer uniquement si nécessaire
         id: publish
         shell: bash
         run: |
-          if [ -z "$(git status --porcelain -- data/news.json assets/uploads/linkedin)" ]; then
+          if [ -z "$(git status --porcelain -- data/linkedin-pending.json)" ]; then
             echo "Aucune modification à publier."
             echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
@@ -46,8 +51,8 @@ jobs:
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/news.json assets/uploads/linkedin
-          git commit -m "Synchroniser LinkedIn SERILEC"
+          git add data/linkedin-pending.json
+          git commit -m "Veille LinkedIn SERILEC : nouvelles URLs en attente de vérification"
 
           for attempt in 1 2 3; do
             git pull --rebase origin main
@@ -62,16 +67,3 @@ jobs:
           echo "::error::Impossible de pousser la synchronisation LinkedIn sur main après 3 tentatives."
           exit 1
 
-      - name: Déclencher le déploiement OVH
-        if: steps.publish.outputs.changed == 'true'
-        shell: bash
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh workflow run deploy-ovh.yml --ref main
-
-      - name: Déclencher GitHub Pages
-        if: steps.publish.outputs.changed == 'true'
-        shell: bash
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh workflow run deploy-pages.yml --ref main
