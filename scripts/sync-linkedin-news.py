@@ -635,7 +635,8 @@ def main() -> int:
         if m
     }
 
-    visual_upgrades = upgrade_recent_visuals(news)
+    # Sécurité éditoriale : ne pas modifier automatiquement les visuels des contenus publiés.
+    visual_upgrades = 0
     candidates = discover_posts()
     missing = [(str(activity), url) for activity, url in candidates if str(activity) not in existing_ids]
     if not missing and not visual_upgrades:
@@ -674,7 +675,8 @@ def main() -> int:
             "image": image,
             "alt": alt,
             "link": url,
-            "published": True,
+            "published": False,
+            "review_status": "pending",
         }
         news.insert(0, entry)
         changed += 1
@@ -685,7 +687,7 @@ def main() -> int:
 
     validate_latest_images(news)
     NEWS_FILE.write_text(json.dumps(news, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"{changed} publication(s) SERILEC synchronisée(s), {visual_upgrades} visuel(s) exact(s) actualisé(s).")
+    print(f"{changed} publication(s) détectée(s) et mise(s) en attente de validation éditoriale. Aucune publication automatique.")
     return 0
 
 
