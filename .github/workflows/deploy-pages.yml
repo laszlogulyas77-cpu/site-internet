@@ -43,7 +43,11 @@ jobs:
 
       - name: Préparer la version de production
         shell: bash
-        run: python3 scripts/prepare-production.py
+        run: |
+          python3 scripts/build-seo-news.py
+          python3 scripts/prepare-production.py
+          python3 scripts/augment-sitemap-articles.py
+          python3 scripts/build-seo-news.py --verify
 
       - name: Activer les contenus complémentaires et l’actualisation automatique
         shell: bash
