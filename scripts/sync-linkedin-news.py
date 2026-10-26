@@ -19,6 +19,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 NEWS_FILE = ROOT / "data" / "news.json"
+PENDING_FILE = ROOT / "data" / "linkedin-pending.json"
 PROJECTS_FILE = ROOT / "data" / "projects.json"
 UPLOADS = ROOT / "assets" / "uploads"
 LINKEDIN_UPLOADS = UPLOADS / "linkedin"
@@ -626,68 +627,45 @@ def validate_latest_images(news: list[dict]) -> None:
 
 
 def main() -> int:
+    """Discover public-looking URLs; never add scraped content to the live news feed."""
     news = json.loads(NEWS_FILE.read_text(encoding="utf-8"))
-    projects = json.loads(PROJECTS_FILE.read_text(encoding="utf-8"))
-    existing_ids = {
+    pending = json.loads(PENDING_FILE.read_text(encoding="utf-8")) if PENDING_FILE.exists() else []
+    published_ids = {
         m.group(1)
         for entry in news
         for m in [ACTIVITY_RE.search(str(entry.get("link", "")))]
         if m
     }
-
-    # Sécurité éditoriale : ne pas modifier automatiquement les visuels des contenus publiés.
-    visual_upgrades = 0
-    candidates = discover_posts()
-    missing = [(str(activity), url) for activity, url in candidates if str(activity) not in existing_ids]
-    if not missing and not visual_upgrades:
-        print("Aucune nouvelle publication SERILEC à synchroniser.")
-        return 0
-
-    # Traite du plus ancien au plus récent pour conserver l'ordre final.
-    changed = 0
-    for activity, url in reversed(missing[:6]):
-        if any(activity in str(n.get("link", "")) for n in news):
+    # Remove pending links already present in the curated site feed.
+    pending = [item for item in pending if str(item.get("activity_id", "")) not in published_ids]
+    known = published_ids | {str(item.get("activity_id", "")) for item in pending}
+    discovered = discover_posts()
+    new_count = 0
+    for activity, url in discovered:
+        aid = str(activity)
+        if aid in known:
             continue
-        text, image_url = extract_post(url)
-        category = classify(text)
-        title = better_title(text, category)
-        project = project_match(text, projects) if is_project_post(text) else None
-        if dedup(news, activity, url, title, text, project):
+        if datetime.fromisoformat(activity_date(aid)).date() > datetime.now(timezone.utc).date():
             continue
-
-        recent_hashes = recent_image_hashes(news)
-        image = download_visual(activity, image_url, recent_hashes)
-        if not image:
-            image = pick_project_visual(project, news)
-        if not image:
-            image = unique_fallback_svg(activity, title, category)
-
-        alt = f"Visuel de la publication LinkedIn SERILEC : {title}"
-        if project:
-            alt = str(project.get("alt") or f"Projet SERILEC {project.get('title', title)}")
-
-        entry = {
-            "title": title,
-            "category": category,
-            "date": activity_date(activity),
-            "excerpt": excerpt_from(text),
-            "content": concise_content(text, project),
-            "image": image,
-            "alt": alt,
-            "link": url,
-            "published": False,
+        pending.append({
+            "activity_id": aid,
+            "url": url,
+            "date": activity_date(aid),
             "review_status": "pending",
-        }
-        news.insert(0, entry)
-        changed += 1
-
-    if not changed and not visual_upgrades:
-        print("Nouvelles URLs détectées mais aucune actualité valide à ajouter.")
-        return 0
-
-    validate_latest_images(news)
-    NEWS_FILE.write_text(json.dumps(news, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"{changed} publication(s) détectée(s) et mise(s) en attente de validation éditoriale. Aucune publication automatique.")
+        })
+        known.add(aid)
+        new_count += 1
+    pending.sort(key=lambda item: int(item["activity_id"]), reverse=True)
+    if pending:
+        serialized = json.dumps(pending, ensure_ascii=False, indent=2) + "\n"
+        if not PENDING_FILE.exists() or PENDING_FILE.read_text(encoding="utf-8") != serialized:
+            PENDING_FILE.write_text(serialized, encoding="utf-8")
+    elif PENDING_FILE.exists():
+        PENDING_FILE.write_text("[]\n", encoding="utf-8")
+    print(
+        f"LinkedIn : {new_count} nouvelle(s) URL(s) en attente de vérification ; "
+        f"{len(pending)} URL(s) à contrôler. Aucune actualité ni image publiée."
+    )
     return 0
 
 
