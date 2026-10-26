@@ -94,8 +94,24 @@ def fetch_posts() -> list[dict]:
         with urllib.request.urlopen(request, timeout=70) as response:
             payload = response.read(3_000_000)
     except urllib.error.HTTPError as exc:
-        # An HTTPError may contain the API key in exc.url: do not print the exception.
-        raise ValueError(f"Windsor LinkedIn Pages : HTTP {exc.code} (vérifier la clé et la connexion LinkedIn).") from None
+        # HTTPError.url peut contenir le secret : ne pas afficher exc, l'URL,
+        # les en-têtes ni une réponse brute.
+        try:
+            details = json.loads(exc.read(8192).decode("utf-8", "replace"))
+            problem = details.get("error") or details.get("message") or details.get("detail") or ""
+            if isinstance(problem, dict):
+                reason = str(problem.get("message") or problem.get("code") or "erreur fournisseur")
+            else:
+                reason = str(problem)
+        except (ValueError, UnicodeError):
+            reason = "requête rejetée sans message JSON"
+        # Nettoyage défensif, même si Windsor rappelle la clé dans son erreur.
+        reason = reason.replace(key, "[SECRET]")
+        reason = re.sub(r"https?://\\S+", "[URL]", reason)
+        reason = re.sub(r"(?i)(?:api[_-]?key|token|secret)\\s*[:=]\\s*[^\\s,;&]+", "[PARAMÈTRE MASQUÉ]", reason)
+        reason = re.sub(r"\\b[a-fA-F0-9]{30,}\\b", "[VALEUR MASQUÉE]", reason)
+        reason = re.sub(r"[\\r\\n\\t]+", " ", reason).strip()[:240]
+        raise ValueError(f"Windsor LinkedIn Pages HTTP {exc.code} : {reason or 'erreur non précisée'}") from None
     except (urllib.error.URLError, TimeoutError):
         raise ValueError("Impossible de joindre Windsor LinkedIn Pages (réseau ou délai dépassé).") from None
     try:
