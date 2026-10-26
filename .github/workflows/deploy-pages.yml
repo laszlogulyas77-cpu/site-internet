@@ -3,6 +3,8 @@ name: Déployer le site SERILEC
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - 'data/linkedin-pending.json'
   workflow_dispatch:
 
 permissions:
