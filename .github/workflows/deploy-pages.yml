@@ -48,6 +48,7 @@ jobs:
           python3 scripts/prepare-production.py
           python3 scripts/augment-sitemap-articles.py
           python3 scripts/build-seo-news.py --verify
+          rm -f data/linkedin-pending.json
 
       - name: Activer les contenus complémentaires et l’actualisation automatique
         shell: bash
