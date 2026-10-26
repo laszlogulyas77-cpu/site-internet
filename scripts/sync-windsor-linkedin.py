@@ -107,10 +107,10 @@ def fetch_posts() -> list[dict]:
             reason = "requête rejetée sans message JSON"
         # Nettoyage défensif, même si Windsor rappelle la clé dans son erreur.
         reason = reason.replace(key, "[SECRET]")
-        reason = re.sub(r"https?://\\S+", "[URL]", reason)
-        reason = re.sub(r"(?i)(?:api[_-]?key|token|secret)\\s*[:=]\\s*[^\\s,;&]+", "[PARAMÈTRE MASQUÉ]", reason)
-        reason = re.sub(r"\\b[a-fA-F0-9]{30,}\\b", "[VALEUR MASQUÉE]", reason)
-        reason = re.sub(r"[\\r\\n\\t]+", " ", reason).strip()[:240]
+        reason = re.sub(r"https?://\S+", "[URL]", reason)
+        reason = re.sub(r"(?i)(?:api[_-]?key|token|secret)\s*[:=]\s*[^\s,;&]+", "[PARAMÈTRE MASQUÉ]", reason)
+        reason = re.sub(r"\b[a-fA-F0-9]{30,}\b", "[VALEUR MASQUÉE]", reason)
+        reason = re.sub(r"[\r\n\t]+", " ", reason).strip()[:240]
         raise ValueError(f"Windsor LinkedIn Pages HTTP {exc.code} : {reason or 'erreur non précisée'}") from None
     except (urllib.error.URLError, TimeoutError):
         raise ValueError("Impossible de joindre Windsor LinkedIn Pages (réseau ou délai dépassé).") from None
