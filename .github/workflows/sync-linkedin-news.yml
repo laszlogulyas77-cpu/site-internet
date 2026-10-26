@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/sync-linkedin-news.yml'
+      - 'scripts/sync-windsor-linkedin.py'
   schedule:
     - cron: '23 6 * * *'  # chaque matin, UTC
 
