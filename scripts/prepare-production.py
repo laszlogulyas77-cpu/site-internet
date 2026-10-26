@@ -40,6 +40,22 @@ pages = {
         'priority': '0.9',
         'changefreq': 'monthly',
     },
+    'cfo-cfa-paris-ile-de-france.html': {
+        'path': '/cfo-cfa-paris-ile-de-france.html',
+        'label': 'CFO CFA Paris Île-de-France',
+        'title': 'Entreprise CFO CFA à Paris & Île-de-France | SERILEC',
+        'description': 'SERILEC réalise les installations électriques CFO et CFA pour hôtels, bureaux, commerces et bâtiments tertiaires à Paris et en Île-de-France : HTA/BT, TGBT, distribution, VDI, sûreté et SSI.',
+        'priority': '0.9',
+        'changefreq': 'monthly',
+    },
+    'maintenance-electrique-tertiaire-paris-ile-de-france.html': {
+        'path': '/maintenance-electrique-tertiaire-paris-ile-de-france.html',
+        'label': 'Maintenance électrique tertiaire Paris Île-de-France',
+        'title': 'Maintenance électrique tertiaire Paris & Île-de-France | SERILEC',
+        'description': 'SERILEC assure la maintenance électrique tertiaire à Paris et en Île-de-France : maintenance préventive et corrective, dépannage, contrôles, CFO, CFA, SSI et accompagnement des exploitants.',
+        'priority': '0.9',
+        'changefreq': 'monthly',
+    },
     'projets.html': {
         'path': '/projets.html',
         'label': 'Projets réalisés',
@@ -238,16 +254,27 @@ for filename, cfg in pages.items():
             },
         })
 
-    if filename == 'electricite-hotellerie-paris.html':
+    if filename in {'electricite-hotellerie-paris.html', 'cfo-cfa-paris-ile-de-france.html', 'maintenance-electrique-tertiaire-paris-ile-de-france.html'}:
+        service_name = {
+            'electricite-hotellerie-paris.html': 'Électricité hôtelière à Paris',
+            'cfo-cfa-paris-ile-de-france.html': 'Installations électriques CFO CFA à Paris et en Île-de-France',
+            'maintenance-electrique-tertiaire-paris-ile-de-france.html': 'Maintenance électrique tertiaire à Paris et en Île-de-France',
+        }[filename]
+        service_type = {
+            'electricite-hotellerie-paris.html': 'Électricité hôtelière',
+            'cfo-cfa-paris-ile-de-france.html': 'Courants forts CFO et courants faibles CFA',
+            'maintenance-electrique-tertiaire-paris-ile-de-france.html': 'Maintenance électrique tertiaire',
+        }[filename]
+        service_area = {'@type': 'City', 'name': 'Paris'} if filename == 'electricite-hotellerie-paris.html' else {'@type': 'AdministrativeArea', 'name': 'Île-de-France'}
         graph.append({
             '@type': 'Service',
             '@id': f'{canonical}#service',
-            'name': 'Électricité hôtelière à Paris',
-            'serviceType': 'Électricité hôtelière',
+            'name': service_name,
+            'serviceType': service_type,
             'url': canonical,
             'description': cfg['description'],
             'provider': {'@id': organization_id},
-            'areaServed': {'@type': 'City', 'name': 'Paris'},
+            'areaServed': service_area,
             'hasOfferCatalog': {
                 '@type': 'OfferCatalog',
                 'name': 'Prestations électriques pour hôtels',
