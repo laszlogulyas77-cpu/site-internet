@@ -64,6 +64,7 @@ jobs:
           python3 scripts/prepare-production.py
           python3 scripts/augment-sitemap-articles.py
           python3 scripts/build-seo-news.py --verify
+          rm -f data/linkedin-pending.json
           VERSION="${GITHUB_SHA:0:10}"
           while IFS= read -r -d '' file; do
             if ! grep -q 'assets/js/project-content-merge.js' "$file"; then
