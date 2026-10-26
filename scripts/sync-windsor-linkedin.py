@@ -74,6 +74,42 @@ def rows_from_response(payload: object) -> list[dict]:
     raise ValueError("Format de réponse Windsor inattendu (données absentes).")
 
 
+def probe_api_key(key: str) -> str:
+    """Check a documented, connector-neutral endpoint without disclosing the key."""
+    query = urllib.parse.urlencode({
+        "api_key": key,
+        "date_preset": "last_7d",
+        "fields": "date,source",
+    })
+    request = urllib.request.Request(
+        f"https://connectors.windsor.ai/all?{query}",
+        headers={"Accept": "application/json", "User-Agent": "Windsor/1.0"},
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=22) as response:
+            if response.status == 200:
+                response.read(1024)
+                return "clé acceptée par le connecteur général ; vérifier LinkedIn Pages"
+            return "réponse inattendue du connecteur général"
+    except urllib.error.HTTPError as exc:
+        if exc.code in (401, 403):
+            return "clé non autorisée par Windsor.ai"
+        if exc.code == 400:
+            # Ne jamais imprimer de réponse brute ni d'URL qui contient api_key.
+            try:
+                error_payload = json.loads(exc.read(4096).decode("utf-8", "replace"))
+                error = error_payload.get("error") or error_payload.get("message") or ""
+                message = str(error.get("message") or error.get("code") or "") if isinstance(error, dict) else str(error)
+                if "api key" in message.casefold() or "api_key" in message.casefold():
+                    return "clé refusée également par le connecteur général de Windsor.ai"
+            except (ValueError, UnicodeError):
+                pass
+            return "requête générale rejetée (HTTP 400) : contrôler la validité de la clé"
+        return f"connecteur général HTTP {exc.code}"
+    except (urllib.error.URLError, TimeoutError):
+        return "contrôle de clé indisponible (réseau)"
+
+
 def fetch_posts() -> list[dict]:
     key = os.environ.get("WINDSOR_API_KEY", "").strip()
     if not key:
@@ -111,7 +147,10 @@ def fetch_posts() -> list[dict]:
         reason = re.sub(r"(?i)(?:api[_-]?key|token|secret)\s*[:=]\s*[^\s,;&]+", "[PARAMÈTRE MASQUÉ]", reason)
         reason = re.sub(r"\b[a-fA-F0-9]{30,}\b", "[VALEUR MASQUÉE]", reason)
         reason = re.sub(r"[\r\n\t]+", " ", reason).strip()[:240]
-        raise ValueError(f"Windsor LinkedIn Pages HTTP {exc.code} : {reason or 'erreur non précisée'}") from None
+        extra = ""
+        if exc.code == 400 and "api key" in reason.casefold():
+            extra = f" ; contrôle séparé : {probe_api_key(key)}"
+        raise ValueError(f"Windsor LinkedIn Pages HTTP {exc.code} : {reason or 'erreur non précisée'}{extra}") from None
     except (urllib.error.URLError, TimeoutError):
         raise ValueError("Impossible de joindre Windsor LinkedIn Pages (réseau ou délai dépassé).") from None
     try:
