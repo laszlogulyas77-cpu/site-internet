@@ -141,6 +141,88 @@ organization = {
     ],
     'sameAs': [linkedin_url],
 }
+
+def normalize_service(value: str) -> str:
+    normalized = ''.join(ch for ch in str(value or '').lower() if ch.isalnum())
+    aliases = {
+        'cfo': 'cfo', 'courantsforts': 'cfo', 'courantfort': 'cfo',
+        'cfa': 'cfa', 'courantsfaibles': 'cfa', 'courantfaible': 'cfa',
+        'ssi': 'ssi', 'securiteincendie': 'ssi',
+        'gtb': 'gtb', 'gestiontechniquedubatiment': 'gtb',
+        'photovoltaique': 'photovoltaique', 'solaire': 'photovoltaique',
+        'irve': 'irve', 'bornederecharge': 'irve', 'bornesderecharge': 'irve',
+    }
+    return aliases.get(normalized, normalized)
+
+def render_project_card(project: dict) -> str:
+    title = escape(str(project.get('title', '')).strip())
+    category = escape(str(project.get('category', '')).strip())
+    premium = 'true' if project.get('premium') is True else 'false'
+    services = ' '.join(
+        dict.fromkeys(
+            normalize_service(item)
+            for item in (project.get('services') or [])
+            if normalize_service(item)
+        )
+    )
+    image = escape(str(project.get('image') or 'assets/uploads/references/photo-a-ajouter.svg'))
+    alt = escape(str(project.get('alt') or project.get('title') or 'Projet SERILEC'))
+    category_label = escape(str(project.get('category_label', '')).strip())
+    location = escape(str(project.get('location', '')).strip())
+    description = escape(str(project.get('description', '')).strip())
+    client = escape(str(project.get('client', '')).strip())
+    year = escape(str(project.get('year', '')).strip())
+    metadata = ''
+    if client or year:
+        parts = []
+        if client:
+            parts.append(f'<span><strong>MOA</strong> {client}</span>')
+        if year:
+            parts.append(f'<span><strong>Année</strong> {year}</span>')
+        metadata = '<div class="project-meta">' + ''.join(parts) + '</div>'
+    lead = f'{location} — ' if location else ''
+    return (
+        f'<article class="project-card reveal is-visible" data-category="{category}" '
+        f'data-premium="{premium}" data-services="{escape(services)}">'
+        f'<img src="{image}" alt="{alt}" loading="lazy">'
+        f'<div class="project-overlay"><span class="project-tag">{category_label}</span>'
+        f'<h3>{title}</h3><p>{lead}{description}</p>{metadata}</div></article>'
+    )
+
+def prerender_projects() -> None:
+    try:
+        projects = json.loads((ROOT / 'data/projects.json').read_text(encoding='utf-8'))
+    except (OSError, json.JSONDecodeError):
+        return
+    published = [item for item in projects if item.get('published', True) is not False]
+
+    projects_page = ROOT / 'projets.html'
+    if projects_page.exists():
+        html = projects_page.read_text(encoding='utf-8')
+        cards = ''.join(render_project_card(item) for item in published)
+        html = re.sub(
+            r'(<div class="project-grid" data-cms-projects>).*?(</div>)',
+            lambda m: m.group(1) + cards + m.group(2),
+            html,
+            count=1,
+            flags=re.DOTALL,
+        )
+        projects_page.write_text(html, encoding='utf-8')
+
+    home_page = ROOT / 'index.html'
+    if home_page.exists():
+        html = home_page.read_text(encoding='utf-8')
+        featured = [item for item in published if item.get('featured')][:3]
+        cards = ''.join(render_project_card(item) for item in featured)
+        html = re.sub(
+            r'(<div class="project-grid" data-cms-featured-projects>).*?(</div>)',
+            lambda m: m.group(1) + cards + m.group(2),
+            html,
+            count=1,
+            flags=re.DOTALL,
+        )
+        home_page.write_text(html, encoding='utf-8')
+
 website = {
     '@type': 'WebSite',
     '@id': website_id,
@@ -335,6 +417,8 @@ for filename, cfg in pages.items():
 
     html = html.replace('</head>', seo + '</head>', 1)
     path.write_text(html, encoding='utf-8')
+
+prerender_projects()
 
 error_page = ROOT / '404.html'
 if error_page.exists():
