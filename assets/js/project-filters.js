@@ -115,7 +115,7 @@
     });
 
     const emptyState = document.querySelector('[data-project-filter-empty]');
-    if (emptyState) emptyState.hidden = visibleCount > 0;
+    if (emptyState) { emptyState.hidden = visibleCount > 0; if (visibleCount === 0) emptyState.textContent = 'Aucun projet ne correspond à ce filtre.'; }
   };
 
   const selectMode = mode => {
